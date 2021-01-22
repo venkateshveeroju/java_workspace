@@ -1,0 +1,23 @@
+.logo{
+    height:50px;
+}
+.user-name p{
+    margin-bottom:0;
+}
+.label-heading {
+    padding-left:15px;
+}
+
+.action-buttons button{
+    background-color: #000;
+    border:none;
+    width:19%;
+    
+}
+
+.action-buttons button:hover{
+    background-color: #000;
+}
+.nav-tabs .nav-link.active{
+    font-weight:700;
+}
