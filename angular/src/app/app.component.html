@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <app-esg-header></app-esg-header>
+    <app-user-info></app-user-info>
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="nav-item active" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}">
+                    <a routerLink="/" class="nav-link" id="generaldisclosures-tab" 
+                    data-toggle="tab" role="tab" aria-controls="generaldisclosures" aria-selected="true">
+                        GRI 102: General Disclosures
+                    </a>
+                </li>
+                <li role="presentation" class="nav-item">
+                    <a [routerLink]="'/managementapproach'" class="nav-link" id="managementApproach-tab"
+                        data-toggle="tab" role="tab" aria-controls="managementapproach" aria-selected="false">
+                        GRI 103: Management Approach
+                    </a>
+                </li>
+                <li role="presentation" class="nav-item">
+                    <a [routerLink]="'/economic'" class="nav-link" id="economic-tab" 
+                    data-toggle="tab" role="tab" aria-controls="economic" aria-selected="false">
+                        GRI 200: Economic
+                    </a>
+                </li>
+                <li role="presentation" class="nav-item">
+                    <a [routerLink]="'/environmental'" class="nav-link" id="environmental-tab" 
+                    data-toggle="tab" role="tab" aria-controls="environmental" aria-selected="false">
+                        GRI 300: Environmental
+                    </a>
+                </li>
+                <li role="presentation" class="nav-item">
+                    <a [routerLink]="'/social'" class="nav-link" id="social-tab" 
+                    data-toggle="tab" role="tab" aria-controls="social" aria-selected="false">
+                        GRI 300: Social
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--End of row-->
+    <div class="row">
+        <div class="col-xs-12">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <!--end of container-fluid-->
