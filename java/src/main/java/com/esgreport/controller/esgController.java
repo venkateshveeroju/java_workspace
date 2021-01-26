@@ -3,6 +3,8 @@ package com.esgreport.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,10 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/api/esg")
 public class EsgController {
 	
-	@GetMapping("/all")
-	public String allAccess() {
-		return "Public Content.";
-	}
+	
 	@GetMapping("/all")
 	public String esgDetails () {
 		return "esgDetails";
@@ -25,11 +24,11 @@ public class EsgController {
 	public String esgDetailsList () {
 		return "EsgDetailsList";
 	}
-	@GetMapping("/insert")
+	@PutMapping("/insert")
 	public String esgDetailsInsert () {
 		return "EsgDetailsInsert";
 	}
-	@GetMapping("/update")
+	@PostMapping("/update")
 	public String esgDetailsUpdate () {
 		return "EsgDetailsUpdate";
 	}
