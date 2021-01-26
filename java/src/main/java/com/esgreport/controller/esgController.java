@@ -11,12 +11,26 @@ import org.springframework.web.servlet.ModelAndView;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/esg")
-public class esgController {
+public class EsgController {
 	
 	@GetMapping("/all")
 	public String allAccess() {
 		return "Public Content.";
 	}
-	
-
+	@GetMapping("/all")
+	public String esgDetails () {
+		return "esgDetails";
+	}
+	@GetMapping("/list")
+	public String esgDetailsList () {
+		return "EsgDetailsList";
+	}
+	@GetMapping("/insert")
+	public String esgDetailsInsert () {
+		return "EsgDetailsInsert";
+	}
+	@GetMapping("/update")
+	public String esgDetailsUpdate () {
+		return "EsgDetailsUpdate";
+	}
 }
