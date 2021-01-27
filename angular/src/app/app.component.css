@@ -24,3 +24,7 @@
 .nav-tabs .nav-link.active {
     font-weight: 700;
 }
+
+.container-fluid{
+    overflow: hidden;
+    }

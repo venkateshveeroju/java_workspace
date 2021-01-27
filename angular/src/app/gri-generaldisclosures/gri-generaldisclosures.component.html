@@ -1,4 +1,4 @@
-<div class="tab-content" id="myTabContent">
+<div class="tab-content" id="myTabContent" style="padding-left:15px;">
     <div class="tab-pane fade show active" id="generalDisclosures" role="tabpanel" aria-labelledby="home-tab">
         <h3 class="mt-3 mb-3">GRI 102: General Disclosures <i class="far fa-question-circle"></i></h3>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -37,90 +37,107 @@
                     nature of the organization and its economic, environmental
                     and social impact.</p>
 
-                <form action="">
-                    <div class="row">
-                        <h3 class="label-heading mt-3 mb-3">GRI Disclosure 102-1 / Name of the
-                            organization <i class="far fa-question-circle"></i></h3>
-                        <div class="col-md-7">
-                            <div class="form-group">
-
-                                <textarea class="form-control" rows="5" id="" name=""></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-
-                                <input type="text" class="form-control" id="" placeholder="" name="">
-                            </div>
+                <div class="row">
+                    <h3 class="label-heading mt-3 mb-3">GRI Disclosure 102-1 / Name of the
+                        organization <i class="far fa-question-circle"></i></h3>
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="5" id="" name="">{{esgdetailsbankname}}
+                            </textarea>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <h3 class="label-heading mt-3 mb-3">GRI Disclosure 102-2 / Activities, brands,
-                            products, and services <i class="far fa-question-circle"></i></h3>
-                        <div class="col-md-7">
-                            <div class="form-group">
-
-                                <textarea class="form-control" rows="5" id="" name="" value="">
-
-                                            </textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-
-                                <input type="text" class="form-control mb-2" id="" placeholder="" name="">
-                                <input type="text" class="form-control mb-2" id="" placeholder="" name="">
-                                <input type="text" class="form-control" id="" placeholder="" name="">
-                            </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="" [(ngModel)]="esgdetailsbankname" />
                         </div>
                     </div>
+                </div>
 
-                    <div class="row">
-                        <h3 class="label-heading mt-3 mb-3">GRI Disclosure 102-3 / Location of
-                            headquarters <i class="far fa-question-circle"></i></h3>
-                        <div class="col-md-7">
-                            <div class="form-group">
-
-                                <textarea class="form-control" rows="5" id="" name=""></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-
-                                <input type="text" class="form-control" id="" placeholder="" name="">
-                            </div>
+                <div class="row">
+                    <h3 class="label-heading mt-3 mb-3">GRI Disclosure 102-2 / Activities, brands,
+                        products, and services <i class="far fa-question-circle"></i></h3>
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="5" id="" name="" value="">{{esgdetailsbankinfo1}}
+                            </textarea>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <h3 class="label-heading mt-3 mb-3">GRI Disclosure 102-4 / Location of
-                            operations <i class="far fa-question-circle"></i></h3>
-                        <div class="col-md-7">
-                            <div class="form-group">
-
-                                <textarea class="form-control" rows="5" id="" name=""></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-
-                                <input type="text" class="form-control mb-2" id="" placeholder="" name="">
-                                <input type="text" class="form-control" id="" placeholder="" name="">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col d-flex justify-content-between action-buttons mb-5">
-                            <button type="button" class="btn btn-primary">SAVE & CONTINUE LATER</button>
-                            <button type="button" class="btn btn-primary">SAVE & SUBMIT NOW</button>
-                            <button type="button" class="btn btn-primary">DELEGATE</button>
-                            <button type="button" class="btn btn-primary">EXPORT</button>
-                            <button type="button" class="btn btn-primary">PRINT</button>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <input type="text" #box class="form-control mb-2" id="" placeholder="" name=""
+                                [(ngModel)]=esgdetailsbankinfo 
+                                (keyup.enter)="update(box.value)" 
+                                (blur)="update(box.value)"/>
+                            
+                                <input type="text" #box1 class="form-control mb-2" id="" placeholder="" name=""
+                                [(ngModel)]=esgdetailsbankactivity 
+                                (keyup.enter)="update1(box1.value)"
+                                (blur)="update1(box1.value)"/>
+                            
+                                <input type="text" #box2 class="form-control" id="" placeholder="" name=""
+                                [(ngModel)]=esgdetailsbankservice 
+                                (keyup.enter)="update2(box2.value)"
+                                (blur)="update2(box2.value)"/>
                         </div>
                     </div>
-                </form>
+                </div>
+
+                <div class="row">
+                    <h3 class="label-heading mt-3 mb-3">GRI Disclosure 102-3 / Location of
+                        headquarters <i class="far fa-question-circle"></i></h3>
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="5" id="" name="">{{esgdetailsbankinfo2}}
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <input type="text" #box3  class="form-control" id="" placeholder="" name=""
+                            [(ngModel)]=esgdetailsbanklocation (keyup.enter)="update3(box3.value)"
+                                (blur)="update3(box3.value)"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h3 class="label-heading mt-3 mb-3">GRI Disclosure 102-4 / Location of
+                        operations <i class="far fa-question-circle"></i></h3>
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="5" id="" name="">{{esgdetailsbankinfo3}}
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <input type="text" #box4 class="form-control mb-2" id="" placeholder="" name=""
+                            [(ngModel)]=esgdetailsbankoperation (keyup.enter)="update4(box4.value)"
+                            (blur)="update4(box4.value)"
+                            
+                            />
+                            <input type="text" #box5 class="form-control" id="" placeholder="" name=""
+                            [(ngModel)]=esgdetailsbankoperation1 (keyup.enter)="update4(box5.value)"
+                            (blur)="update4(box5.value)"
+                            
+                            />
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col d-flex justify-content-between action-buttons mb-5">
+                        <button type="button" class="btn btn-primary">SAVE & CONTINUE LATER</button>
+                        <button type="button" class="btn btn-primary">SAVE & SUBMIT NOW</button>
+                        <button type="button" class="btn btn-primary">DELEGATE</button>
+                        <button type="button" class="btn btn-primary">EXPORT</button>
+                        <button type="button" class="btn btn-primary">PRINT</button>
+                    </div>
+                </div>
+
 
             </div>
 
@@ -133,7 +150,8 @@
             <div class="tab-pane fade" id="governance" role="tabpanel" aria-labelledby="governance-tab">
                 Content for governance tab
             </div>
-            <div class="tab-pane fade" id="stakeholderengagement" role="tabpanel" aria-labelledby="stakeholderengagement-tab">
+            <div class="tab-pane fade" id="stakeholderengagement" role="tabpanel"
+                aria-labelledby="stakeholderengagement-tab">
                 Content for stakeholderengagement tab
             </div>
         </div>
