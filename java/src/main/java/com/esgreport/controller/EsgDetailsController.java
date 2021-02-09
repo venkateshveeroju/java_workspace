@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,37 +23,30 @@ import com.esgreport.service.EsgDetailService;
 @RestController
 @RequestMapping("/api/esg")
 public class EsgDetailsController {
-	
-	private final EsgDetailService esgDetailImpl ;
-	
-	private EsgDetailRepository esgDetailRepository;
-	
-	@Autowired
-	public   EsgDetailsController(EsgDetailService esgDetailImpl) {
-		this.esgDetailImpl = esgDetailImpl;
-	}
-	
 
-	
+	@Autowired
+	private  EsgDetailService egDetailService;
+
 	@GetMapping("/all")
-	public List<EsgDetail> esgDetails () {
-		if(esgDetailRepository.findAll().isEmpty()) {
-			//return List<EsgDetail>;
-		}
-		return esgDetailRepository.findAll();
+	public List<EsgDetail> esgDetails() {
+		
+		return egDetailService.findAll();
 	}
+
 	@GetMapping("/list")
-	public String esgDetailsList () {
-	
+	public String esgDetailsList() {
+
 		return "EsgDetailsList";
 	}
+
 	@PutMapping("/insert")
-	public String esgDetailsInsert (String generalDisclosure) {
-		
+	public String esgDetailsInsert(@RequestBody String incomingData) {
+System.out.println(incomingData);
 		return "EsgDetails Inserted";
 	}
+
 	@PostMapping("/update")
-	public String esgDetailsUpdate () {
+	public String esgDetailsUpdate() {
 		return "EsgDetailsUpdate";
 	}
 }

@@ -2,6 +2,7 @@ package com.esgreport.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.esgreport.entity.EsgDetail;
@@ -12,6 +13,7 @@ public class EsgDetailService {
 
 	private EsgDetail esgDetail;
 
+	@Autowired
 	private EsgDetailRepository esgDetailRepository;
 
 	// private static final Logger LOGGER =

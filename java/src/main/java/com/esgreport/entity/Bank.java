@@ -41,7 +41,10 @@ public class Bank {
 		bankName = bankName;
 		this.logoPath = logoPath;
 	}
-
+	public Bank() {
+		
+		
+	}
 	public Long getId() {
 		return id;
 	}
