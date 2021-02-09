@@ -49,15 +49,29 @@ public class User {
 	@JoinColumn(name = "bank_id")
 	private Bank bank;
 
+//	@ManyToMany(fetch = FetchType.LAZY)
+//	@JoinTable(name = "user_esgdetail", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "esgdetail_id"))
+//	private List<EsgDetail> esgDetails = new ArrayList<>();
+
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_esgdetail", joinColumns = @JoinColumn(name = "user_id"),
-	inverseJoinColumns = @JoinColumn(name = "esgdetail_id"))
-	private List<EsgDetail> esgDetails = new ArrayList<EsgDetail>();
-	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), 
-	inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
+
+	public Bank getBank() {
+		return bank;
+	}
+
+	public void setBank(Bank bank) {
+		this.bank = bank;
+	}
+
+//	public List<EsgDetail> getEsgDetails() {
+//		return esgDetails;
+//	}
+//
+//	public void setEsgDetails(List<EsgDetail> esgDetails) {
+//		this.esgDetails = esgDetails;
+//	}
 
 	public User() {
 	}

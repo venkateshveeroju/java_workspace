@@ -1,5 +1,6 @@
 package com.esgreport.entity;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,19 +28,68 @@ public class EsgDetail {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "bank_id")
+	private Bank bank;
+
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "last_modified_by")
+	private User lastModifiedBy;
+
+	@Column(length = 60)
+	private Date lastModifiedDate;
+
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "delegate_to")
+	private User delegateTo;
+
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "moderator_status_id")
+	private EsgDetailStatus moderatorStatusId;
+
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_status_id")
+	private UserStatus userStatusId;
+
 	@Column(length = 60)
 	@NaturalId
 	private String esgDetailText;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "id")
-	private Bank bank;
-
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "esgdetail_user", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "esgdetail_id"))
+	@JoinTable(name = "esgdetail_user", joinColumns = @JoinColumn(name = "esgdetail_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private Set<User> users = new HashSet<>();
 
-	
+	public User getDelegateTo() {
+		return delegateTo;
+	}
+
+	public void setDelegateTo(User delegateTo) {
+		this.delegateTo = delegateTo;
+	}
+
+	public EsgDetailStatus getModeratorStatusId() {
+		return moderatorStatusId;
+	}
+
+	public void setModeratorStatusId(EsgDetailStatus moderatorStatusId) {
+		this.moderatorStatusId = moderatorStatusId;
+	}
+
+	public UserStatus getUserStatusId() {
+		return userStatusId;
+	}
+
+	public void setUserStatusId(UserStatus userStatusId) {
+		this.userStatusId = userStatusId;
+	}
+
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
 
 	public Long getId() {
 		return id;
@@ -49,22 +99,38 @@ public class EsgDetail {
 		this.id = id;
 	}
 
-	public Bank getBanks() {
+	public String getEsgDetailText() {
+		return esgDetailText;
+	}
+
+	public void setEsgDetailText(String esgDetailText) {
+		this.esgDetailText = esgDetailText;
+	}
+
+	public Date getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Date lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	public Bank getBank() {
 		return bank;
 	}
 
-	public void setBanks(Bank banks) {
-		this.bank = banks;
+	public void setBank(Bank bank) {
+		this.bank = bank;
 	}
 
-	public void setUsers(Set<User> users) {
-		this.users = users;
+	public User getLastModifiedBy() {
+		return lastModifiedBy;
 	}
 
-	
-	public Set<User> getUsers() {
-		return users;
+	public void setLastModifiedBy(User lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
 	}
+
 	public String getEsgDetailsText() {
 		return esgDetailText;
 	}
