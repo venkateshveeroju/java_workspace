@@ -1,4 +1,7 @@
+
 import { Component, OnInit } from '@angular/core';
+import { LogService } from '../_services/log.service';
+
 
 @Component({
   selector: 'app-gri-generaldisclosures',
@@ -24,7 +27,7 @@ export class GriGeneraldisclosuresComponent implements OnInit {
  
 
 
-  constructor() { }
+  constructor(private logger: LogService) { }
 
   ngOnInit(): void {
   }
@@ -37,5 +40,28 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   
   update4(value: string) { this.esgdetailsbankinfo3 += value; }
   
+  
+  onSaveContinue($event){    
+    this.logger.log($event);
+    this.logger.log("SaveContinue button is clicked!");    
+   
+  }    
+  onSaveSubmit($event){    
+    console.log("SaveSubmit button is clicked!", $event);    
+   
+  }
+  onDelgate($event){    
+    console.log("Delegate button is clicked!", $event);    
+   
+  }
 
+  onExport($event){    
+    console.log("Export button is clicked!", $event);    
+   
+  }
+
+  onPrint($event){
+    console.log("Print button is clicked!", $event);
+  }
+  
 }

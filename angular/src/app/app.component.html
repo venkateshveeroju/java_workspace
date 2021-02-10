@@ -1,48 +1,41 @@
 <div class="container-fluid" style="padding-left:15px;">
     <app-esg-header></app-esg-header>
     <app-user-info></app-user-info>
-    
     <div class="row">
         <div class="col-xs-12" style="padding-left:15px;">
-            <ul class="nav nav-tabs " >
-                <li role="presentation" class="nav-item active" routerLinkActive="active"
-                    [routerLinkActiveOptions]="{exact: true}">
-                    <a routerLink="/" class="nav-link active" id="generaldisclosures-tab" 
-                    data-toggle="tab" role="tab" aria-controls="generaldisclosures" aria-selected="true">
+            <ul class="nav nav-tabs ">
+                <li>
+                    <a routerLink="/" routerLinkActive="active" class="nav-link " id="generaldisclosures-tab"
+                        data-toggle="tab" role="tab">
                         GRI 102: General Disclosures
                     </a>
                 </li>
-                <li role="presentation" class="nav-item">
-                    <a [routerLink]="'/managementapproach'" class="nav-link" id="managementApproach-tab"
-                        data-toggle="tab" role="tab" aria-controls="managementapproach" aria-selected="false">
+                <li>
+                    <a [routerLink]="'/gri103'" routerLinkActive="active" class="nav-link"
+                        id="managementApproach-tab" data-toggle="tab" role="tab">
                         GRI 103: Management Approach
                     </a>
                 </li>
-                <li role="presentation" class="nav-item">
-                    <a [routerLink]="'/economic'" class="nav-link" id="economic-tab" 
-                    data-toggle="tab" role="tab" aria-controls="economic" aria-selected="false">
+                <li>
+                    <a [routerLink]="'/gri200'" routerLinkActive="active" class="nav-link" id="economic-tab"
+                        data-toggle="tab" role="tab">
                         GRI 200: Economic
                     </a>
                 </li>
-                <li role="presentation" class="nav-item">
-                    <a [routerLink]="'/environmental'" class="nav-link" id="environmental-tab" 
-                    data-toggle="tab" role="tab" aria-controls="environmental" aria-selected="false">
+                <li>
+                    <a [routerLink]="'/gri300'" routerLinkActive="active" class="nav-link" id="environmental-tab"
+                        data-toggle="tab" role="tab">
                         GRI 300: Environmental
                     </a>
                 </li>
-                <li role="presentation" class="nav-item">
-                    <a [routerLink]="'/social'" class="nav-link" id="social-tab" 
-                    data-toggle="tab" role="tab" aria-controls="social" aria-selected="false">
-                        GRI 300: Social
+                <li>
+                    <a [routerLink]="'/gri400'" routerLinkActive="active" class="nav-link" id="social-tab"
+                        data-toggle="tab" role="tab">
+                        GRI 400: Social
                     </a>
                 </li>
             </ul>
         </div>
     </div>
-    <!--End of row-->
-    <div class="row">
-        <div class="col-xs-12">
-            <router-outlet></router-outlet>
-        </div>
-    </div>
-    <!--end of container-fluid-->
+
+<router-outlet></router-outlet>
