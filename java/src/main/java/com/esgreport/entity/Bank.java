@@ -1,5 +1,6 @@
 package com.esgreport.entity;
 
+import javax.annotation.Resource;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,7 +39,7 @@ public class Bank {
 	public Bank(Long id, String bankName, String logoPath) {
 		super();
 		this.id = id;
-		bankName = bankName;
+		this.bankName = bankName;
 		this.logoPath = logoPath;
 	}
 	public Bank() {

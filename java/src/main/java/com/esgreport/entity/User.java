@@ -45,8 +45,7 @@ public class User {
 	@Size(min = 6, max = 100)
 	private String password;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "bank_id")
+	@OneToOne(mappedBy = "user")
 	private Bank bank;
 
 //	@ManyToMany(fetch = FetchType.LAZY)

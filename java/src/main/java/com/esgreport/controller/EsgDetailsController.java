@@ -41,7 +41,7 @@ public class EsgDetailsController {
 
 	@PutMapping("/insert")
 	public String esgDetailsInsert(@RequestBody String incomingData) {
-System.out.println(incomingData);
+//System.out.println(incomingData);
 		return "EsgDetails Inserted";
 	}
 

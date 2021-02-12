@@ -34,7 +34,7 @@ public class Role {
 
     public Role() {}
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
 	private Set<User> users = new HashSet<>();
     
     public Role(RoleName name) {

@@ -28,10 +28,13 @@ public class EsgDetail {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "bank_id")
-	private Bank bank;
+//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//	@JoinColumn(name = "bank_id")
+//	private Bank bank;
 
+	@OneToOne(mappedBy = "esgdetail")
+	private Bank bank;
+	
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "last_modified_by")
 	private User lastModifiedBy;
