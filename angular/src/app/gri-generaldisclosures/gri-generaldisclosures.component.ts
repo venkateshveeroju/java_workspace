@@ -1,7 +1,8 @@
 
+
 import { Component, OnInit } from '@angular/core';
 import { LogService } from '../_services/log.service';
-
+import { EsgdetailsService } from './../_services/esgdetails.service';
 
 @Component({
   selector: 'app-gri-generaldisclosures',
@@ -10,6 +11,16 @@ import { LogService } from '../_services/log.service';
 })
 export class GriGeneraldisclosuresComponent implements OnInit {
 
+  esgdetails = {
+    txtorganization:'',
+    txtactivities: '',
+    txtheadquarters : '',
+    txtoperations : ''
+
+  };
+
+  submitted = false;
+
   esgdetailsbankname = '';
 
   esgdetailsbankinfo = '____ is a leading ____ and a major ____ in ___';
@@ -17,17 +28,16 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   esgdetailsbankservice = '...';
 
   esgdetailsbanklocation = 'The main location of ____ is: ____';
-  
+
   esgdetailsbankoperation = '____ has its main office in ____.';
   esgdetailsbankoperation1 = 'In addition, the bank has ____ in the economic c';
 
   esgdetailsbankinfo1 = '';
   esgdetailsbankinfo2 = '';
   esgdetailsbankinfo3 = '';
- 
 
 
-  constructor(private logger: LogService) { }
+  constructor(private logger: LogService, private esgdetailsService: EsgdetailsService) { }
 
   ngOnInit(): void {
   }
@@ -37,31 +47,58 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   update2(value: string) { this.esgdetailsbankinfo1 += value; }
 
   update3(value: string) { this.esgdetailsbankinfo2 += value; }
-  
+
   update4(value: string) { this.esgdetailsbankinfo3 += value; }
-  
-  
-  onSaveContinue($event){    
-    this.logger.log($event);
-    this.logger.log("SaveContinue button is clicked!");    
-   
-  }    
-  onSaveSubmit($event){    
-    console.log("SaveSubmit button is clicked!", $event);    
-   
-  }
-  onDelgate($event){    
-    console.log("Delegate button is clicked!", $event);    
-   
+
+
+  onSaveContinue($event) {
+    // this.logger.log($event);
+    this.logger.log("SaveContinue button is clicked!");
+
+    this.esgdetails.txtorganization=this.esgdetailsbankname;
+    this.esgdetails.txtactivities=this.esgdetailsbankinfo1;
+    this.esgdetails.txtheadquarters=this.esgdetailsbankinfo2;
+    this.esgdetails.txtoperations=this.esgdetailsbankinfo3;
+
+    const data = {
+      txtorganization: this.esgdetails.txtorganization,
+      txtactivities: this.esgdetails.txtactivities,
+      txtheadquarters: this.esgdetails.txtheadquarters,
+      txtoperations: this.esgdetails.txtoperations,
+    };
+
+    console.log(data);
+
+    /*
+    this.esgdetailsService.save(data)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.submitted = true;
+        },
+        error => {
+          console.log(error);
+        });
+        */
   }
 
-  onExport($event){    
-    console.log("Export button is clicked!", $event);    
-   
+
+  onSaveSubmit($event) {
+    console.log("SaveSubmit button is clicked!", $event);
+
+  }
+  onDelgate($event) {
+    console.log("Delegate button is clicked!", $event);
+
   }
 
-  onPrint($event){
+  onExport($event) {
+    console.log("Export button is clicked!", $event);
+
+  }
+
+  onPrint($event) {
     console.log("Print button is clicked!", $event);
   }
-  
+
 }
