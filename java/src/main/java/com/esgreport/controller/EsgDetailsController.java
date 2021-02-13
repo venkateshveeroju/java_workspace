@@ -15,18 +15,22 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esgreport.entity.EsgDetail;
+import com.esgreport.model.EsgDetailModel;
 import com.esgreport.repository.EsgDetailRepository;
 import com.esgreport.service.EsgDetailService;
 
 //@CrossOrigin(origins = "http://localhost:4200")
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/esg")
+@RequestMapping("/api/esgdetails")
 public class EsgDetailsController {
 
 	@Autowired
 	private  EsgDetailService egDetailService;
-
+	
+	@Autowired
+	private EsgDetailModel esgDetailModel ;
+	
 	@GetMapping("/all")
 	public List<EsgDetail> esgDetails() {
 		
@@ -39,9 +43,22 @@ public class EsgDetailsController {
 		return "EsgDetailsList";
 	}
 
-	@PutMapping("/insert")
-	public String esgDetailsInsert(@RequestBody String incomingData) {
-//System.out.println(incomingData);
+	//dummy data
+//	{
+//		   "txtactivities": "activities",
+//		"txtheadquarters": "headquarters",
+//		"txtoperations": "operations",
+//		"txtorganization": "organization"
+//		}
+	@PostMapping("/save")
+	public String esgDetailsSave(@RequestBody String incomingData) {
+		System.out.println(incomingData);
+		
+//		esgDetailModel.setTxtActivities(incomingData.getTxtActivities());
+//		esgDetailModel.setTxtLocation(incomingData.getTxtLocation());
+//		esgDetailModel.setTxtOrganizationName(incomingData.getTxtOrganizationName());
+//		
+		//System.out.println(esgDetailModel);
 		return "EsgDetails Inserted";
 	}
 
