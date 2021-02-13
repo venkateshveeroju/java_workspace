@@ -50,6 +50,7 @@ public class EsgDetailsController {
 //		"txtoperations": "operations",
 //		"txtorganization": "organization"
 //		}
+
 	@PostMapping("/save")
 	public String esgDetailsSave(@RequestBody String incomingData) {
 		System.out.println(incomingData);
