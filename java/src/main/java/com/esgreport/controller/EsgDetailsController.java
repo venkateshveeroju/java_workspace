@@ -50,10 +50,9 @@ public class EsgDetailsController {
 //		"txtoperations": "operations",
 //		"txtorganization": "organization"
 //		}
-
 	@PostMapping("/save")
-	public String esgDetailsSave(@RequestBody String incomingData) {
-		System.out.println(incomingData);
+	public String esgDetailsSave(@RequestBody EsgDetailModel incomingData) {
+		System.out.println(incomingData.getTxtactivities() +" hey "+incomingData.getTxtheadquarters());
 		
 //		esgDetailModel.setTxtActivities(incomingData.getTxtActivities());
 //		esgDetailModel.setTxtLocation(incomingData.getTxtLocation());
