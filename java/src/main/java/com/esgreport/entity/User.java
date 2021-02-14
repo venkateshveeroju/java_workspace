@@ -45,12 +45,10 @@ public class User {
 	@Size(min = 6, max = 100)
 	private String password;
 
-	@OneToOne(mappedBy = "user")
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "bank_id")
 	private Bank bank;
 
-//	@ManyToMany(fetch = FetchType.LAZY)
-//	@JoinTable(name = "user_esgdetail", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "esgdetail_id"))
-//	private List<EsgDetail> esgDetails = new ArrayList<>();
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_role", 

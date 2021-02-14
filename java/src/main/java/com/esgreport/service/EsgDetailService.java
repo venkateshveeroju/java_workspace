@@ -3,29 +3,47 @@ package com.esgreport.service;
 import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.esgreport.entity.Bank;
 import com.esgreport.entity.EsgDetail;
+import com.esgreport.entity.EsgDetailsModeratorStatus;
+import com.esgreport.entity.EsgdetailsUserStatus;
 import com.esgreport.entity.User;
 import com.esgreport.model.EsgDetailModel;
 import com.esgreport.payload.response.MessageResponse;
+import com.esgreport.repository.BankRepository;
 import com.esgreport.repository.EsgDetailRepository;
+import com.esgreport.repository.EsgDetailsModeratorStatusRepository;
+import com.esgreport.repository.EsgDetailsUserStatusRepository;
+import com.esgreport.repository.UserRepository;
 
 @Service
 public class EsgDetailService {
-	
-	private EsgDetail esgDetail;
 
-
+	private EsgDetail esgdetail;
 	private User user;
+	private Bank bank;
+	private EsgdetailsUserStatus esgdetailsuserstatus;
+	private EsgDetailsModeratorStatus esgdetailsmoderatorstatus;
 
 	@Autowired
 	private EsgDetailRepository esgDetailRepository;
 
-	// private static final Logger LOGGER =
-	// Logger.getLogger(EsgDetailService.class.getName());
+	@Autowired
+	private UserRepository userrepository;
+
+	@Autowired
+	private BankRepository bankrepository;
+
+	@Autowired
+	private EsgDetailsModeratorStatusRepository esgdetailsmoderatorstatusrepository;
+	
+	@Autowired
+	private EsgDetailsUserStatusRepository esgdetailsuserstatusrepository;
 
 	public EsgDetailService(EsgDetailRepository esgDetailRepository) {
 		this.esgDetailRepository = esgDetailRepository;
@@ -44,24 +62,38 @@ public class EsgDetailService {
 		esgDetailRepository.deleteAll();
 	}
 
-	public MessageResponse save(EsgDetailModel esgDetailModel) {
+	public MessageResponse save(EsgDetailModel esgDetailModel) throws IllegalArgumentException, IllegalAccessException {
 		if (esgDetailModel == null) {
 			return null;
 		}
-//		Field[] fields = esgDetailModel.getClass().getDeclaredFields();
-//		  System.out.printf("%d fields:%n", fields.length);
-//		for (Field field : fields) {
-//			System.out.println(field);
-//			 esgDetail = new EsgDetail ();
-//			//esgDetail.setEsgDetailsText();
-//			//esgDetail.setBank(user.getBank().getBankName());
-//			// esgDetail.setDelegateTo(delegateTo);
-//			esgDetail.setLastModifiedDate(new Date());
-//		esgDetail.setLastModifiedBy(user);
-//
-//			//esgDetailRepository.save(esgDetail);
-//			return new MessageResponse("Saved successfully");
-//		}
-		return null;
+
+		Field[] fields = esgDetailModel.getClass().getDeclaredFields();
+
+		for (Field field : fields) {
+			field.setAccessible(true);
+			// System.out.println(field.getName());
+			// System.out.println(field.get(esgDetailModel));
+
+			esgdetail = new EsgDetail();
+			esgdetail = (EsgDetail) esgDetailRepository.findByesgDetailText(field.getName());
+
+			 bank = bankrepository.getOne((long) 1);
+			 user = userrepository.getOne((long) 1);
+			EsgDetailsModeratorStatus esgdetailsmoderatorstatus = esgdetailsmoderatorstatusrepository.getOne( (long) 1);
+			EsgdetailsUserStatus esgdetailsuserstatus = esgdetailsuserstatusrepository.getOne((long)1);
+
+			esgdetail.setEsgDetailTextValue(field.get(esgDetailModel).toString());
+			esgdetail.setLastModifiedDate(new Date());
+			
+			esgdetail.setBank(bank);
+			esgdetail.setLastModifiedBy(user);
+			esgdetail.setModeratorStatusId(esgdetailsmoderatorstatus);
+			esgdetail.setUserStatusId(esgdetailsuserstatus);
+			
+
+			esgDetailRepository.saveAndFlush(esgdetail);
+
+		}
+		return new MessageResponse("Saved successfully");
 	}
 }

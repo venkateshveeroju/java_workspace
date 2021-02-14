@@ -2,6 +2,7 @@ package com.esgreport.entity;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -27,20 +28,30 @@ public class EsgDetail {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(length = 60)
+	private String esgDetailText;
+	
+	@Column(length = 60)
+	private String esgDetailTextValue;
+
+	public String getEsgDetailTextValue() {
+		return esgDetailTextValue;
+	}
+
+	public void setEsgDetailTextValue(String esgDetailTextValue) {
+		this.esgDetailTextValue = esgDetailTextValue;
+	}
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "bank_id")
 	private Bank bank;
 
-//	@OneToOne(mappedBy = "esgdetail")
-//	private Bank bank;
-//	
+
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "last_modified_by")
 	private User lastModifiedBy;
 
-	@Column(length = 60)
-	private Date lastModifiedDate;
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "delegate_to")
@@ -48,15 +59,14 @@ public class EsgDetail {
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "moderator_status_id")
-	private EsgDetailStatus moderatorStatusId;
+	private EsgDetailsModeratorStatus moderatorStatusId;
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_status_id")
-	private UserStatus userStatusId;
+	private EsgdetailsUserStatus userStatusId;
 
-	@Column(length = 600)
-	@NaturalId
-	private String esgDetailText;
+	@Column(length = 60)
+	private Date lastModifiedDate;
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "esgdetail_user", joinColumns = @JoinColumn(name = "esgdetail_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
@@ -70,19 +80,19 @@ public class EsgDetail {
 		this.delegateTo = delegateTo;
 	}
 
-	public EsgDetailStatus getModeratorStatusId() {
+	public EsgDetailsModeratorStatus getModeratorStatusId() {
 		return moderatorStatusId;
 	}
 
-	public void setModeratorStatusId(EsgDetailStatus moderatorStatusId) {
+	public void setModeratorStatusId(EsgDetailsModeratorStatus moderatorStatusId) {
 		this.moderatorStatusId = moderatorStatusId;
 	}
 
-	public UserStatus getUserStatusId() {
+	public EsgdetailsUserStatus getUserStatusId() {
 		return userStatusId;
 	}
 
-	public void setUserStatusId(UserStatus userStatusId) {
+	public void setUserStatusId(EsgdetailsUserStatus userStatusId) {
 		this.userStatusId = userStatusId;
 	}
 
@@ -122,9 +132,7 @@ public class EsgDetail {
 		return bank;
 	}
 
-	public void setBank(Bank bank) {
-		this.bank = bank;
-	}
+	
 
 	public User getLastModifiedBy() {
 		return lastModifiedBy;
@@ -140,6 +148,11 @@ public class EsgDetail {
 
 	public void setEsgDetailsText(String esgDetailText) {
 		this.esgDetailText = esgDetailText;
+	}
+
+	public void setBank(Bank bank) {
+		// TODO Auto-generated method stub
+		this.bank = bank;
 	}
 
 }

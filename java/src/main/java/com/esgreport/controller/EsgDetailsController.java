@@ -3,6 +3,7 @@ package com.esgreport.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,8 +23,7 @@ public class EsgDetailsController {
 	@Autowired
 	private EsgDetailService egDetailService;
 
-	@Autowired
-	private EsgDetailModel esgDetailModel;
+
 
 	@GetMapping("/all")
 	public List<EsgDetail> esgDetails() {
@@ -37,17 +37,20 @@ public class EsgDetailsController {
 		return "EsgDetailsList";
 	}
 
-	// dummy data
-//	{
-//		   "txtactivities": "activities",
-//		"txtheadquarters": "headquarters",
-//		"txtoperations": "operations",
-//		"txtorganization": "organization"
-//		}
-	@PostMapping("/save")
+
+	@PostMapping(value="/save", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String esgDetailsSave(@RequestBody EsgDetailModel esgDetailModel) {
+		
 		System.out.println(esgDetailModel.getTxtactivities() + " hey " + esgDetailModel.getTxtheadquarters());
-		egDetailService.save(esgDetailModel);
+		try {
+			egDetailService.save(esgDetailModel);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "EsgDetails Inserted";
 	}
 

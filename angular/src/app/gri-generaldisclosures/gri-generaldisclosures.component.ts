@@ -61,15 +61,15 @@ export class GriGeneraldisclosuresComponent implements OnInit {
     this.esgdetails.txtOperations=this.esgdetailsbankinfo3;
 
     const data = {
-      txtOrganization: this.esgdetails.txtOrganization,
-      txtActivities: this.esgdetails.txtActivities,
-      txtHeadquarters: this.esgdetails.txtHeadquarters,
-      txtOperations: this.esgdetails.txtOperations,
+      txtorganization: this.esgdetails.txtOrganization,
+      txtactivities: this.esgdetails.txtActivities,
+      txtheadquarters: this.esgdetails.txtHeadquarters,
+      txtoperations: this.esgdetails.txtOperations,
     };
 
     console.log(data);
 
-    /*
+    
     this.esgdetailsService.save(data)
       .subscribe(
         response => {
@@ -79,7 +79,7 @@ export class GriGeneraldisclosuresComponent implements OnInit {
         error => {
           console.log(error);
         });
-        */
+        
   }
 
 
