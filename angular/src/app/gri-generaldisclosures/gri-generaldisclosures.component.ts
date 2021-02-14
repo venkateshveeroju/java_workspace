@@ -12,10 +12,10 @@ import { EsgdetailsService } from './../_services/esgdetails.service';
 export class GriGeneraldisclosuresComponent implements OnInit {
 
   esgdetails = {
-    txtorganization:'',
-    txtactivities: '',
-    txtheadquarters : '',
-    txtoperations : ''
+    txtOrganization:'',
+    txtActivities: '',
+    txtHeadquarters : '',
+    txtOperations : ''
 
   };
 
@@ -55,16 +55,16 @@ export class GriGeneraldisclosuresComponent implements OnInit {
     // this.logger.log($event);
     this.logger.log("SaveContinue button is clicked!");
 
-    this.esgdetails.txtorganization=this.esgdetailsbankname;
-    this.esgdetails.txtactivities=this.esgdetailsbankinfo1;
-    this.esgdetails.txtheadquarters=this.esgdetailsbankinfo2;
-    this.esgdetails.txtoperations=this.esgdetailsbankinfo3;
+    this.esgdetails.txtOrganization=this.esgdetailsbankname;
+    this.esgdetails.txtActivities=this.esgdetailsbankinfo1;
+    this.esgdetails.txtHeadquarters=this.esgdetailsbankinfo2;
+    this.esgdetails.txtOperations=this.esgdetailsbankinfo3;
 
     const data = {
-      txtorganization: this.esgdetails.txtorganization,
-      txtactivities: this.esgdetails.txtactivities,
-      txtheadquarters: this.esgdetails.txtheadquarters,
-      txtoperations: this.esgdetails.txtoperations,
+      txtOrganization: this.esgdetails.txtOrganization,
+      txtActivities: this.esgdetails.txtActivities,
+      txtHeadquarters: this.esgdetails.txtHeadquarters,
+      txtOperations: this.esgdetails.txtOperations,
     };
 
     console.log(data);

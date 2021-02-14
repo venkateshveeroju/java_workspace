@@ -55,7 +55,7 @@
                         <div class="form-group">
                             <input type="text" class="form-control" id="" [(ngModel)]="esgdetailsbankname" />
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -67,6 +67,7 @@
                             <textarea class="form-control" rows="5" id="" name="" value="">{{esgdetailsbankinfo1}}
                             </textarea>
                         </div>
+
                     </div>
                     <div class="col-md-5">
                         <div class="form-group">
@@ -99,7 +100,9 @@
                             <input type="text" #box3 class="form-control" id="" placeholder="" name=""
                                 [(ngModel)]=esgdetailsbanklocation (keyup.enter)="update3(box3.value)"
                                 (blur)="update3(box3.value)" />
+                                <button type="button" class="btn btn-primary" (click)="update3(box3.value)">Bank Location</button>
                         </div>
+
                     </div>
                 </div>
 
@@ -128,20 +131,21 @@
                     <div class="col d-flex justify-content-between action-buttons mb-5">
                         <button type="button" class="btn btn-primary" (click)="onSaveContinue($event)">SAVE & CONTINUE
                             LATER</button>
-                        <button type="button" class="btn btn-primary" (click)="onSaveSubmit($event)">SAVE & SUBMIT NOW</button>
+                        <button type="button" class="btn btn-primary" (click)="onSaveSubmit($event)">SAVE & SUBMIT
+                            NOW</button>
                         <button type="button" class="btn btn-primary" (click)="onDelgate($event)">DELEGATE</button>
                         <button type="button" class="btn btn-primary" (click)="onExport($event)">EXPORT</button>
                         <button type="button" class="btn btn-primary" (click)="onPrint($event)">PRINT</button>
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="strategy"  >
+            <div class="tab-pane fade" id="strategy">
                 Content for strategy tab
             </div>
-            <div class="tab-pane fade" id="ethics"  >
+            <div class="tab-pane fade" id="ethics">
                 Content for ethics tab
             </div>
-            <div class="tab-pane fade" id="governance"  >
+            <div class="tab-pane fade" id="governance">
                 Content for governance tab
             </div>
             <div class="tab-pane fade" id="stakeholderengagement">
