@@ -43,13 +43,7 @@ public class EsgDetailsController {
 		return "EsgDetailsList";
 	}
 
-	//dummy data
-//	{
-//		   "txtactivities": "activities",
-//		"txtheadquarters": "headquarters",
-//		"txtoperations": "operations",
-//		"txtorganization": "organization"
-//		}
+	
 	@PostMapping("/save")
 	public String esgDetailsSave(@RequestBody EsgDetailModel incomingData) {
 		System.out.println(incomingData.getTxtactivities() +" hey "+incomingData.getTxtheadquarters());
