@@ -5,33 +5,35 @@ import org.springframework.stereotype.Component;
 @Component
 public class EsgDetailModel {
 
-	private String txtorganization;
-	private String txtactivities;
-	private String txtheadquarters;
-	private String txtoperations;
+	private String txtOrganization;
+	private String txtActivities;
+	private String txtHeadquarters;
+	private String txtOperations;
+	
+	
 	public String getTxtorganization() {
-		return txtorganization;
+		return txtOrganization;
 	}
 	public void setTxtorganization(String txtorganization) {
-		this.txtorganization = txtorganization;
+		this.txtOrganization = txtorganization;
 	}
 	public String getTxtactivities() {
-		return txtactivities;
+		return txtActivities;
 	}
 	public void setTxtactivities(String txtactivities) {
-		this.txtactivities = txtactivities;
+		this.txtActivities = txtactivities;
 	}
 	public String getTxtheadquarters() {
-		return txtheadquarters;
+		return txtHeadquarters;
 	}
 	public void setTxtheadquarters(String txtheadquarters) {
-		this.txtheadquarters = txtheadquarters;
+		this.txtHeadquarters = txtheadquarters;
 	}
 	public String getTxtoperations() {
-		return txtoperations;
+		return txtOperations;
 	}
 	public void setTxtoperations(String txtoperations) {
-		this.txtoperations = txtoperations;
+		this.txtOperations = txtoperations;
 	}
 	
 }

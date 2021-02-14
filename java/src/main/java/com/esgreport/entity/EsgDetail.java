@@ -54,7 +54,7 @@ public class EsgDetail {
 	@JoinColumn(name = "user_status_id")
 	private UserStatus userStatusId;
 
-	@Column(length = 60)
+	@Column(length = 600)
 	@NaturalId
 	private String esgDetailText;
 
