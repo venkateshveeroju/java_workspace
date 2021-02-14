@@ -11,7 +11,7 @@ const baseUrl = 'http://localhost:8080/api/esgdetalis';
     constructor(private http: HttpClient) { }
        
       save(data) {
-        return this.http.post(baseUrl, data);
+        return this.http.post(baseUrl+"/save", data);
       }
     
      
