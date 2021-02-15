@@ -12,10 +12,10 @@ import { EsgdetailsService } from './../_services/esgdetails.service';
 export class GriGeneraldisclosuresComponent implements OnInit {
 
   esgdetails = {
-    txtOrganization:'',
+    txtOrganization: '',
     txtActivities: '',
-    txtHeadquarters : '',
-    txtOperations : ''
+    txtHeadquarters: '',
+    txtOperations: ''
 
   };
 
@@ -23,14 +23,20 @@ export class GriGeneraldisclosuresComponent implements OnInit {
 
   esgdetailsbankname = '';
 
+  clickedesgdetailsbankinfo=false;
+  clickedesgdetailsbankactivity=false;
+  clickedesgdetailsbankservice=false;
   esgdetailsbankinfo = '____ is a leading ____ and a major ____ in ___';
   esgdetailsbankactivity = 'Our market activities focus on business with ___';
   esgdetailsbankservice = '...';
 
+  clickedbanklocation = false;
   esgdetailsbanklocation = 'The main location of ____ is: ____';
 
-  esgdetailsbankoperation = '____ has its main office in ____.';
-  esgdetailsbankoperation1 = 'In addition, the bank has ____ in the economic c';
+  clickedbankoperation1 = false;
+  clickedbankoperation2 = false;
+  esgdetailsbankoperation1 = '____ has its main office in ____.';
+  esgdetailsbankoperation2 = 'In addition, the bank has ____ in the economic';
 
   esgdetailsbankinfo1 = '';
   esgdetailsbankinfo2 = '';
@@ -42,23 +48,27 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  update(value: string) { this.esgdetailsbankinfo1 += value; }
-  update1(value: string) { this.esgdetailsbankinfo1 += value; }
-  update2(value: string) { this.esgdetailsbankinfo1 += value; }
+  updatebankinfo() { this.esgdetailsbankinfo1 += this.esgdetailsbankinfo; }
+  updatebankactivity() { this.esgdetailsbankinfo1 += this.esgdetailsbankactivity; }
+  updatebankservice() { this.esgdetailsbankinfo1 += this.esgdetailsbankservice; }
 
-  update3(value: string) { this.esgdetailsbankinfo2 += value; }
+  updatebanklocation() {
+    this.esgdetailsbankinfo2 = this.esgdetailsbanklocation;
+  }
 
-  update4(value: string) { this.esgdetailsbankinfo3 += value; }
+  updatebankoperation1() {
+    this.esgdetailsbankinfo3 += this.esgdetailsbankoperation1;
+  }
 
+  updatebankoperation2() {
+    this.esgdetailsbankinfo3 += this.esgdetailsbankoperation2;
+  }
 
   onSaveContinue($event) {
-    // this.logger.log($event);
-    this.logger.log("SaveContinue button is clicked!");
-
-    this.esgdetails.txtOrganization=this.esgdetailsbankname;
-    this.esgdetails.txtActivities=this.esgdetailsbankinfo1;
-    this.esgdetails.txtHeadquarters=this.esgdetailsbankinfo2;
-    this.esgdetails.txtOperations=this.esgdetailsbankinfo3;
+    this.esgdetails.txtOrganization = this.esgdetailsbankname;
+    this.esgdetails.txtActivities = this.esgdetailsbankinfo1;
+    this.esgdetails.txtHeadquarters = this.esgdetailsbankinfo2;
+    this.esgdetails.txtOperations = this.esgdetailsbankinfo3;
 
     const data = {
       txtorganization: this.esgdetails.txtOrganization,
@@ -69,7 +79,7 @@ export class GriGeneraldisclosuresComponent implements OnInit {
 
     console.log(data);
 
-    
+/*
     this.esgdetailsService.save(data)
       .subscribe(
         response => {
@@ -79,7 +89,7 @@ export class GriGeneraldisclosuresComponent implements OnInit {
         error => {
           console.log(error);
         });
-        
+*/
   }
 
 
