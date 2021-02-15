@@ -3,6 +3,7 @@ package com.esgreport.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,34 +21,36 @@ import com.esgreport.service.EsgDetailService;
 public class EsgDetailsController {
 
 	@Autowired
-	private EsgDetailService egDetailService;
+	private EsgDetailService esgDetailService;
 
-	@Autowired
-	private EsgDetailModel esgDetailModel;
+
 
 	@GetMapping("/all")
 	public List<EsgDetail> esgDetails() {
 
-		return egDetailService.findAll();
+		return esgDetailService.findAll();
 	}
 
-	@GetMapping("/list")
-	public String esgDetailsList() {
+	@GetMapping("/getesgdetails")
+	public List<EsgDetail> esgDetailsList() {
 
-		return "EsgDetailsList";
+		return esgDetailService.findAll();
 	}
 
-	// dummy data
-//	{
-//		   "txtactivities": "activities",
-//		"txtheadquarters": "headquarters",
-//		"txtoperations": "operations",
-//		"txtorganization": "organization"
-//		}
-	@PostMapping("/save")
+
+	@PostMapping(value="/save", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String esgDetailsSave(@RequestBody EsgDetailModel esgDetailModel) {
+		
 		System.out.println(esgDetailModel.getTxtactivities() + " hey " + esgDetailModel.getTxtheadquarters());
-		egDetailService.save(esgDetailModel);
+		try {
+			esgDetailService.save(esgDetailModel);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "EsgDetails Inserted";
 	}
 

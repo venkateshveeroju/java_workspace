@@ -11,6 +11,7 @@ import com.esgreport.model.EsgDetailModel;
 @Repository
 public interface EsgDetailRepository extends JpaRepository<EsgDetail, Long>{
 	Optional<EsgDetail> findById(Long id);
+	EsgDetail findByesgDetailText(String esgdetailtext);
 	// void saveEsg(String esgDetail);
 	 //void saveBankName(String bankName);
 

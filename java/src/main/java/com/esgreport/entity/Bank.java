@@ -28,13 +28,9 @@ public class Bank {
 	@Column(length = 60)
 	private String logoPath;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "user_id")
-	private User user;
+	public Bank() {
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "esgdetail_Id")
-	private EsgDetail esgDetail;
+	}
 
 	public Bank(Long id, String bankName, String logoPath) {
 		super();
@@ -42,10 +38,7 @@ public class Bank {
 		this.bankName = bankName;
 		this.logoPath = logoPath;
 	}
-	public Bank() {
-		
-		
-	}
+
 	public Long getId() {
 		return id;
 	}
@@ -54,36 +47,12 @@ public class Bank {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public EsgDetail getEsgDetails() {
-		return esgDetail;
-	}
-
-	public void setEsgDetails(EsgDetail esgDetail) {
-		this.esgDetail = esgDetail;
-	}
-
 	public String getBankName() {
 		return bankName;
 	}
 
 	public void setBankName(String bankName) {
 		this.bankName = bankName;
-	}
-
-	public EsgDetail getEsgDetail() {
-		return esgDetail;
-	}
-
-	public void setEsgDetail(EsgDetail esgDetail) {
-		this.esgDetail = esgDetail;
 	}
 
 	public String getLogoPath() {
