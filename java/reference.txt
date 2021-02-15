@@ -1,3 +1,7 @@
+https://www.callicoder.com/documenting-spring-rest-apis-using-swagger/
+
+
+
 spring.jpa.hibernate.ddl-auto=update
 
 The list of option which is used in the spring boot are
@@ -16,19 +20,41 @@ describe users;
 describe roles;
 describe user_roles;
 
-INSERT INTO roles(name) VALUES('ROLE_ADMIN');
-INSERT INTO roles(name) VALUES('ROLE_PM');
+INSERT into banks (bank_name,logo_path) values ('ABC Bank','');
+INSERT users (email,password,username,bank_id) VALUES ('abc@abcbank.com','','exampleuser',1);
+
 INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
 INSERT INTO roles(name) VALUES('ROLE_USER');
 
+INSERT INTO user_role(user_id,role_id) VALUES(1,1);
+
+INSERT INTO esgdetail_moderator_status(status) VALUES('IN_PROGRESS');
+INSERT INTO esgdetail_moderator_status(status) VALUES('APPROVED');
+INSERT INTO esgdetail_moderator_status(status) VALUES('DENIED');
+
+
+INSERT INTO esgdetail_user_status(status) VALUES('SAVE_CONTINUE');
+INSERT INTO esgdetail_user_status(status) VALUES('SAVE_SUBMIT');
+
+
+INSERT INTO esgdetails(esg_detail_text) values ('txtorganization');
+INSERT INTO esgdetails(esg_detail_text) values ('txtactivities');
+INSERT INTO esgdetails(esg_detail_text) values ('txtheadquarters');
+INSERT INTO esgdetails(esg_detail_text) values ('txtoperations');
+
+select * from banks;
 select * from users;
 select * from roles;
 select * from user_roles;
+select * from esgdetail_moderator_status;
+select * from esgdetail_user_status;
+select * from esgdetails;
 
 
+==================================
 
 Register some users with /signup API:
-
+Ex: 
 admin with ROLE_ADMIN
 PM with ROLE_PM
 mod with ROLE_MODERATOR and ROLE_USER
@@ -44,6 +70,7 @@ http://localhost:8080/api/auth/signup
 
 }
 
+POST - type (json)
 http://localhost:8080/api/auth/signup
 {
   "username":"pmm",
@@ -53,6 +80,7 @@ http://localhost:8080/api/auth/signup
 
 }
 
+POST - type (json)
 http://localhost:8080/api/auth/signup
 {
   "username":"user",
@@ -62,15 +90,7 @@ http://localhost:8080/api/auth/signup
 
 }
 
-http://localhost:8080/api/auth/login
-{
-  "username":"user",
-  "email":"user@example.com",
-  "password":"12345678",
-  "role":["user"]
-
-}
-
+POST - type (json)
 http://localhost:8080/api/auth/signup
 {
   "username":"mod",
@@ -87,7 +107,7 @@ http://localhost:8080/api/test/all   public content
 GET
 http://localhost:8080/api/test/user  401 -unauthorized
 
-POST
+POST  -type(json)
 http://localhost:8080/api/auth/signin
 {
   "username":"admin",
@@ -102,9 +122,8 @@ Result
     "roles": [
         "ROLE_ADMIN"
     ],
-    "tokenType": "Bearer",
-    "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTYxMTQwOTgwMiwiZXhwIjoxNjExNDk2MjAyfQ.wF66WVAjxYuluVi4i1fIP5P2oTNwg8aaVYOgD1GFMnNN1npj046M6aJMgZHuHg1TSPCmkwPpbTyWdF5Nwj3aZA"
-}
+    "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTYxMTU2MTM3MywiZXhwIjoxNjExNjQ3NzczfQ.XgttKAEODytLOm8HYclqy2jLo_OZScon2pJkP9T7p40R2oEFpoeGaJzR_qmf4YfWlqCqr7gKvzAwWxtMogjG0g",
+    "tokenType": "Bearer"
 
 
 GET
