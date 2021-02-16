@@ -29,10 +29,10 @@ public class EsgDetail {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(length = 60)
+	@Column(length = 6000)
 	private String esgDetailText;
 	
-	@Column(length = 60)
+	@Column(length = 6000)
 	private String esgDetailTextValue;
 
 	public String getEsgDetailTextValue() {

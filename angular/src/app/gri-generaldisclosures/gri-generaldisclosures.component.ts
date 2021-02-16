@@ -46,6 +46,19 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   constructor(private logger: LogService, private esgdetailsService: EsgdetailsService) { }
 
   ngOnInit(): void {
+    this.esgdetailsService.show()
+      .subscribe(
+        response => {
+          console.log(response);
+          this.esgdetailsbankname=response[0]['esgDetailTextValue'];
+          this.esgdetailsbankinfo1=response[1]['esgDetailTextValue'];
+          this.esgdetailsbankinfo2=response[2]['esgDetailTextValue'];
+          this.esgdetailsbankinfo3=response[3]['esgDetailTextValue'];
+          this.submitted = true;
+        },
+        error => {
+          console.log(error);
+        });
   }
 
   updatebankinfo() { this.esgdetailsbankinfo1 += this.esgdetailsbankinfo; }
@@ -79,7 +92,7 @@ export class GriGeneraldisclosuresComponent implements OnInit {
 
     console.log(data);
 
-/*
+
     this.esgdetailsService.save(data)
       .subscribe(
         response => {
@@ -89,7 +102,7 @@ export class GriGeneraldisclosuresComponent implements OnInit {
         error => {
           console.log(error);
         });
-*/
+
   }
 
 

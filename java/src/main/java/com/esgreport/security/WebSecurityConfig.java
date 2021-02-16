@@ -67,7 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/api/esgdetails/**").permitAll()
 				.antMatchers("/api/banks/**").permitAll()
 				.antMatchers("/api/roles/**").permitAll()
-				 
+				.antMatchers("/api/email/**").permitAll()
 				
 				.anyRequest()
 				

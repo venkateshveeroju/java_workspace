@@ -41,11 +41,7 @@ public class EsgDetailService {
 
 	@Autowired
 	private EsgDetailsModeratorStatusRepository esgdetailsmoderatorstatusrepository;
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> a1ffa07f99f6ff12f3a882a550d86d2a497bacf3
 	@Autowired
 	private EsgDetailsUserStatusRepository esgdetailsuserstatusrepository;
 
@@ -75,7 +71,6 @@ public class EsgDetailService {
 
 		for (Field field : fields) {
 			field.setAccessible(true);
-<<<<<<< HEAD
 			 System.out.println("ff");
 			 System.out.println(field.get(esgDetailModel).toString());
 
@@ -92,30 +87,10 @@ public class EsgDetailService {
 			 System.out.println(field.get(esgDetailModel).toString());
 			esgdetail.setLastModifiedDate(new Date());
 
-=======
-			// System.out.println(field.getName());
-			// System.out.println(field.get(esgDetailModel));
-
-			esgdetail = new EsgDetail();
-			esgdetail = (EsgDetail) esgDetailRepository.findByesgDetailText(field.getName());
-
-			 bank = bankrepository.getOne((long) 1);
-			 user = userrepository.getOne((long) 1);
-			EsgDetailsModeratorStatus esgdetailsmoderatorstatus = esgdetailsmoderatorstatusrepository.getOne( (long) 1);
-			EsgdetailsUserStatus esgdetailsuserstatus = esgdetailsuserstatusrepository.getOne((long)1);
-
-			esgdetail.setEsgDetailTextValue(field.get(esgDetailModel).toString());
-			esgdetail.setLastModifiedDate(new Date());
-			
->>>>>>> a1ffa07f99f6ff12f3a882a550d86d2a497bacf3
 			esgdetail.setBank(bank);
 			esgdetail.setLastModifiedBy(user);
 			esgdetail.setModeratorStatusId(esgdetailsmoderatorstatus);
 			esgdetail.setUserStatusId(esgdetailsuserstatus);
-<<<<<<< HEAD
-=======
-			
->>>>>>> a1ffa07f99f6ff12f3a882a550d86d2a497bacf3
 
 			esgDetailRepository.saveAndFlush(esgdetail);
 

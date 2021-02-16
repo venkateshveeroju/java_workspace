@@ -13,6 +13,9 @@ const baseUrl = 'http://localhost:8080/api/esgdetails';
       save(data) {
         return this.http.post(baseUrl+"/save", data);
       }
-    
+       
+      show() {
+        return this.http.get(baseUrl+"/getesgdetails");
+      }
      
   }

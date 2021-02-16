@@ -22,7 +22,7 @@ public class Bank {
 	private Long id;
 
 	@NaturalId
-	@Column(length = 60)
+	@Column(length = 600)
 	private String bankName;
 
 	@Column(length = 60)

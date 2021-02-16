@@ -43,9 +43,7 @@ public class EsgDetailsController {
 		
 		System.out.println(esgDetailModel.getTxtactivities() + " hey " + esgDetailModel.getTxtheadquarters());
 		try {
-
-			egDetailService.save(esgDetailModel);
-
+			esgDetailService.save(esgDetailModel);
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

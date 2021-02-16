@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,7 +31,28 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	////
+	@Column(name = "verification_code", length = 64)
+	private String verificationCode;
 
+	private boolean enabled;
+	
+	public String getVerificationCode() {
+		return verificationCode;
+	}
+
+	public void setVerificationCode(String verificationCode) {
+		this.verificationCode = verificationCode;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+/////
 	@NotBlank
 	@Size(min = 3, max = 50)
 	private String username;
@@ -49,11 +71,8 @@ public class User {
 	@JoinColumn(name = "bank_id")
 	private Bank bank;
 
-
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_role", 
-	joinColumns = @JoinColumn(name = "user_id"),
-	inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
 	public Bank getBank() {
