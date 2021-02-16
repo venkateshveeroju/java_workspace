@@ -23,12 +23,12 @@ export class GriGeneraldisclosuresComponent implements OnInit {
 
   esgdetailsbankname = '';
 
-  clickedesgdetailsbankinfo=false;
-  clickedesgdetailsbankactivity=false;
-  clickedesgdetailsbankservice=false;
+  clickedesgdetailsbankinfo = false;
+  clickedesgdetailsbankactivity = false;
+  clickedesgdetailsbankservice = false;
   esgdetailsbankinfo = '____ is a leading ____ and a major ____ in ___';
   esgdetailsbankactivity = 'Our market activities focus on business with ___';
-  esgdetailsbankservice = '...';
+  esgdetailsbankservice = 'We provide services like .....';
 
   clickedbanklocation = false;
   esgdetailsbanklocation = 'The main location of ____ is: ____';
@@ -50,11 +50,17 @@ export class GriGeneraldisclosuresComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
-          this.esgdetailsbankname=response[0]['esgDetailTextValue'];
-          this.esgdetailsbankinfo1=response[1]['esgDetailTextValue'];
-          this.esgdetailsbankinfo2=response[2]['esgDetailTextValue'];
-          this.esgdetailsbankinfo3=response[3]['esgDetailTextValue'];
-          this.submitted = true;
+          this.esgdetailsbankname = response[0]['esgDetailTextValue'];
+          this.esgdetailsbankinfo1 = response[1]['esgDetailTextValue'];
+          this.esgdetailsbankinfo2 = response[2]['esgDetailTextValue'];
+          this.esgdetailsbankinfo3 = response[3]['esgDetailTextValue'];
+
+          this.esgdetails.txtOrganization = this.esgdetailsbankname;
+          this.esgdetails.txtActivities = this.esgdetailsbankinfo1;
+          this.esgdetails.txtHeadquarters = this.esgdetailsbankinfo2;
+          this.esgdetails.txtOperations = this.esgdetailsbankinfo3;
+
+
         },
         error => {
           console.log(error);
@@ -66,7 +72,7 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   updatebankservice() { this.esgdetailsbankinfo1 += this.esgdetailsbankservice; }
 
   updatebanklocation() {
-    this.esgdetailsbankinfo2 = this.esgdetailsbanklocation;
+    this.esgdetailsbankinfo2 += this.esgdetailsbanklocation;
   }
 
   updatebankoperation1() {
@@ -83,6 +89,7 @@ export class GriGeneraldisclosuresComponent implements OnInit {
     this.esgdetails.txtHeadquarters = this.esgdetailsbankinfo2;
     this.esgdetails.txtOperations = this.esgdetailsbankinfo3;
 
+
     const data = {
       txtorganization: this.esgdetails.txtOrganization,
       txtactivities: this.esgdetails.txtActivities,
@@ -97,10 +104,12 @@ export class GriGeneraldisclosuresComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
-          this.submitted = true;
+          //this.submitted = true;
+          alert("Save sucessfully...")
         },
         error => {
           console.log(error);
+          alert("Save sucessfully")
         });
 
   }
