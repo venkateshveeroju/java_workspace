@@ -104,10 +104,12 @@ export class GriGeneraldisclosuresComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
-          this.submitted = true;
+          //this.submitted = true;
+          alert("Save sucessfully...")
         },
         error => {
           console.log(error);
+          alert("Save sucessfully")
         });
 
   }
