@@ -47,13 +47,13 @@
                         organization <i class="far fa-question-circle"></i></h3>
                     <div class="col-md-7">
                         <div class="form-group">
-                            <textarea class="form-control" rows="5" id="" name="">{{esgdetailsbankname}}
+                            <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankname">
                             </textarea>
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="" [(ngModel)]="esgdetailsbankname" />
+                            <input type="text" class="form-control" [(ngModel)]="esgdetailsbankname" />
                         </div>
 
                     </div>
@@ -64,7 +64,7 @@
                         products, and services <i class="far fa-question-circle"></i></h3>
                     <div class="col-md-7">
                         <div class="form-group">
-                            <textarea class="form-control" rows="5" id="" name="" value="">{{esgdetailsbankinfo1}}
+                            <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankinfo1">
                             </textarea>
                         </div>
 
@@ -82,8 +82,6 @@
                                         <button type="button" [disabled]="clickedesgdetailsbankservice" class="btn btn-primary" 
                                         (click)="updatebankservice();clickedesgdetailsbankservice = true;">
                                             {{esgdetailsbankservice}}</button>
-
-
                         </div>
                     </div>
                 </div>
@@ -93,13 +91,14 @@
                         headquarters <i class="far fa-question-circle"></i></h3>
                     <div class="col-md-7">
                         <div class="form-group">
-                            <textarea class="form-control" rows="5" id="" name="">{{esgdetailsbankinfo2}}
+                            <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankinfo2" >
                             </textarea>
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="form-group">
-                            <button type="button" [disabled]="clickedbanklocation" class="btn btn-primary" (click)="updatebanklocation();clickedbanklocation = true;">{{esgdetailsbanklocation}}</button>
+                            <button type="button" [disabled]="clickedbanklocation" class="btn btn-primary" 
+                            (click)="updatebanklocation();clickedbanklocation = true;">{{esgdetailsbanklocation}}</button>
                         </div>
 
                     </div>
@@ -110,7 +109,7 @@
                         operations <i class="far fa-question-circle"></i></h3>
                     <div class="col-md-7">
                         <div class="form-group">
-                            <textarea class="form-control" rows="5" id="" name="">{{esgdetailsbankinfo3}}
+                            <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankinfo3">
                             </textarea>
                         </div>
                     </div>
