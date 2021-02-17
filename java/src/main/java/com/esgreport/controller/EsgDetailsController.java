@@ -38,7 +38,7 @@ public class EsgDetailsController {
 	@PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String esgDetailsSave(@RequestBody EsgDetailModel esgDetailModel) {
 
-		System.out.println(esgDetailModel.getTxtactivities() + " hey " + esgDetailModel.getTxtheadquarters());
+		//System.out.println(esgDetailModel.getTxtactivities() + " hey " + esgDetailModel.getTxtheadquarters());
 		try {
 			esgDetailService.save(esgDetailModel);
 		} catch (IllegalArgumentException e) {
