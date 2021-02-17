@@ -56,7 +56,7 @@ public class SendingEmailApplication {
 		// hard coded a file path
 		FileSystemResource file = new FileSystemResource(new File("C:/Users\\Veeroju\\Pictures\\Camera Roll\\a.jpg"));
 
-		helper.addAttachment("ssl4.png", file);
+		helper.addAttachment("a.png", file);
 
 		javaMailSender.send(msg);
 

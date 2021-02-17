@@ -66,29 +66,34 @@ public class EsgDetailService {
 		if (esgDetailModel == null) {
 			return null;
 		}
-
+		System.out.println(esgDetailModel.toString());
 		Field[] fields = esgDetailModel.getClass().getDeclaredFields();
 
 		for (Field field : fields) {
 			field.setAccessible(true);
-			 System.out.println("ff");
-			 System.out.println(field.get(esgDetailModel).toString());
-
+			System.out.println("field  "+field.getLong(esgDetailModel));
+			//System.out.println(field.get(esgDetailModel).toString());
+			
 			esgdetail = new EsgDetail();
 			esgdetail = (EsgDetail) esgDetailRepository.findByesgDetailText(field.getName());
-			System.out.println((EsgDetail) esgDetailRepository.findByesgDetailText(field.getName()));
+			//System.out.println((EsgDetail) esgDetailRepository.findByesgDetailText(field.getName()));
 			bank = bankrepository.getOne((long) 1);
 			user = userrepository.getOne((long) 1);
 			EsgDetailsModeratorStatus esgdetailsmoderatorstatus = esgdetailsmoderatorstatusrepository.getOne((long) 1);
 			EsgdetailsUserStatus esgdetailsuserstatus = esgdetailsuserstatusrepository.getOne((long) 1);
 
-			
-			esgdetail.setEsgDetailTextValue(field.get(esgDetailModel).toString());
-			 System.out.println(field.get(esgDetailModel).toString());
+		esgdetail.setEsgDetailTextValue(field.get(esgDetailModel).toString());
+//			System.out.println("dasfadfadf ---------" + field.get(esgDetailModel).toString());
+//if(field.getName().equals("txtheadquarters") && field.getType().equals(String.class)) {
+//	
+//
+//			//System.out.println("dasfadfadf ---------" + field.get(esgDetailModel).toString());
+//}
 			esgdetail.setLastModifiedDate(new Date());
 
 			esgdetail.setBank(bank);
 			esgdetail.setLastModifiedBy(user);
+		
 			esgdetail.setModeratorStatusId(esgdetailsmoderatorstatus);
 			esgdetail.setUserStatusId(esgdetailsuserstatus);
 

@@ -15,8 +15,10 @@ export class GriGeneraldisclosuresComponent implements OnInit {
     txtOrganization: '',
     txtActivities: '',
     txtHeadquarters: '',
-    txtOperations: ''
-
+    txtOperations: '',
+    modelBankId: '',
+   modelLastModifiedBy: '',
+   modelUserStatusId: ''
   };
 
   submitted = false;
@@ -88,13 +90,18 @@ export class GriGeneraldisclosuresComponent implements OnInit {
     this.esgdetails.txtActivities = this.esgdetailsbankinfo1;
     this.esgdetails.txtHeadquarters = this.esgdetailsbankinfo2;
     this.esgdetails.txtOperations = this.esgdetailsbankinfo3;
-
+    this.esgdetails.modelBankId = '122';
+    this.esgdetails.modelLastModifiedBy='11111111';
+    this.esgdetails.modelUserStatusId='1111111111';
 
     const data = {
       txtorganization: this.esgdetails.txtOrganization,
       txtactivities: this.esgdetails.txtActivities,
       txtheadquarters: this.esgdetails.txtHeadquarters,
       txtoperations: this.esgdetails.txtOperations,
+      modelbankid: this.esgdetails.modelBankId,
+      modellastmodifiedby: this.esgdetails.modelLastModifiedBy,
+      esgdetailsuserstatusid: this.esgdetails.modelUserStatusId,
     };
 
     console.log(data);
@@ -116,6 +123,38 @@ export class GriGeneraldisclosuresComponent implements OnInit {
 
 
   onSaveSubmit($event) {
+    this.esgdetails.txtOrganization = this.esgdetailsbankname;
+    this.esgdetails.txtActivities = this.esgdetailsbankinfo1;
+    this.esgdetails.txtHeadquarters = this.esgdetailsbankinfo2;
+    this.esgdetails.txtOperations = this.esgdetailsbankinfo3;
+    this.esgdetails.modelBankId = "122";
+    this.esgdetails.modelLastModifiedBy="11111111";
+    this.esgdetails.modelUserStatusId="1111111111";
+
+    const data = {
+      txtorganization: this.esgdetails.txtOrganization,
+      txtactivities: this.esgdetails.txtActivities,
+      txtheadquarters: this.esgdetails.txtHeadquarters,
+      txtoperations: this.esgdetails.txtOperations,
+      modelbankid: this.esgdetails.modelBankId,
+      modellastmodifiedby: this.esgdetails.modelLastModifiedBy,
+      esgdetailsuserstatusid: this.esgdetails.modelUserStatusId,
+    };
+
+    console.log(data);
+
+
+    this.esgdetailsService.save(data)
+      .subscribe(
+        response => {
+          console.log(response);
+          //this.submitted = true;
+          alert("Save sucessfully...")
+        },
+        error => {
+          console.log(error);
+          alert("Save sucessfully")
+        });
     console.log("SaveSubmit button is clicked!", $event);
 
   }
