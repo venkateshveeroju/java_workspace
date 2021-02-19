@@ -1,5 +1,6 @@
 package com.esgreport.controller;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.esgreport.entity.EsgDetail;
 import com.esgreport.model.EsgDetailModel;
+import com.esgreport.model.EsgDetailsData;
 import com.esgreport.service.EsgDetailService;
 
 @RestController
@@ -35,12 +37,12 @@ public class EsgDetailsController {
 		return esgDetailService.findAll();
 	}
 
+	
 	@PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE)
-	public String esgDetailsSave(@RequestBody EsgDetailModel esgDetailModel) {
+	public String esgDetailsSave(@RequestBody EsgDetailsData esgdetailsdata) throws ParseException {
 
-		//System.out.println(esgDetailModel.getTxtactivities() + " hey " + esgDetailModel.getTxtheadquarters());
 		try {
-			esgDetailService.save(esgDetailModel);
+			esgDetailService.save(esgdetailsdata);
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,6 +50,15 @@ public class EsgDetailsController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		//EsgDetailModel esgdetailmodel= esgdetailsdata.getEsgdetailmodel();
+		
+		
+		
+		System.out.println("Bank Id: "+esgdetailsdata.getBank_id());
+
+
+
 		return "EsgDetails Inserted";
 	}
 
