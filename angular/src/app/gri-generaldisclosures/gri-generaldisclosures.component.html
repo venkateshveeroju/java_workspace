@@ -49,7 +49,8 @@
                         <div class="form-group">
                             <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankname">
                             </textarea>
-
+                            Last Modified By : <label>{{OrgLastmodifiedBy}}</label> 
+                            Last Modifed By : <label>{{OrgLastModifedDate}}</label><br/>
                             Moderator Status : <select name="Orgmodaratorstatus" [(ngModel)]="OrgmodaratorselectedStatus">
                                 <option *ngFor="let option of Orgmodaratorstatus" [value]="option" >{{option}}</option>
                             </select>
@@ -76,7 +77,9 @@
                         <div class="form-group">
                             <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankinfo1">
                             </textarea>
-                            
+                            Last Modified By : <label>{{ActivitiesLastmodifiedBy}}</label> 
+                            Last Modifed By : <label>{{ActivitiesLastModifedDate}}</label><br/>
+
                             Moderator Status : <select name="Headquartersmodaratorstatus" [(ngModel)]="ActivitiesmodaratorselectedStatus">
                                 <option *ngFor="let option of Headquartersmodaratorstatus" [value]="option" >{{option}}</option>
                             </select>
@@ -112,6 +115,11 @@
                         <div class="form-group">
                             <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankinfo2" >
                             </textarea>
+
+                            Last Modified By : <label>{{HeadquartersLastmodifiedBy}}</label> 
+                            Last Modifed By : <label>{{HeadquartersLastModifedDate}}</label><br/>
+
+
                             Moderator Status : <select name="Headquartersmodaratorstatus" [(ngModel)]="HeadquartersmodaratorselectedStatus">
                                 <option *ngFor="let option of Headquartersmodaratorstatus" [value]="option" >{{option}}</option>
                             </select>
@@ -137,7 +145,9 @@
                         <div class="form-group">
                             <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankinfo3">
                             </textarea>
-                            
+                            Last Modified By : <label>{{OperationsLastmodifiedBy}}</label> 
+                            Last Modifed By : <label>{{OperationsLastModifedDate}}</label><br/>
+
                             Moderator Status : <select name="Operationsmodaratorstatus" [(ngModel)]="OperationsmodaratorselectedStatus">
                                 <option *ngFor="let option of Operationsmodaratorstatus" [value]="option" >{{option}}</option>
                             </select>

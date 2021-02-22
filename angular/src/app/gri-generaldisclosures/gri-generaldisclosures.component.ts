@@ -10,18 +10,18 @@ import { EsgdetailsService } from './../_services/esgdetails.service';
   styleUrls: ['./gri-generaldisclosures.component.css']
 })
 export class GriGeneraldisclosuresComponent implements OnInit {
-  
+
   // Esg details
   esgdetails = {
     txtOrganization: '',
     txtActivities: '',
     txtHeadquarters: '',
     txtOperations: '',
-    
+
   };
 
   // modified by --user id 
-  esgdetailusermodifiedmodel={
+  esgdetailusermodifiedmodel = {
     txtorganizationModifiedby: 1,
     txtactivitiesModifiedby: 1,
     txtheadquartersModifiedby: 1,
@@ -29,7 +29,7 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   };
 
   // Moderator status - 1. IN_PROGRESS, 2.	APPROVED, 3. 	DENIED
-  esgdetailmoderatorstatusmodel={
+  esgdetailmoderatorstatusmodel = {
     txtorganizationStatus: 1,
     txtactivitiesStatus: 1,
     txtheadquartersStatus: 1,
@@ -37,7 +37,7 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   };
 
   // user status - 1 .SAVE_CONTINUE, 2.	SAVE_SUBMIT
-  esgdetailuserstatusmodel={
+  esgdetailuserstatusmodel = {
     txtorganizationStatus: 1,
     txtactivitiesStatus: 1,
     txtheadquartersStatus: 1,
@@ -46,13 +46,13 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   };
 
   // Last modified date 
-  esgdetaillastmodifiedmodel={
-    txtorganizationmodifieddate:'',
+  esgdetaillastmodifiedmodel = {
+    txtorganizationmodifieddate: '',
     txtactivitiesmodifieddate: '',
-    txtheadquartersmodifieddate:'' ,
-    txtoperationsmodifieddate:''
+    txtheadquartersmodifieddate: '',
+    txtoperationsmodifieddate: ''
   };
-  
+
   // bank_id
   bank_id = 1;
 
@@ -86,33 +86,45 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   esgdetailsbankinfo2 = '';
   esgdetailsbankinfo3 = '';
 
-  private Orgmodaratorstatus: string[] = ["--Select--","IN PROGRESS", "APPROVED", "DENIED"];
+  Orgmodaratorstatus: string[] = ["--Select--", "IN PROGRESS", "APPROVED", "DENIED"];
   OrgmodaratorselectedStatus = "IN PROGRESS";
 
-  private Activitiesmodaratorstatus: string[] = ["--Select--","IN PROGRESS", "APPROVED", "DENIED"];
+  Activitiesmodaratorstatus: string[] = ["--Select--", "IN PROGRESS", "APPROVED", "DENIED"];
   ActivitiesmodaratorselectedStatus = "IN PROGRESS";
 
-  private Headquartersmodaratorstatus: string[] = ["--Select--","IN PROGRESS", "APPROVED", "DENIED"];
+  Headquartersmodaratorstatus: string[] = ["--Select--", "IN PROGRESS", "APPROVED", "DENIED"];
   HeadquartersmodaratorselectedStatus = "IN PROGRESS";
 
-  private Operationsmodaratorstatus: string[] = ["--Select--","IN PROGRESS", "APPROVED", "DENIED"];
+  Operationsmodaratorstatus: string[] = ["--Select--", "IN PROGRESS", "APPROVED", "DENIED"];
   OperationsmodaratorselectedStatus = "IN PROGRESS";
 
-  private Orgdelegatedto: string[] = ["--Select--","User1"];
+  Orgdelegatedto: string[] = ["--Select--", "User1"];
   Orgdelegatedtouser = "User1";
 
-  private Activitiesdelegatedto: string[] = ["--Select--","User1"];
+  Activitiesdelegatedto: string[] = ["--Select--", "User1"];
   Activitiesdelegatedtouser = "User1";
 
-  private Headquartersdelegatedto: string[] = ["--Select--","User1"];
+  Headquartersdelegatedto: string[] = ["--Select--", "User1"];
   Headquartersdelegatedtouser = "User1";
 
-  private Operationsdelegatedto: string[] = ["--Select--","User1"];
+  Operationsdelegatedto: string[] = ["--Select--", "User1"];
   Operationsdelegatedtouser = "User1";
+
+  OrgLastmodifiedBy = "User1";
+  OrgLastModifedDate: String = new Date().toDateString();
+
+  ActivitiesLastmodifiedBy = "User1";
+  ActivitiesLastModifedDate: String = new Date().toDateString();
+
+  HeadquartersLastmodifiedBy = "User1";
+  HeadquartersLastModifedDate: String = new Date().toDateString();
+
+  OperationsLastmodifiedBy = "User1";
+  OperationsLastModifedDate: String = new Date().toDateString();
 
   // Details to and from  html  -- Ends here 
 
-  
+
   constructor(private logger: LogService, private esgdetailsService: EsgdetailsService) { }
 
   ngOnInit(): void {
@@ -137,38 +149,38 @@ export class GriGeneraldisclosuresComponent implements OnInit {
         });
   }
 
- // events - 102-2 - starts here
-  updatebankinfo() { 
-    this.esgdetailsbankinfo1 += this.esgdetailsbankinfo; 
-    this.esgdetailusermodifiedmodel.txtactivitiesModifiedby=1;
+  // events - 102-2 - starts here
+  updatebankinfo() {
+    this.esgdetailsbankinfo1 += this.esgdetailsbankinfo;
+    this.esgdetailusermodifiedmodel.txtactivitiesModifiedby = 1;
 
   }
-  updatebankactivity() { 
+  updatebankactivity() {
     this.esgdetailsbankinfo1 += this.esgdetailsbankactivity;
-    this.esgdetailusermodifiedmodel.txtactivitiesModifiedby=1;
-    
-   }
-  updatebankservice() { 
-    this.esgdetailsbankinfo1 += this.esgdetailsbankservice; 
-    this.esgdetailusermodifiedmodel.txtactivitiesModifiedby=1;
+    this.esgdetailusermodifiedmodel.txtactivitiesModifiedby = 1;
+
+  }
+  updatebankservice() {
+    this.esgdetailsbankinfo1 += this.esgdetailsbankservice;
+    this.esgdetailusermodifiedmodel.txtactivitiesModifiedby = 1;
   }
   // events - 102-2 - ends here
   // events - 102-3 - starts here
   updatebanklocation() {
     this.esgdetailsbankinfo2 += this.esgdetailsbanklocation;
-    this.esgdetailusermodifiedmodel.txtheadquartersModifiedby=1;
+    this.esgdetailusermodifiedmodel.txtheadquartersModifiedby = 1;
   }
   // events - 102-3 - ends here
 
   // events - 102-4 - starts here
   updatebankoperation1() {
     this.esgdetailsbankinfo3 += this.esgdetailsbankoperation1;
-    this.esgdetailusermodifiedmodel.txtoperationsModifiedby=1;
+    this.esgdetailusermodifiedmodel.txtoperationsModifiedby = 1;
   }
 
   updatebankoperation2() {
     this.esgdetailsbankinfo3 += this.esgdetailsbankoperation2;
-    this.esgdetailusermodifiedmodel.txtoperationsModifiedby=1;
+    this.esgdetailusermodifiedmodel.txtoperationsModifiedby = 1;
   }
   // events - 102-4 - ends here
 
@@ -178,12 +190,12 @@ export class GriGeneraldisclosuresComponent implements OnInit {
     this.esgdetails.txtHeadquarters = this.esgdetailsbankinfo2;
     this.esgdetails.txtOperations = this.esgdetailsbankinfo3;
 
-    this.esgdetailusermodifiedmodel.txtorganizationModifiedby=1; // this might need a condition
-    
+    this.esgdetailusermodifiedmodel.txtorganizationModifiedby = 1; // this might need a condition
+
     this.esgdetailuserstatusmodel.txtorganizationStatus = 1;
-    this.esgdetailuserstatusmodel.txtactivitiesStatus=1;
-    this.esgdetailuserstatusmodel.txtheadquartersStatus=1;
-    this.esgdetailuserstatusmodel.txtoperationsStatus=1;
+    this.esgdetailuserstatusmodel.txtactivitiesStatus = 1;
+    this.esgdetailuserstatusmodel.txtheadquartersStatus = 1;
+    this.esgdetailuserstatusmodel.txtoperationsStatus = 1;
 
 
 
@@ -221,12 +233,12 @@ export class GriGeneraldisclosuresComponent implements OnInit {
     this.esgdetails.txtHeadquarters = this.esgdetailsbankinfo2;
     this.esgdetails.txtOperations = this.esgdetailsbankinfo3;
 
-    this.esgdetailusermodifiedmodel.txtorganizationModifiedby=1; // this might need a condition
+    this.esgdetailusermodifiedmodel.txtorganizationModifiedby = 1; // this might need a condition
 
     this.esgdetailuserstatusmodel.txtorganizationStatus = 1;
-    this.esgdetailuserstatusmodel.txtactivitiesStatus=1;
-    this.esgdetailuserstatusmodel.txtheadquartersStatus=1;
-    this.esgdetailuserstatusmodel.txtoperationsStatus=1;
+    this.esgdetailuserstatusmodel.txtactivitiesStatus = 1;
+    this.esgdetailuserstatusmodel.txtheadquartersStatus = 1;
+    this.esgdetailuserstatusmodel.txtoperationsStatus = 1;
 
 
 
