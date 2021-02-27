@@ -80,6 +80,7 @@ public class EsgDetailService {
 		Field[] fields4 = esgdetailsdata.getEsgdetailmoderatorstatusmodel().getClass().getDeclaredFields();
 		Field[] fields5 = esgdetailsdata.getEsgdetaillastmodifiedmodel().getClass().getDeclaredFields();
 
+<<<<<<< .mine
 		for(int i=0;i<fields1.length;i++)
 		{
 			fields1[i].setAccessible(true);
@@ -138,6 +139,66 @@ public class EsgDetailService {
 		
 		
 		
+=======
+		for(int i=0;i<fields1.length;i++)
+		{
+			fields1[i].setAccessible(true);
+			fields2[i].setAccessible(true);
+			fields3[i].setAccessible(true);
+			fields4[i].setAccessible(true);
+			fields5[i].setAccessible(true);
+			
+			 System.out.println(fields1[i].get(esgdetailsdata.getEsgdetailmodel()).toString());
+			 System.out.println(fields2[i].get(esgdetailsdata.getEsgdetailusermodifiedmodel()).toString());
+			 System.out.println(fields3[i].get(esgdetailsdata.getEsgdetailuserstatusmodel()).toString());
+			 System.out.println(fields4[i].get(esgdetailsdata.getEsgdetailmoderatorstatusmodel()).toString());
+			 System.out.println(fields5[i].get(esgdetailsdata.getEsgdetaillastmodifiedmodel()).toString());
+
+			
+			
+			esgdetail = new EsgDetail();
+			
+			
+			
+			
+			esgdetail = (EsgDetail) esgDetailRepository.findByesgDetailText(fields1[i].getName());
+			bank = bankrepository.getOne((long) bankid);
+   		    user = userrepository.getOne((Long.parseLong( fields2[i].get(esgdetailsdata.getEsgdetailusermodifiedmodel()).toString())));
+			
+   		    long us = Long.parseLong( fields3[i].get(esgdetailsdata.getEsgdetailuserstatusmodel()).toString());
+   		    long ms =Long.parseLong( fields4[i].get(esgdetailsdata.getEsgdetailmoderatorstatusmodel()).toString()) ;
+   		    
+   		    EsgdetailsUserStatus esgdetailsuserstatus = esgdetailsuserstatusrepository.getOne(us);
+	    	EsgDetailsModeratorStatus esgdetailsmoderatorstatus = esgdetailsmoderatorstatusrepository.getOne(ms);
+			
+			
+			esgdetail.setEsgDetailTextValue(fields1[i].get(esgdetailsdata.getEsgdetailmodel()).toString());
+			esgdetail.setBank(bank);
+			esgdetail.setLastModifiedBy(user);
+			
+			
+			//Date ldm = new Date();
+			
+			esgdetail.setUserStatusId(esgdetailsuserstatus);
+			esgdetail.setModeratorStatusId(esgdetailsmoderatorstatus);	
+			
+			String s = (fields5[i].get(esgdetailsdata.getEsgdetaillastmodifiedmodel()).toString());  
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+			
+			//yyyy-MM-dd'T'HH:mm:ss.SSSXXX
+			Date date = dateFormat.parse(s);
+			
+			esgdetail.setLastModifiedDate(date);
+			
+			esgDetailRepository.saveAndFlush(esgdetail);
+			
+			
+		}
+		
+		
+		
+		
+>>>>>>> .theirs
 		return new MessageResponse("Saved successfully");
 	}
 
