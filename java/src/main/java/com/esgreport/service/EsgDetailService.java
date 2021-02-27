@@ -1,6 +1,9 @@
 package com.esgreport.service;
 
 import java.lang.reflect.Field;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -14,13 +17,13 @@ import com.esgreport.entity.EsgDetailsModeratorStatus;
 import com.esgreport.entity.EsgdetailsUserStatus;
 import com.esgreport.entity.User;
 import com.esgreport.model.EsgDetailModel;
+import com.esgreport.model.EsgDetailsData;
 import com.esgreport.payload.response.MessageResponse;
 import com.esgreport.repository.BankRepository;
 import com.esgreport.repository.EsgDetailRepository;
 import com.esgreport.repository.EsgDetailsModeratorStatusRepository;
 import com.esgreport.repository.EsgDetailsUserStatusRepository;
 import com.esgreport.repository.UserRepository;
-import com.fasterxml.jackson.core.sym.Name;
 
 @Service
 public class EsgDetailService {
@@ -33,8 +36,7 @@ public class EsgDetailService {
 
 	@Autowired
 	private EsgDetailRepository esgDetailRepository;
-	@Autowired
-	private EsgDetailsUserStatusRepository esgDetailsUserStatusRepository;
+
 	@Autowired
 	private UserRepository userrepository;
 
@@ -63,119 +65,81 @@ public class EsgDetailService {
 	public void delete() {
 		esgDetailRepository.deleteAll();
 	}
-
-	public MessageResponse save(EsgDetailModel esgDetailModel) throws IllegalArgumentException, IllegalAccessException {
-		if (esgDetailModel == null) {
+	
+	public MessageResponse save(EsgDetailsData esgdetailsdata) throws IllegalArgumentException, IllegalAccessException, ParseException {
+		if (esgdetailsdata == null) {
 			return null;
 		}
+		
+		int bankid= esgdetailsdata.getBank_id();
+				
+		
+		Field[] fields1 = esgdetailsdata.getEsgdetailmodel().getClass().getDeclaredFields();
+		Field[] fields2 = esgdetailsdata.getEsgdetailusermodifiedmodel().getClass().getDeclaredFields();
+		Field[] fields3 = esgdetailsdata.getEsgdetailuserstatusmodel().getClass().getDeclaredFields();
+		Field[] fields4 = esgdetailsdata.getEsgdetailmoderatorstatusmodel().getClass().getDeclaredFields();
+		Field[] fields5 = esgdetailsdata.getEsgdetaillastmodifiedmodel().getClass().getDeclaredFields();
 
-		System.out.println(esgDetailModel.getTxtactivities());
-		System.out.println(esgDetailModel.getTxtactivitiesesgdetailsuserstatusid());
-
-		///// -------------------------------
-		esgdetail = new EsgDetail();
-		esgdetail = (EsgDetail) esgDetailRepository.findByesgDetailText("txtactivities");
-
-		bank = bankrepository.getOne((long) esgDetailModel.getTxtactivitiesmodelbankid());
-		user = userrepository.getOne((long) esgDetailModel.getTxtactivitiesmodellastmodifiedby());
-		EsgDetailsModeratorStatus esgdetailsmoderatorstatus1 = esgdetailsmoderatorstatusrepository
-				.getOne((long) esgDetailModel.getTxtactivitiesmodellastmodifiedby());
-		EsgdetailsUserStatus esgdetailsuserstatus1 = esgdetailsuserstatusrepository
-				.getOne((long) esgDetailModel.getTxtactivitiesesgdetailsuserstatusid());
-
-		esgdetail.setEsgDetailTextValue(esgDetailModel.getTxtactivities());
-		esgdetail.setLastModifiedBy(userrepository.getOne((long) esgDetailModel.getTxtactivitiesmodellastmodifiedby()));
-
-		esgdetail.setModeratorStatusId(esgdetailsmoderatorstatus1);
-		esgdetailsuserstatus1 = esgDetailsUserStatusRepository
-				.getOne((Long) esgDetailModel.getTxtactivitiesesgdetailsuserstatusid());
-		esgdetail.setUserStatusId(esgdetailsuserstatus1);
-		esgdetail.setLastModifiedDate(new Date());
-		esgdetail.setBank(bank);
-		esgDetailRepository.saveAndFlush(esgdetail);
-/////////////////////////
-		/*
-		esgdetail = new EsgDetail();
-		esgdetail = (EsgDetail) esgDetailRepository.findByesgDetailText("txtheadquarters");
-
-		bank = bankrepository.getOne((long) esgDetailModel.getTxtheadquartersmodelbankid());
-		user = userrepository.getOne((long) esgDetailModel.getTxtheadquartersesgdetailsuserstatusid());
-		EsgDetailsModeratorStatus esgdetailsmoderatorstatus = esgdetailsmoderatorstatusrepository
-				.getOne((long) esgDetailModel.getTxtheadquartersmodellastmodifiedby());
-		EsgdetailsUserStatus esgdetailsuserstatus = esgdetailsuserstatusrepository
-				.getOne((long) esgDetailModel.getTxtheadquartersesgdetailsuserstatusid());
-
-		esgdetail.setEsgDetailTextValue(esgDetailModel.getTxtactivities());
-		esgdetail.setLastModifiedBy(userrepository.getOne((long) esgDetailModel.getTxtheadquartersmodellastmodifiedby()));
-
-		esgdetail.setModeratorStatusId(esgdetailsmoderatorstatus);
-		esgdetailsuserstatus = esgDetailsUserStatusRepository
-				.getOne((Long) esgDetailModel.getTxtheadquartersesgdetailsuserstatusid());
-		esgdetail.setUserStatusId(esgdetailsuserstatus);
-		esgdetail.setLastModifiedDate(new Date());
-		esgdetail.setBank(bank);
+		for(int i=0;i<fields1.length;i++)
+		{
+			fields1[i].setAccessible(true);
+			fields2[i].setAccessible(true);
+			fields3[i].setAccessible(true);
+			fields4[i].setAccessible(true);
+			fields5[i].setAccessible(true);
+			/*
+			 System.out.println(fields1[i].get(esgdetailsdata.getEsgdetailmodel()).toString());
+			 System.out.println(fields2[i].get(esgdetailsdata.getEsgdetailusermodifiedmodel()).toString());
+			 System.out.println(fields3[i].get(esgdetailsdata.getEsgdetailuserstatusmodel()).toString());
+			 System.out.println(fields4[i].get(esgdetailsdata.getEsgdetailmoderatorstatusmodel()).toString());
+			 System.out.println(fields5[i].get(esgdetailsdata.getEsgdetaillastmodifiedmodel()).toString());
 */
-		///// -------------------------------
-
-		// System.out.println(esgDetailModel.getTxtoperations());
-		/*
-		 * { "txtactivities": "activities", "txtactivitiesmodelbankid": "1111",
-		 * "txtactivitiesmodellastmodifiedby": "1111",
-		 * "txtactivitiesesgdetailsuserstatusid": "1111", "txtheadquarters":
-		 * "frankfurt", "txtheadquartersmodelbankid": "222222",
-		 * "txtheadquartersmodellastmodifiedby": "222222",
-		 * "txtheadquartersesgdetailsuserstatusid": "222222", "txtoperations":
-		 * "banking", "txtoperationsmodelbankid": "33333",
-		 * "txtoperationsmodellastmodifiedby": "33333",
-		 * "txtoperationsesgdetailsuserstatusid": "33333", "txtorganization":
-		 * "commerzbank", "txtorganizationmodelbankid": "44444",
-		 * "txtorganizationmodellastmodifiedby": "44444",
-		 * "txtorganizationesgdetailsuserstatusid": "44444"
-		 * 
-		 * }
-		 */
-
-		/*
-		 * for (Field field : fields) { field.setAccessible(true);
-		 * System.out.println(field.get(esgDetailModel).toString());
-		 * System.out.println(field.get("txtactivitiesmodellastmodifiedby"));
-		 * System.out.println("aaaaaaaaaaaaaaa");
-		 * 
-		 * esgdetail = new EsgDetail(); esgdetail = (EsgDetail)
-		 * esgDetailRepository.findByesgDetailText(field.getName()); //
-		 * System.out.println((EsgDetail) //
-		 * esgDetailRepository.findByesgDetailText(field.getName())); bank =
-		 * bankrepository.getOne((long) 1); user = userrepository.getOne((long) 1);
-		 * EsgDetailsModeratorStatus esgdetailsmoderatorstatus =
-		 * esgdetailsmoderatorstatusrepository.getOne((long) 1); EsgdetailsUserStatus
-		 * esgdetailsuserstatus = esgdetailsuserstatusrepository.getOne((long) 1);
-		 * 
-		 * if (field.getName().equals("txtactivities") &&
-		 * field.getType().equals(String.class)) {
-		 * 
-		 * System.out.println(userrepository.getOne((long)
-		 * field.get(esgDetailModel.getTxtactivitiesmodellastmodifiedby())));
-		 * System.out.println("dasfadfadf ---------" +
-		 * field.get(esgDetailModel).toString());
-		 * esgdetail.setEsgDetailTextValue(field.get(esgDetailModel).toString());
-		 * esgdetail.setLastModifiedBy(userrepository.getOne((long)
-		 * field.get(esgDetailModel.getTxtactivitiesmodellastmodifiedby())));
-		 * 
-		 * esgdetail.setModeratorStatusId(esgdetailsmoderatorstatus);
-		 * esgdetailsuserstatus =esgDetailsUserStatusRepository.getOne((Long)
-		 * field.get(esgDetailModel.getTxtactivitiesesgdetailsuserstatusid()));
-		 * esgdetail.setUserStatusId(esgdetailsuserstatus);
-		 * //esgdetail.setUserStatusId(field.get(esgDetailModel)); }
-		 * System.out.println("dasfadfadf ---------" + field.get(esgDetailModel));
-		 * 
-		 * // esgdetail.setLastModifiedDate(new Date());
-		 * 
-		 * esgdetail.setBank(bank);
-		 * 
-		 * 
-		 * esgDetailRepository.saveAndFlush(esgdetail);
-		 */
-
+			
+			
+			esgdetail = new EsgDetail();
+			
+			
+			
+			
+			esgdetail = (EsgDetail) esgDetailRepository.findByesgDetailText(fields1[i].getName());
+			bank = bankrepository.getOne((long) bankid);
+   		    user = userrepository.getOne((Long.parseLong( fields2[i].get(esgdetailsdata.getEsgdetailusermodifiedmodel()).toString())));
+			
+   		    long us = Long.parseLong( fields3[i].get(esgdetailsdata.getEsgdetailuserstatusmodel()).toString());
+   		    long ms =Long.parseLong( fields4[i].get(esgdetailsdata.getEsgdetailmoderatorstatusmodel()).toString()) ;
+   		    
+   		    EsgdetailsUserStatus esgdetailsuserstatus = esgdetailsuserstatusrepository.getOne(us);
+	    	EsgDetailsModeratorStatus esgdetailsmoderatorstatus = esgdetailsmoderatorstatusrepository.getOne(ms);
+			
+			
+			esgdetail.setEsgDetailTextValue(fields1[i].get(esgdetailsdata.getEsgdetailmodel()).toString());
+			esgdetail.setBank(bank);
+			esgdetail.setLastModifiedBy(user);
+			
+			
+			//Date ldm = new Date();
+			
+			esgdetail.setUserStatusId(esgdetailsuserstatus);
+			esgdetail.setModeratorStatusId(esgdetailsmoderatorstatus);	
+			
+			String s = (fields5[i].get(esgdetailsdata.getEsgdetaillastmodifiedmodel()).toString());  
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+			
+			//yyyy-MM-dd'T'HH:mm:ss.SSSXXX
+			Date date = dateFormat.parse(s);
+			
+			esgdetail.setLastModifiedDate(date);
+			
+			esgDetailRepository.saveAndFlush(esgdetail);
+			
+			
+		}
+		
+		
+		
+		
 		return new MessageResponse("Saved successfully");
 	}
+
+	
 }

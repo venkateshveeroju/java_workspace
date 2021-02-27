@@ -1,0 +1,38 @@
+{
+   "esgdetailmodel" :{
+    "txtorganization": "ABC",
+    "txtactivities": "sevices",
+    "txtheadquarters": "hyd",
+    "txtoperations": "loans"
+},
+   "esgdetailusermodifiedmodel" :{
+    "txtorganizationModifiedby": 1,
+    "txtactivitiesModifiedby": 1,
+    "txtheadquartersModifiedby": 1,
+    "txtoperationsModifiedby": 1
+},
+"esgdetailmoderatorstatusmodel" :{
+    "txtorganizationStatus": 1,
+    "txtactivitiesStatus": 1,
+    "txtheadquartersStatus": 1,
+    "txtoperationsStatus": 1
+},
+"esgdetailuserstatusmodel" :{
+    "txtorganizationStatus": 1,
+    "txtactivitiesStatus": 1,
+    "txtheadquartersStatus": 1,
+    "txtoperationsStatus": 1
+},
+
+"esgdetaillastmodifiedmodel":{
+    "txtorganizationmodifieddate": "2019-12-11T11:40:49Z",
+    "txtactivitiesmodifieddate": "2019-12-11T11:40:49Z",
+    "txtheadquartersmodifieddate": "2019-12-11T11:40:49Z",
+    "txtoperationsmodifieddate": "2019-12-11T11:40:49Z"
+  
+},
+"bank_id":1
+
+
+
+}

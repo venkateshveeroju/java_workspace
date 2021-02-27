@@ -22,6 +22,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.NaturalId;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "esgdetails")
 public class EsgDetail {
@@ -65,7 +67,7 @@ public class EsgDetail {
 	@JoinColumn(name = "user_status_id")
 	private EsgdetailsUserStatus userStatusId;
 
-	@Column(length = 60)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
 	private Date lastModifiedDate;
 
 	@ManyToMany(fetch = FetchType.LAZY)
@@ -124,15 +126,12 @@ public class EsgDetail {
 		return lastModifiedDate;
 	}
 
+
+	
+
 	public void setLastModifiedDate(Date lastModifiedDate) {
 		this.lastModifiedDate = lastModifiedDate;
 	}
-
-	public Bank getBank() {
-		return bank;
-	}
-
-	
 
 	public User getLastModifiedBy() {
 		return lastModifiedBy;
