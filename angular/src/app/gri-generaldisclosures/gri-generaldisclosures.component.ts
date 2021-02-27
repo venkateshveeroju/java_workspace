@@ -121,6 +121,8 @@ export class GriGeneraldisclosuresComponent implements OnInit {
 
   OperationsLastmodifiedBy = "User1";
   OperationsLastModifedDate: String = new Date().toDateString();
+  
+  
   OrgUserStatus="";
   ActivitiesUserStatus="";
   HeadquartersUserStatus="";
