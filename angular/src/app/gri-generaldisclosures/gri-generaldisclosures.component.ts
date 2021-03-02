@@ -53,6 +53,13 @@ export class GriGeneraldisclosuresComponent implements OnInit {
     txtoperationsmodifieddate: ''
   };
 
+  // delegate user
+  esgdetaildelegateusermodel = {
+    txtorganizationdelegateuser: '',
+    txtactivitiesdelegateuser: '',
+    txtheadquartersdelegateuser: '',
+    txtoperationsdelegateuser: ''
+  };
   // bank_id
   bank_id = 1;
 
@@ -89,7 +96,6 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   Orgmodaratorstatus: string[] = ["--Select--", "IN PROGRESS", "APPROVED", "DENIED"];
   OrgmodaratorselectedStatus = "IN PROGRESS";
 
-
   Activitiesmodaratorstatus: string[] = ["--Select--", "IN PROGRESS", "APPROVED", "DENIED"];
   ActivitiesmodaratorselectedStatus = "IN PROGRESS";
 
@@ -99,16 +105,16 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   Operationsmodaratorstatus: string[] = ["--Select--", "IN PROGRESS", "APPROVED", "DENIED"];
   OperationsmodaratorselectedStatus = "IN PROGRESS";
 
-  Orgdelegatedto: string[] = ["--Select--", "venkat","veeroju"];
+  Orgdelegatedto: string[] = ["--Select--", "venkat", "veeroju"];
   Orgdelegatedtouser = "User1";
 
-  Activitiesdelegatedto: string[] = ["--Select--", "User1","user2"];
+  Activitiesdelegatedto: string[] = ["--Select--", "User1", "user2"];
   Activitiesdelegatedtouser = "User1";
 
-  Headquartersdelegatedto: string[] = ["--Select--", "User1","user2"];
+  Headquartersdelegatedto: string[] = ["--Select--", "User1", "user2"];
   Headquartersdelegatedtouser = "User1";
 
-  Operationsdelegatedto: string[] = ["--Select--", "User1","user2"];
+  Operationsdelegatedto: string[] = ["--Select--", "User1", "user2"];
   Operationsdelegatedtouser = "User1";
 
   OrgLastmodifiedBy = "User1";
@@ -122,14 +128,11 @@ export class GriGeneraldisclosuresComponent implements OnInit {
 
   OperationsLastmodifiedBy = "User1";
   OperationsLastModifedDate: String = new Date().toDateString();
-  
-  
-  OrgUserStatus="";
-  ActivitiesUserStatus="";
-  HeadquartersUserStatus="";
-  OperationsUserStatus="";
+  OrgUserStatus = "";
+  ActivitiesUserStatus = "";
+  HeadquartersUserStatus = "";
+  OperationsUserStatus = "";
   // Details to and from  html  -- Ends here 
-
 
 
   constructor(private logger: LogService, private esgdetailsService: EsgdetailsService) { }
@@ -148,44 +151,33 @@ export class GriGeneraldisclosuresComponent implements OnInit {
           this.esgdetails.txtActivities = this.esgdetailsbankinfo1;
           this.esgdetails.txtHeadquarters = this.esgdetailsbankinfo2;
           this.esgdetails.txtOperations = this.esgdetailsbankinfo3;
-          
-
-          
-
 
           console.log(response[0]['lastModifiedBy']['username']);
-          this.OrgLastmodifiedBy               = response[0]['lastModifiedBy']['username'];
-          this.ActivitiesLastmodifiedBy        =         response[1]['lastModifiedBy']['username'];
-          this.HeadquartersLastmodifiedBy      =        response[2]['lastModifiedBy']['username'];
-          this.OperationsLastmodifiedBy        =       response[3]['lastModifiedBy']['username'];
-          
-          
-          
-          
-          
-          this.OrgmodaratorselectedStatus             = this.Orgmodaratorstatus[response[0]['moderatorStatusId']['id']];         
-          this.ActivitiesmodaratorselectedStatus      = this.Activitiesmodaratorstatus[response[1]['moderatorStatusId']['id']];   
-          this.HeadquartersmodaratorselectedStatus    = this.Headquartersmodaratorstatus[response[2]['moderatorStatusId']['id']];     
-          this.OperationsmodaratorselectedStatus      = this.Operationsmodaratorstatus[response[3]['moderatorStatusId']['id']];
-        
+          this.OrgLastmodifiedBy = response[0]['lastModifiedBy']['username'];
+          this.ActivitiesLastmodifiedBy = response[1]['lastModifiedBy']['username'];
+          this.HeadquartersLastmodifiedBy = response[2]['lastModifiedBy']['username'];
+          this.OperationsLastmodifiedBy = response[3]['lastModifiedBy']['username'];
+
+          this.OrgmodaratorselectedStatus = this.Orgmodaratorstatus[response[0]['moderatorStatusId']['id']];
+          this.ActivitiesmodaratorselectedStatus = this.Activitiesmodaratorstatus[response[1]['moderatorStatusId']['id']];
+          this.HeadquartersmodaratorselectedStatus = this.Headquartersmodaratorstatus[response[2]['moderatorStatusId']['id']];
+          this.OperationsmodaratorselectedStatus = this.Operationsmodaratorstatus[response[3]['moderatorStatusId']['id']];
 
           console.log(response[0]['delegateTo']['username']);
-        this.Orgdelegatedtouser = this.Orgdelegatedto[response[0]['delegateTo']['id']];
-        this.Activitiesdelegatedtouser = this.Activitiesdelegatedto[response[1]['delegateTo']['id']];
-        this.Headquartersdelegatedtouser = this.Headquartersdelegatedto[response[2]['delegateTo']['id']];
-        this.Operationsdelegatedtouser = this.Operationsdelegatedto[response[3]['delegateTo']['id']];
-           
-        
-             this.OrgLastModifedDate             = response[0]['lastModifiedDate'];
-             this.ActivitiesLastModifedDate      =         response[1]['lastModifiedDate'];
-             this.HeadquartersLastModifedDate    =        response[2]['lastModifiedDate'];
-             this.OperationsLastModifedDate      =       response[3]['lastModifiedDate'];
+          this.Orgdelegatedtouser = this.Orgdelegatedto[response[0]['delegateTo']['id']];
+          this.Activitiesdelegatedtouser = this.Activitiesdelegatedto[response[1]['delegateTo']['id']];
+          this.Headquartersdelegatedtouser = this.Headquartersdelegatedto[response[2]['delegateTo']['id']];
+          this.Operationsdelegatedtouser = this.Operationsdelegatedto[response[3]['delegateTo']['id']];
 
- 
- this.OrgUserStatus     = response[0]['userStatusId']['status'];    
- this.ActivitiesUserStatus       =         response[1]['userStatusId']['status'];  
- this.HeadquartersUserStatus       =        response[2]['userStatusId']['status'];    
- this.OperationsUserStatus     =        response[2]['userStatusId']['status'];
+          this.OrgLastModifedDate = response[0]['lastModifiedDate'];
+          this.ActivitiesLastModifedDate = response[1]['lastModifiedDate'];
+          this.HeadquartersLastModifedDate = response[2]['lastModifiedDate'];
+          this.OperationsLastModifedDate = response[3]['lastModifiedDate'];
+
+          this.OrgUserStatus = response[0]['userStatusId']['status'];
+          this.ActivitiesUserStatus = response[1]['userStatusId']['status'];
+          this.HeadquartersUserStatus = response[2]['userStatusId']['status'];
+          this.OperationsUserStatus = response[2]['userStatusId']['status'];
 
         },
         error => {
@@ -193,44 +185,38 @@ export class GriGeneraldisclosuresComponent implements OnInit {
         });
   }
 
-
   // events - 102-2 - starts here
   updatebankinfo() {
     this.esgdetailsbankinfo1 += this.esgdetailsbankinfo;
     //this.esgdetailusermodifiedmodel.txtactivitiesModifiedby = 1;
 
-
-
   }
   updatebankactivity() {
     this.esgdetailsbankinfo1 += this.esgdetailsbankactivity;
-   // this.esgdetailusermodifiedmodel.txtactivitiesModifiedby = 1;
+    // this.esgdetailusermodifiedmodel.txtactivitiesModifiedby = 1;
 
   }
   updatebankservice() {
     this.esgdetailsbankinfo1 += this.esgdetailsbankservice;
-   // this.esgdetailusermodifiedmodel.txtactivitiesModifiedby = 1;
+    // this.esgdetailusermodifiedmodel.txtactivitiesModifiedby = 1;
   }
   // events - 102-2 - ends here
   // events - 102-3 - starts here
-
   updatebanklocation() {
     this.esgdetailsbankinfo2 += this.esgdetailsbanklocation;
-
     //this.esgdetailusermodifiedmodel.txtheadquartersModifiedby = 1;
-
   }
   // events - 102-3 - ends here
 
   // events - 102-4 - starts here
   updatebankoperation1() {
     this.esgdetailsbankinfo3 += this.esgdetailsbankoperation1;
-    this.esgdetailusermodifiedmodel.txtoperationsModifiedby = 1;
+    //this.esgdetailusermodifiedmodel.txtoperationsModifiedby = 1;
   }
 
   updatebankoperation2() {
     this.esgdetailsbankinfo3 += this.esgdetailsbankoperation2;
-    this.esgdetailusermodifiedmodel.txtoperationsModifiedby = 1;
+    //this.esgdetailusermodifiedmodel.txtoperationsModifiedby = 1;
   }
   // events - 102-4 - ends here
 
@@ -247,21 +233,16 @@ export class GriGeneraldisclosuresComponent implements OnInit {
     this.esgdetailuserstatusmodel.txtheadquartersStatus = 1;
     this.esgdetailuserstatusmodel.txtoperationsStatus = 1;
 
-
-
-
     const data = {
-      txtorganization: this.esgdetails.txtOrganization,
-      txtactivities: this.esgdetails.txtActivities,
-      txtheadquarters: this.esgdetails.txtHeadquarters,
-      txtoperations: this.esgdetails.txtOperations,
-
+      "esgdetailmodel": {
+        txtorganization: this.esgdetails.txtOrganization,
+        txtactivities: this.esgdetails.txtActivities,
+        txtheadquarters: this.esgdetails.txtHeadquarters,
+        txtoperations: this.esgdetails.txtOperations,
+      }
     };
 
-
     console.log(data);
-
-
     this.esgdetailsService.save(data)
       .subscribe(
         response => {
@@ -283,15 +264,12 @@ export class GriGeneraldisclosuresComponent implements OnInit {
     this.esgdetails.txtHeadquarters = this.esgdetailsbankinfo2;
     this.esgdetails.txtOperations = this.esgdetailsbankinfo3;
 
-
     this.esgdetailusermodifiedmodel.txtorganizationModifiedby = 1; // this might need a condition
 
     this.esgdetailuserstatusmodel.txtorganizationStatus = 2;
     this.esgdetailuserstatusmodel.txtactivitiesStatus = 2;
     this.esgdetailuserstatusmodel.txtheadquartersStatus = 2;
     this.esgdetailuserstatusmodel.txtoperationsStatus = 2;
-
-
 
     const data = {
       txtorganization: this.esgdetails.txtOrganization,
@@ -321,6 +299,31 @@ export class GriGeneraldisclosuresComponent implements OnInit {
 
   onDelgate($event) {
     console.log("Delegate button is clicked!", $event);
+    ///console.log(	this.Orgdelegatedtouser	);
+    const data = {
+      "esgdetaildelegateusermodel": {
+        txtorganizationdelegateuser: this.Orgdelegatedtouser,
+        txtactivitiesdelegateuser: this.Activitiesdelegatedtouser,
+        txtheadquartersdelegateuser: this.Headquartersdelegatedtouser,
+        txtoperationsdelegateuser: this.Operationsdelegatedtouser,
+      }
+      // this.esgdetaildelegateusermodel.txtorganizationdelegateuser=this.Orgdelegatedtouser;
+      ///this.esgdetaildelegateusermodel.txtactivitiesdelegateuser= this.Activitiesdelegatedtouser;
+      //this.esgdetaildelegateusermodel.txtheadquartersdelegateuser= this.Headquartersdelegatedtouser;
+      // this.esgdetaildelegateusermodel.txtoperationsdelegateuser= this.Operationsdelegatedtouser;
+    };
+    console.log(data);
+    this.esgdetailsService.onDelgate(data)
+      .subscribe(
+        response => {
+          console.log(response);
+          //this.submitted = true;
+          alert("Delegate sucessfully...")
+        },
+        error => {
+          console.log(error);
+          alert("Delegate unsucessfully")
+        });
 
   }
 

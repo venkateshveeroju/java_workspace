@@ -49,17 +49,17 @@
                         <div class="form-group">
                             <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankname">
                             </textarea>
-                            Last Modified By : <label>{{OrgLastmodifiedBy}}</label> 
-                            Last Modifed On : <label>{{OrgLastModifedDate}}</label><br/>
-                            User status : <label>{{OrgUserStatus}}</label><br/>
-                            Moderator Status : <select name="Orgmodaratorstatus" [(ngModel)]="OrgmodaratorselectedStatus">
-                                <option *ngFor="let option of Orgmodaratorstatus" [value]="option" >{{option}}</option>
+                            Last Modified By : <label>{{OrgLastmodifiedBy}}</label>
+                            Last Modifed On : <label>{{OrgLastModifedDate}}</label><br />
+                            User status : <label>{{OrgUserStatus}}</label><br />
+                            Moderator Status : <select name="Orgmodaratorstatus"
+                                [(ngModel)]="OrgmodaratorselectedStatus">
+                                <option *ngFor="let option of Orgmodaratorstatus" [value]="option">{{option}}</option>
                             </select>
 
-                            Delegated to  : <select name="Orgdelegatedto" [(ngModel)]="Orgdelegatedtouser">
-                                <option *ngFor="let option of Orgdelegatedto" [value]="option" >{{option}}</option>
+                            Delegated to : <select name="Orgdelegatedto" [(ngModel)]="Orgdelegatedtouser">
+                                <option *ngFor="let option of Orgdelegatedto" [value]="option">{{option}}</option>
                             </select>
-
 
                         </div>
 
@@ -79,16 +79,18 @@
                         <div class="form-group">
                             <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankinfo1">
                             </textarea>
-
-                            Last Modified By : <label>{{ActivitiesLastmodifiedBy}}</label> 
-                            Last Modifed On : <label>{{ActivitiesLastModifedDate}}</label><br/>
-                            User status : <label>{{ActivitiesUserStatus}}</label><br/>
-                            Moderator Status : <select name="Headquartersmodaratorstatus" [(ngModel)]="ActivitiesmodaratorselectedStatus">
-                                <option *ngFor="let option of Headquartersmodaratorstatus" [value]="option" >{{option}}</option>
+                            Last Modified By : <label>{{ActivitiesLastmodifiedBy}}</label>
+                            Last Modifed On : <label>{{ActivitiesLastModifedDate}}</label><br />
+                            User status : <label>{{ActivitiesUserStatus}}</label><br />
+                            Moderator Status : <select name="Headquartersmodaratorstatus"
+                                [(ngModel)]="ActivitiesmodaratorselectedStatus">
+                                <option *ngFor="let option of Headquartersmodaratorstatus" [value]="option">{{option}}
+                                </option>
                             </select>
 
-                            Delegated to  : <select name="Activitiesdelegatedto" [(ngModel)]="Activitiesdelegatedtouser">
-                                <option *ngFor="let option of Activitiesdelegatedto" [value]="option" >{{option}}</option>
+                            Delegated to : <select name="Activitiesdelegatedto" [(ngModel)]="Activitiesdelegatedtouser">
+                                <option *ngFor="let option of Activitiesdelegatedto" [value]="option">{{option}}
+                                </option>
                             </select>
 
                         </div>
@@ -96,17 +98,17 @@
                     </div>
                     <div class="col-md-5">
                         <div class="form-group">
-                                <button type="button" [disabled]="clickedesgdetailsbankinfo" class="btn btn-primary" 
+                            <button type="button" [disabled]="clickedesgdetailsbankinfo" class="btn btn-primary"
                                 (click)="updatebankinfo();clickedesgdetailsbankinfo = true;">
-                                    {{esgdetailsbankinfo}}</button>
+                                {{esgdetailsbankinfo}}</button>
 
-                                    <button type="button" [disabled]="clickedesgdetailsbankactivity" class="btn btn-primary" 
-                                    (click)="updatebankactivity();clickedesgdetailsbankactivity = true;">
-                                        {{esgdetailsbankactivity}}</button>
+                            <button type="button" [disabled]="clickedesgdetailsbankactivity" class="btn btn-primary"
+                                (click)="updatebankactivity();clickedesgdetailsbankactivity = true;">
+                                {{esgdetailsbankactivity}}</button>
 
-                                        <button type="button" [disabled]="clickedesgdetailsbankservice" class="btn btn-primary" 
-                                        (click)="updatebankservice();clickedesgdetailsbankservice = true;">
-                                            {{esgdetailsbankservice}}</button>
+                            <button type="button" [disabled]="clickedesgdetailsbankservice" class="btn btn-primary"
+                                (click)="updatebankservice();clickedesgdetailsbankservice = true;">
+                                {{esgdetailsbankservice}}</button>
                         </div>
                     </div>
                 </div>
@@ -116,28 +118,30 @@
                         headquarters <i class="far fa-question-circle"></i></h3>
                     <div class="col-md-7">
                         <div class="form-group">
-                            <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankinfo2" >
+                            <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankinfo2">
                             </textarea>
 
+                            Last Modified By : <label>{{HeadquartersLastmodifiedBy}}</label>
+                            Last Modifed On : <label>{{HeadquartersLastModifedDate}}</label><br />
+                            User status : <label>{{HeadquartersUserStatus}}</label><br />
 
-                            Last Modified By : <label>{{HeadquartersLastmodifiedBy}}</label> 
-                            Last Modifed On : <label>{{HeadquartersLastModifedDate}}</label><br/>
-                            User status : <label>{{HeadquartersUserStatus}}</label><br/>
-
-                            Moderator Status : <select name="Headquartersmodaratorstatus" [(ngModel)]="HeadquartersmodaratorselectedStatus">
-                                <option *ngFor="let option of Headquartersmodaratorstatus" [value]="option" >{{option}}</option>
+                            Moderator Status : <select name="Headquartersmodaratorstatus"
+                                [(ngModel)]="HeadquartersmodaratorselectedStatus">
+                                <option *ngFor="let option of Headquartersmodaratorstatus" [value]="option">{{option}}
+                                </option>
                             </select>
 
-                            Delegated to  : <select name="Headquartersdelegatedto" [(ngModel)]="Headquartersdelegatedtouser">
-                                <option *ngFor="let option of Headquartersdelegatedto" [value]="option" >{{option}}</option>
+                            Delegated to : <select name="Headquartersdelegatedto"
+                                [(ngModel)]="Headquartersdelegatedtouser">
+                                <option *ngFor="let option of Headquartersdelegatedto" [value]="option">{{option}}
+                                </option>
                             </select>
-
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="form-group">
-                            <button type="button" [disabled]="clickedbanklocation" class="btn btn-primary" 
-                            (click)="updatebanklocation();clickedbanklocation = true;">{{esgdetailsbanklocation}}</button>
+                            <button type="button" [disabled]="clickedbanklocation" class="btn btn-primary"
+                                (click)="updatebanklocation();clickedbanklocation = true;">{{esgdetailsbanklocation}}</button>
                         </div>
 
                     </div>
@@ -150,25 +154,28 @@
                         <div class="form-group">
                             <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankinfo3">
                             </textarea>
-
-                            Last Modified By : <label>{{OperationsLastmodifiedBy}}</label> 
-                            Last Modifed On : <label>{{OperationsLastModifedDate}}</label><br/>
-                            User status : <label>{{OperationsUserStatus}}</label><br/>
-                            Moderator Status : <select name="Operationsmodaratorstatus" [(ngModel)]="OperationsmodaratorselectedStatus">
-                                <option *ngFor="let option of Operationsmodaratorstatus" [value]="option" >{{option}}</option>
+                            Last Modified By : <label>{{OperationsLastmodifiedBy}}</label>
+                            Last Modifed On : <label>{{OperationsLastModifedDate}}</label><br />
+                            User status : <label>{{OperationsUserStatus}}</label><br />
+                            Moderator Status : <select name="Operationsmodaratorstatus"
+                                [(ngModel)]="OperationsmodaratorselectedStatus">
+                                <option *ngFor="let option of Operationsmodaratorstatus" [value]="option">{{option}}
+                                </option>
                             </select>
-                            Delegated to  : <select name="Operationsdelegatedto" [(ngModel)]="Operationsdelegatedtouser">
-                                <option *ngFor="let option of Operationsdelegatedto" [value]="option" >{{option}}</option>
+                            Delegated to : <select name="Operationsdelegatedto" [(ngModel)]="Operationsdelegatedtouser">
+                                <option *ngFor="let option of Operationsdelegatedto" [value]="option">{{option}}
+                                </option>
                             </select>
-
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="form-group">
-                                <button type="button" [disabled]="clickedbankoperation1" class="btn btn-primary" (click)="updatebankoperation1();clickedbankoperation1 = true;">{{esgdetailsbankoperation1}}</button>
-                                <br/>
-                                <br/>
-                                <button type="button" [disabled]="clickedbankoperation2" class="btn btn-primary" (click)="updatebankoperation2();clickedbankoperation2 = true;">{{esgdetailsbankoperation2}}</button>
+                            <button type="button" [disabled]="clickedbankoperation1" class="btn btn-primary"
+                                (click)="updatebankoperation1();clickedbankoperation1 = true;">{{esgdetailsbankoperation1}}</button>
+                            <br />
+                            <br />
+                            <button type="button" [disabled]="clickedbankoperation2" class="btn btn-primary"
+                                (click)="updatebankoperation2();clickedbankoperation2 = true;">{{esgdetailsbankoperation2}}</button>
                         </div>
                     </div>
                 </div>
