@@ -226,12 +226,12 @@ export class GriGeneraldisclosuresComponent implements OnInit {
     this.esgdetails.txtHeadquarters = this.esgdetailsbankinfo2;
     this.esgdetails.txtOperations = this.esgdetailsbankinfo3;
 
-    this.esgdetailusermodifiedmodel.txtorganizationModifiedby = 1; // this might need a condition
+    //this.esgdetailusermodifiedmodel.txtorganizationModifiedby = 1; // this might need a condition
 
-    this.esgdetailuserstatusmodel.txtorganizationStatus = 1;
-    this.esgdetailuserstatusmodel.txtactivitiesStatus = 1;
-    this.esgdetailuserstatusmodel.txtheadquartersStatus = 1;
-    this.esgdetailuserstatusmodel.txtoperationsStatus = 1;
+    //this.esgdetailuserstatusmodel.txtorganizationStatus = 1;
+    //this.esgdetailuserstatusmodel.txtactivitiesStatus = 1;
+    //this.esgdetailuserstatusmodel.txtheadquartersStatus = 1;
+    //this.esgdetailuserstatusmodel.txtoperationsStatus = 1;
 
     const data = {
       "esgdetailmodel": {
@@ -239,9 +239,36 @@ export class GriGeneraldisclosuresComponent implements OnInit {
         txtactivities: this.esgdetails.txtActivities,
         txtheadquarters: this.esgdetails.txtHeadquarters,
         txtoperations: this.esgdetails.txtOperations,
-      }
-    };
+      },
+      "esgdetailusermodifiedmodel": {
+        "txtorganizationModifiedby": this.OrgLastmodifiedBy,
+        "txtactivitiesModifiedby": this.ActivitiesLastmodifiedBy,
+        "txtheadquartersModifiedby": this.HeadquartersLastmodifiedBy,
+        "txtoperationsModifiedby": this.OperationsLastmodifiedBy
+      },
+      "esgdetailmoderatorstatusmodel": {
+        "txtorganizationStatus": this.OrgmodaratorselectedStatus,
+        "txtactivitiesStatus": this.ActivitiesmodaratorselectedStatus,
+        "txtheadquartersStatus": this.HeadquartersmodaratorselectedStatus,
+        "txtoperationsStatus": this.OperationsmodaratorselectedStatus
+      },
+      "esgdetailuserstatusmodel": {
+        "txtorganizationStatus": this.OrgUserStatus["id"],
+        "txtactivitiesStatus": this.ActivitiesUserStatus,
+        "txtheadquartersStatus": this.HeadquartersUserStatus,
+        "txtoperationsStatus": this.OperationsUserStatus
+      },
 
+      "esgdetaillastmodifiedmodel": {
+        "txtorganizationmodifieddate": this.OrgLastModifedDate,
+        "txtactivitiesmodifieddate": this.ActivitiesLastModifedDate,
+        "txtheadquartersmodifieddate": this.HeadquartersLastModifedDate,
+        "txtoperationsmodifieddate": this.OperationsLastModifedDate
+
+      },
+      "bank_id": 1
+    };
+    console.log(this.OrgUserStatus["id"]);
     console.log(data);
     this.esgdetailsService.save(data)
       .subscribe(

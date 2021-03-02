@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.esgreport.entity.EsgDetail;
 import com.esgreport.model.EsgDetailModel;
 import com.esgreport.model.EsgDetailsData;
+import com.esgreport.model.EsgDetailsDelegateUserModel;
 import com.esgreport.service.EsgDetailService;
 
 @RestController
@@ -37,7 +38,6 @@ public class EsgDetailsController {
 		return esgDetailService.findAll();
 	}
 
-	
 	@PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String esgDetailsSave(@RequestBody EsgDetailsData esgdetailsdata) throws ParseException {
 
@@ -50,16 +50,26 @@ public class EsgDetailsController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		//EsgDetailModel esgdetailmodel= esgdetailsdata.getEsgdetailmodel();
-		
-		
-		
-		System.out.println("Bank Id: "+esgdetailsdata.getBank_id());
 
+		// EsgDetailModel esgdetailmodel= esgdetailsdata.getEsgdetailmodel();
 
+		System.out.println("Bank Id: " + esgdetailsdata.getBank_id());
 
 		return "EsgDetails Inserted";
+	}
+
+	@PostMapping(value = "/delegate", produces = MediaType.APPLICATION_JSON_VALUE)
+	public String esgDetailsDelegate(@RequestBody EsgDetailsDelegateUserModel esgDetailsDelegateUserModel)
+			throws ParseException {
+
+		try {
+			esgDetailService.delegate(esgDetailsDelegateUserModel);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "Delegate successfull";
 	}
 
 	@PostMapping("/update")

@@ -2,7 +2,6 @@ package com.esgreport.model;
 
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class EsgDetailModel {
 
