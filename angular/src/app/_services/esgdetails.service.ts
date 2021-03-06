@@ -18,8 +18,8 @@ const baseUrl = 'http://localhost:8080/api/esgdetails';
         return this.http.get(baseUrl+"/getesgdetails");
       }
       onDelgate(data) {
-        return this.http.post(baseUrl+"/delegate",data);
+        return this.http.post(baseUrl+"/updatedelegateto",data);
       }
       
-     
+    
   }

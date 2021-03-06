@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
@@ -9,6 +10,33 @@ const USER_KEY = 'auth-user';
 export class TokenStorageService {
 
   constructor() { }
+
+  public loggedinUser: string={} as string;
+
+  private loggedinUserRecord: BehaviorSubject<string> = new BehaviorSubject<string>(this.loggedinUser);
+
+  public getLoggedinUserRecord():Observable<string>{
+    return this.loggedinUserRecord.asObservable();
+  }
+
+  public setLoggedinUserRecord(loggedinUser: string): void {
+    this.loggedinUserRecord.next(loggedinUser);
+  }
+
+
+
+  public loggedinUserId: number={} as number;
+
+  private loggedinUserRecordId: BehaviorSubject<number> = new BehaviorSubject<number>(this.loggedinUserId);
+
+  public getLoggedinUserRecordId():Observable<number>{
+    return this.loggedinUserRecordId.asObservable();
+  }
+
+  public setLoggedinUserRecordId(loggedinUserId: number): void {
+    this.loggedinUserRecordId.next(loggedinUserId);
+  }
+
 
   signOut() {
     window.sessionStorage.clear();
@@ -31,4 +59,6 @@ export class TokenStorageService {
   public getUser() {
     return JSON.parse(sessionStorage.getItem(USER_KEY));
   }
+
+
 }

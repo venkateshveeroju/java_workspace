@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-user-info',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserInfoComponent implements OnInit {
 
-  constructor() { }
+  loggedinUser : string;
+  constructor(private tokenStorage: TokenStorageService) {  }
 
   ngOnInit(): void {
-  }
+    this.tokenStorage.getLoggedinUserRecord().subscribe(params=>{console.log("Param:"+params)
+     this.loggedinUser=params});
 
+  }
+  
 }

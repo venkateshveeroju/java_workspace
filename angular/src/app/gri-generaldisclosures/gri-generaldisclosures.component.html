@@ -47,18 +47,24 @@
                         organization <i class="far fa-question-circle"></i></h3>
                     <div class="col-md-7">
                         <div class="form-group">
-                            <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankname">
+                            <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankname" disabled={{orgreadonly}} >
                             </textarea>
                             Last Modified By : <label>{{OrgLastmodifiedBy}}</label>
                             Last Modifed On : <label>{{OrgLastModifedDate}}</label><br />
                             User status : <label>{{OrgUserStatus}}</label><br />
                             Moderator Status : <select name="Orgmodaratorstatus"
-                                [(ngModel)]="OrgmodaratorselectedStatus">
-                                <option *ngFor="let option of Orgmodaratorstatus" [value]="option">{{option}}</option>
+                                [(ngModel)]="OrgmodaratorselectedStatus"
+                                (change)="onChangeOrgmodaratorstatus($event.target.value)">
+
+                                <option *ngFor="let option of Orgmodaratorstatus" [value]="option.value">
+                                    {{option.label}}</option>
                             </select>
 
-                            Delegated to : <select name="Orgdelegatedto" [(ngModel)]="Orgdelegatedtouser">
-                                <option *ngFor="let option of Orgdelegatedto" [value]="option">{{option}}</option>
+                            Delegated to : <select name="Orgdelegatedto" [(ngModel)]="Orgdelegatedtouser" 
+                                (change)="onChangeOrgDelegateUser($event.target.value)">
+
+                                <option *ngFor="let option of Orgdelegatedto" [value]="option.value">{{option.label}}
+                                </option>
                             </select>
 
                         </div>
@@ -77,20 +83,26 @@
                         products, and services <i class="far fa-question-circle"></i></h3>
                     <div class="col-md-7">
                         <div class="form-group">
-                            <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankinfo1">
+                            <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankinfo1"
+                                disabled={{activitiesreadonly}}>
                             </textarea>
                             Last Modified By : <label>{{ActivitiesLastmodifiedBy}}</label>
                             Last Modifed On : <label>{{ActivitiesLastModifedDate}}</label><br />
                             User status : <label>{{ActivitiesUserStatus}}</label><br />
-                            Moderator Status : <select name="Headquartersmodaratorstatus"
-                                [(ngModel)]="ActivitiesmodaratorselectedStatus">
-                                <option *ngFor="let option of Headquartersmodaratorstatus" [value]="option">{{option}}
+                            Moderator Status : <select name="Activitiesmodaratorstatus"
+                                [(ngModel)]="ActivitiesmodaratorselectedStatus"
+                                (change)="onChangeActivitiesmodaratorstatus($event.target.value)">
+
+                                <option *ngFor="let option of Activitiesmodaratorstatus" [value]="option.value">
+                                    {{option.label}}
                                 </option>
                             </select>
+                            Delegated to : <select name="Activitiesdelegatedto" [(ngModel)]="Activitiesdelegatedtouser"
+                                (change)="onChangeActivitieseUser($event.target.value)">
 
-                            Delegated to : <select name="Activitiesdelegatedto" [(ngModel)]="Activitiesdelegatedtouser">
-                                <option *ngFor="let option of Activitiesdelegatedto" [value]="option">{{option}}
-                                </option>
+                                <option *ngFor="let option of Activitiesdelegatedto" [value]="option.value">
+                                    {{option.label}}</option>
+
                             </select>
 
                         </div>
@@ -118,7 +130,7 @@
                         headquarters <i class="far fa-question-circle"></i></h3>
                     <div class="col-md-7">
                         <div class="form-group">
-                            <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankinfo2">
+                            <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankinfo2"   disabled={{headquartersreadonly}}>
                             </textarea>
 
                             Last Modified By : <label>{{HeadquartersLastmodifiedBy}}</label>
@@ -126,14 +138,19 @@
                             User status : <label>{{HeadquartersUserStatus}}</label><br />
 
                             Moderator Status : <select name="Headquartersmodaratorstatus"
-                                [(ngModel)]="HeadquartersmodaratorselectedStatus">
-                                <option *ngFor="let option of Headquartersmodaratorstatus" [value]="option">{{option}}
+                                [(ngModel)]="HeadquartersmodaratorselectedStatus"
+                                (change)="onChangeHeadquartersmodaratorstatus($event.target.value)">
+                                <!-- <option [value]="select" disabled></option> -->
+                                <option *ngFor="let option of Headquartersmodaratorstatus" [value]="option.value">
+                                    {{option.label}}
                                 </option>
                             </select>
-
                             Delegated to : <select name="Headquartersdelegatedto"
-                                [(ngModel)]="Headquartersdelegatedtouser">
-                                <option *ngFor="let option of Headquartersdelegatedto" [value]="option">{{option}}
+                                [(ngModel)]="Headquartersdelegatedtouser"
+                                (change)="onChangeHeadquartersUser($event.target.value)">
+                                <!-- <option [value]="select" disabled></option> -->
+                                <option *ngFor="let option of Headquartersdelegatedto" [value]="option.value">
+                                    {{option.label}}
                                 </option>
                             </select>
                         </div>
@@ -143,7 +160,6 @@
                             <button type="button" [disabled]="clickedbanklocation" class="btn btn-primary"
                                 (click)="updatebanklocation();clickedbanklocation = true;">{{esgdetailsbanklocation}}</button>
                         </div>
-
                     </div>
                 </div>
 
@@ -152,18 +168,24 @@
                         operations <i class="far fa-question-circle"></i></h3>
                     <div class="col-md-7">
                         <div class="form-group">
-                            <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankinfo3">
+                            <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankinfo3"   disabled={{operationsreadonly}}>
                             </textarea>
                             Last Modified By : <label>{{OperationsLastmodifiedBy}}</label>
                             Last Modifed On : <label>{{OperationsLastModifedDate}}</label><br />
                             User status : <label>{{OperationsUserStatus}}</label><br />
                             Moderator Status : <select name="Operationsmodaratorstatus"
-                                [(ngModel)]="OperationsmodaratorselectedStatus">
-                                <option *ngFor="let option of Operationsmodaratorstatus" [value]="option">{{option}}
+                                [(ngModel)]="OperationsmodaratorselectedStatus"
+                                (change)="onChangeOperationsmodaratorstatus($event.target.value)">
+                                <!-- <option [value]="select" disabled></option> -->
+                                <option *ngFor="let option of Operationsmodaratorstatus" [value]="option.value">
+                                    {{option.label}}
                                 </option>
                             </select>
-                            Delegated to : <select name="Operationsdelegatedto" [(ngModel)]="Operationsdelegatedtouser">
-                                <option *ngFor="let option of Operationsdelegatedto" [value]="option">{{option}}
+                            Delegated to : <select name="Operationsdelegatedto" [(ngModel)]="Operationsdelegatedtouser"
+                                (change)="onChangeOperationsUser($event.target.value)">
+                                <!-- <option [value]="select" disabled></option> -->
+                                <option *ngFor="let option of Operationsdelegatedto" [value]="option.value">
+                                    {{option.label}}
                                 </option>
                             </select>
                         </div>
