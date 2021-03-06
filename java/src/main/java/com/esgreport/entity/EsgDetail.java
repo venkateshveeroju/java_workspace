@@ -65,7 +65,7 @@ public class EsgDetail {
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_status_id")
-	private EsgdetailsUserStatus userStatusId;
+	private EsgDetailsUserStatus userStatusId;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
 	private Date lastModifiedDate;
@@ -90,11 +90,11 @@ public class EsgDetail {
 		this.moderatorStatusId = moderatorStatusId;
 	}
 
-	public EsgdetailsUserStatus getUserStatusId() {
+	public EsgDetailsUserStatus getUserStatusId() {
 		return userStatusId;
 	}
 
-	public void setUserStatusId(EsgdetailsUserStatus userStatusId) {
+	public void setUserStatusId(EsgDetailsUserStatus userStatusId) {
 		this.userStatusId = userStatusId;
 	}
 

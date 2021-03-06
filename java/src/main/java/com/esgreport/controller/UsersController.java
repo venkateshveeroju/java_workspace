@@ -25,10 +25,11 @@ public class UsersController {
 		return userRepository.findAll();
 	}
 
-	@GetMapping("/getuserslist")
+	@GetMapping("/getAllUsers")
 	public List<User> getUSersList() {
-
+System.out.println("nnnnnnnnnnn");
 		return userRepository.findAll();
 	}
-	     
+	
+
 }

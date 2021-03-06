@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.esgreport.entity.EsgDetail;
-import com.esgreport.model.EsgDetailModel;
 import com.esgreport.model.EsgDetailsData;
 import com.esgreport.model.EsgDetailsDelegateUserModel;
 import com.esgreport.service.EsgDetailService;
@@ -51,10 +50,6 @@ public class EsgDetailsController {
 			e.printStackTrace();
 		}
 
-		// EsgDetailModel esgdetailmodel= esgdetailsdata.getEsgdetailmodel();
-
-		System.out.println("Bank Id: " + esgdetailsdata.getBank_id());
-
 		return "EsgDetails Inserted";
 	}
 
@@ -76,4 +71,17 @@ public class EsgDetailsController {
 	public String esgDetailsUpdate() {
 		return "EsgDetailsUpdate";
 	}
+
+	@PostMapping("/updatedelegateto")
+	public boolean esgDetailsUpdateDelegateTo(@RequestBody EsgDetailsDelegateUserModel esgDetailsDelegateUserModel) throws ParseException {
+		try {
+			esgDetailService.delegate( esgDetailsDelegateUserModel);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return true;
+	}
+
 }

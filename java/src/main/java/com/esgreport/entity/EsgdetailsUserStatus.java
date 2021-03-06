@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "esgdetail_user_status")
-public class EsgdetailsUserStatus {
+public class EsgDetailsUserStatus {
 
 	public long getId() {
 		return id;

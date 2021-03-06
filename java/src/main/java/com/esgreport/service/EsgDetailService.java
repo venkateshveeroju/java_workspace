@@ -6,17 +6,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.esgreport.entity.Bank;
 import com.esgreport.entity.EsgDetail;
 import com.esgreport.entity.EsgDetailsModeratorStatus;
-import com.esgreport.entity.EsgdetailsUserStatus;
+import com.esgreport.entity.EsgDetailsUserStatus;
 import com.esgreport.entity.User;
-import com.esgreport.model.EsgDetailModel;
 import com.esgreport.model.EsgDetailsData;
 import com.esgreport.model.EsgDetailsDelegateUserModel;
 import com.esgreport.payload.response.MessageResponse;
@@ -32,8 +31,9 @@ public class EsgDetailService {
 	private EsgDetail esgdetail;
 	private User user;
 	private Bank bank;
-	private EsgdetailsUserStatus esgdetailsuserstatus;
+	private EsgDetailsUserStatus esgdetailsuserstatus;
 	private EsgDetailsModeratorStatus esgdetailsmoderatorstatus;
+	private EsgDetailsDelegateUserModel esgDetailsDelegateUserModel;
 
 	@Autowired
 	private EsgDetailRepository esgDetailRepository;
@@ -104,7 +104,7 @@ public class EsgDetailService {
 			long us = Long.parseLong(fields3[i].get(esgdetailsdata.getEsgdetailuserstatusmodel()).toString());
 			long ms = Long.parseLong(fields4[i].get(esgdetailsdata.getEsgdetailmoderatorstatusmodel()).toString());
 
-			EsgdetailsUserStatus esgdetailsuserstatus = esgdetailsuserstatusrepository.getOne(us);
+			EsgDetailsUserStatus esgdetailsuserstatus = esgdetailsuserstatusrepository.getOne(us);
 			EsgDetailsModeratorStatus esgdetailsmoderatorstatus = esgdetailsmoderatorstatusrepository.getOne(ms);
 
 			esgdetail.setEsgDetailTextValue(fields1[i].get(esgdetailsdata.getEsgdetailmodel()).toString());
@@ -131,11 +131,48 @@ public class EsgDetailService {
 		return new MessageResponse("Saved successfully");
 	}
 
+	@Transactional
 	public boolean delegate(EsgDetailsDelegateUserModel esgDetailsDelegateUserModel) {
-		System.out.println(esgDetailsDelegateUserModel.toString());
 
-		return false;
+		System.out.println(esgDetailsDelegateUserModel.getTxtactivitiesdelegateuser());
+		List<EsgDetail> esgDetailList = esgDetailRepository.findAll();
 
+		int response = esgDetailRepository.updateDelegate(esgDetailsDelegateUserModel.getTxtorganizationdelegateuser(),
+				"txtorganization");
+
+		int txtactivities = esgDetailRepository
+				.updateDelegate(esgDetailsDelegateUserModel.getTxtactivitiesdelegateuser(), "txtactivities");
+		int txtheadquarters = esgDetailRepository
+				.updateDelegate(esgDetailsDelegateUserModel.getTxtheadquartersdelegateuser(), "txtheadquarters");
+		int responsetxtoperations = esgDetailRepository
+				.updateDelegate(esgDetailsDelegateUserModel.getTxtoperationsdelegateuser(), "txtoperations");
+		/*
+		 * for (EsgDetail esgDetailTemp : esgDetailList) { try {
+		 * if(esgDetailTemp.getEsgDetailText().equals("txtorganization")) { long id =
+		 * esgDetailsDelegateUserModel.getTxtorganizationdelegateuser();
+		 * esgDetailTemp.setDelegateTo(userrepository.getOne(id));
+		 * esgDetailRepository.saveAndFlush(esgDetailTemp); }
+		 * if(esgDetailTemp.getEsgDetailText().equals("txtactivities")) { long id =
+		 * esgDetailsDelegateUserModel.getTxtactivitiesdelegateuser();
+		 * esgDetailTemp.setDelegateTo(userrepository.getOne(id));
+		 * esgDetailRepository.saveAndFlush(esgDetailTemp); } if
+		 * (esgDetailTemp.getEsgDetailText().equals("txtheadquarters")) { long id =
+		 * esgDetailsDelegateUserModel.getTxtheadquartersdelegateuser();
+		 * esgDetailTemp.setDelegateTo(userrepository.getOne(id));
+		 * esgDetailRepository.saveAndFlush(esgDetailTemp); } if
+		 * (esgDetailTemp.getEsgDetailText().equals("txtoperations")) { long id =
+		 * esgDetailsDelegateUserModel.getTxtoperationsdelegateuser();
+		 * esgDetailTemp.setDelegateTo(userrepository.getOne(id));
+		 * esgDetailRepository.saveAndFlush(esgDetailTemp); } return true; }
+		 * 
+		 * catch (Exception e) { return false; } }
+		 */
+
+		if (response > 0 && txtactivities > 0 && txtheadquarters > 0 && responsetxtoperations > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

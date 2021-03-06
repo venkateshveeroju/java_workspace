@@ -6,17 +6,17 @@ import org.springframework.stereotype.Component;
 public class EsgDetailUserStatusModel {
 
 
-	private int txtorganizationStatus;
-	private int txtactivitiesStatus;
-	private int txtheadquartersStatus;
-	private int txtoperationsStatus;
+	private String txtorganizationStatus;
+	private String txtactivitiesStatus;
+	private String txtheadquartersStatus;
+	private String txtoperationsStatus;
 	
 	public EsgDetailUserStatusModel() {
 		super();
 	}
 
-	public EsgDetailUserStatusModel(int txtorganizationStatus, int txtactivitiesStatus, int txtheadquartersStatus,
-			int txtoperationsStatus) {
+	public EsgDetailUserStatusModel(String txtorganizationStatus, String txtactivitiesStatus, String txtheadquartersStatus,
+			String txtoperationsStatus) {
 		super();
 		this.txtorganizationStatus = txtorganizationStatus;
 		this.txtactivitiesStatus = txtactivitiesStatus;
@@ -24,37 +24,39 @@ public class EsgDetailUserStatusModel {
 		this.txtoperationsStatus = txtoperationsStatus;
 	}
 
-	public int getTxtorganizationStatus() {
+	public String getTxtorganizationStatus() {
 		return txtorganizationStatus;
 	}
 
-	public void setTxtorganizationStatus(int txtorganizationStatus) {
+	public void setTxtorganizationStatus(String txtorganizationStatus) {
 		this.txtorganizationStatus = txtorganizationStatus;
 	}
 
-	public int getTxtactivitiesStatus() {
+	public String getTxtactivitiesStatus() {
 		return txtactivitiesStatus;
 	}
 
-	public void setTxtactivitiesStatus(int txtactivitiesStatus) {
+	public void setTxtactivitiesStatus(String txtactivitiesStatus) {
 		this.txtactivitiesStatus = txtactivitiesStatus;
 	}
 
-	public int getTxtheadquartersStatus() {
+	public String getTxtheadquartersStatus() {
 		return txtheadquartersStatus;
 	}
 
-	public void setTxtheadquartersStatus(int txtheadquartersStatus) {
+	public void setTxtheadquartersStatus(String txtheadquartersStatus) {
 		this.txtheadquartersStatus = txtheadquartersStatus;
 	}
 
-	public int getTxtoperationsStatus() {
+	public String getTxtoperationsStatus() {
 		return txtoperationsStatus;
 	}
 
-	public void setTxtoperationsStatus(int txtoperationsStatus) {
+	public void setTxtoperationsStatus(String txtoperationsStatus) {
 		this.txtoperationsStatus = txtoperationsStatus;
 	}
+
+	
 	
 	
 	

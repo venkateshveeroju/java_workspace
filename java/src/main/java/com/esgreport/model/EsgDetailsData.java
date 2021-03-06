@@ -7,7 +7,7 @@ public class EsgDetailsData {
 	EsgDetailModeratorStatusModel esgdetailmoderatorstatusmodel;
 	EsgDetailUserStatusModel esgdetailuserstatusmodel;
 	EsgDetailLastModifiedModel esgdetaillastmodifiedmodel;
-
+	EsgDetailsDelegateUserModel esgDetailsDelegateUserModel;
 	int bank_id;
 
 	public EsgDetailsData() {

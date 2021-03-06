@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.esgreport.entity.RoleName;
 import com.esgreport.entity.Role;
+import com.esgreport.entity.RoleName;
 import com.esgreport.entity.User;
 import com.esgreport.payload.request.LoginRequest;
 import com.esgreport.payload.request.SignupRequest;
@@ -29,8 +29,8 @@ import com.esgreport.payload.response.JwtResponse;
 import com.esgreport.payload.response.MessageResponse;
 import com.esgreport.repository.RoleRepository;
 import com.esgreport.repository.UserRepository;
-import com.esgreport.springjwt.security.jwt.JwtUtils;
 import com.esgreport.service.UserDetailsImpl;
+import com.esgreport.springjwt.security.jwt.JwtUtils;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -53,7 +53,7 @@ public class AuthController {
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
+		System.out.println("signin mehode here");
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
