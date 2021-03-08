@@ -23,6 +23,18 @@ export class TokenStorageService {
     this.loggedinUserRecord.next(loggedinUser);
   }
 
+  public loggedinUserRole: string={} as string;
+
+  private loggedinUserRoleRecord: BehaviorSubject<string> = new BehaviorSubject<string>(this.loggedinUserRole);
+
+  public getLoggedinUserRoleRecord():Observable<string>{
+    return this.loggedinUserRoleRecord.asObservable();
+  }
+
+  public setLoggedinUserRoleRecord(loggedinUserRole: string): void {
+    this.loggedinUserRoleRecord.next(loggedinUserRole);
+  }
+
 
 
   public loggedinUserId: number={} as number;

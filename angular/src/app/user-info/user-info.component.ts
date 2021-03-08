@@ -1,7 +1,8 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TokenStorageService } from '../_services/token-storage.service';
-
+import { AuthService } from '../_services/auth.service';
+import { LoginComponent } from '../login/login.component';
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
@@ -9,13 +10,23 @@ import { TokenStorageService } from '../_services/token-storage.service';
 })
 export class UserInfoComponent implements OnInit {
 
-  loggedinUser : string;
-  constructor(private tokenStorage: TokenStorageService) {  }
+  loggedinUser: string;
+  onloginsuccess: boolean;
+
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
-    this.tokenStorage.getLoggedinUserRecord().subscribe(params=>{console.log("Param:"+params)
-     this.loggedinUser=params});
-
+    this.tokenStorage.getLoggedinUserRecord().subscribe(params => {
+      //console.log("Param:" + params)
+      this.loggedinUser = params
+      if (this.tokenStorage.getToken()) {
+        this.onloginsuccess = true;
+      }
+    });
   }
-  
+  onSignout() {
+    this.authService.logout();
+    this.onloginsuccess = false;
+  }
+
 }

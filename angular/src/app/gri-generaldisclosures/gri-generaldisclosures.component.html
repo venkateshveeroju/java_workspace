@@ -1,5 +1,5 @@
 <div class="tab-content" id="myTabContent" style="padding-left:15px;">
-    <div class="tab-pane fade show active" id="generalDisclosures" role="tabpanel" aria-labelledby="home-tab">
+    <div   class="tab-pane fade show active" id="generalDisclosures" role="tabpanel" aria-labelledby="home-tab">
         <h3 class="mt-3 mb-3">GRI 102: General Disclosures
             <i class="far fa-question-circle"></i>
         </h3>
@@ -33,7 +33,7 @@
         </ul>
 
 
-        <div class="tab-content" id="myTabContent">
+        <div  class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="organisationalProfile" role="tabpanel"
                 aria-labelledby="home-tab">
                 <p>With this information the reader gets an overview of the size, the geographical location
@@ -50,18 +50,18 @@
                             <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankname" disabled={{orgreadonly}} >
                             </textarea>
                             Last Modified By : <label>{{OrgLastmodifiedBy}}</label>
-                            Last Modifed On : <label>{{OrgLastModifedDate}}</label><br />
+                            Last Modifed On : <label>{{OrgLastModifedDate.slice(0,10)}}</label><br />
                             User status : <label>{{OrgUserStatus}}</label><br />
                             Moderator Status : <select name="Orgmodaratorstatus"
                                 [(ngModel)]="OrgmodaratorselectedStatus"
-                                (change)="onChangeOrgmodaratorstatus($event.target.value)">
+                                (change)="onChangeOrgmodaratorstatus($event.target.value)" disabled={{Moderatorreadonly}}>
 
                                 <option *ngFor="let option of Orgmodaratorstatus" [value]="option.value">
                                     {{option.label}}</option>
                             </select>
 
                             Delegated to : <select name="Orgdelegatedto" [(ngModel)]="Orgdelegatedtouser" 
-                                (change)="onChangeOrgDelegateUser($event.target.value)">
+                                (change)="onChangeOrgDelegateUser($event.target.value)" disabled={{Moderatorreadonly}}>
 
                                 <option *ngFor="let option of Orgdelegatedto" [value]="option.value">{{option.label}}
                                 </option>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="col-md-5">
                         <div class="form-group">
-                            <input type="text" class="form-control" [(ngModel)]="esgdetailsbankname" />
+                            <input type="text" class="form-control" [(ngModel)]="esgdetailsbankname" disabled={{orgreadonly}} />
                         </div>
 
                     </div>
@@ -87,18 +87,18 @@
                                 disabled={{activitiesreadonly}}>
                             </textarea>
                             Last Modified By : <label>{{ActivitiesLastmodifiedBy}}</label>
-                            Last Modifed On : <label>{{ActivitiesLastModifedDate}}</label><br />
+                            Last Modifed On : <label>{{ActivitiesLastModifedDate.slice(0,10)}}</label><br />
                             User status : <label>{{ActivitiesUserStatus}}</label><br />
                             Moderator Status : <select name="Activitiesmodaratorstatus"
                                 [(ngModel)]="ActivitiesmodaratorselectedStatus"
-                                (change)="onChangeActivitiesmodaratorstatus($event.target.value)">
+                                (change)="onChangeActivitiesmodaratorstatus($event.target.value)" disabled={{Moderatorreadonly}}>
 
                                 <option *ngFor="let option of Activitiesmodaratorstatus" [value]="option.value">
                                     {{option.label}}
                                 </option>
                             </select>
                             Delegated to : <select name="Activitiesdelegatedto" [(ngModel)]="Activitiesdelegatedtouser"
-                                (change)="onChangeActivitieseUser($event.target.value)">
+                                (change)="onChangeActivitieseUser($event.target.value)" disabled={{Moderatorreadonly}}>
 
                                 <option *ngFor="let option of Activitiesdelegatedto" [value]="option.value">
                                     {{option.label}}</option>
@@ -110,9 +110,9 @@
                     </div>
                     <div class="col-md-5">
                         <div class="form-group">
-                            <button type="button" [disabled]="clickedesgdetailsbankinfo" class="btn btn-primary"
-                                (click)="updatebankinfo();clickedesgdetailsbankinfo = true;">
-                                {{esgdetailsbankinfo}}</button>
+                            <button type="button" [disabled]="clickedesgdetailsbankinfo"  class="btn btn-primary"
+                                (click)="updatebankinfo();clickedesgdetailsbankinfo = true;" >
+                                {{esgdetailsbankinfo}} </button>
 
                             <button type="button" [disabled]="clickedesgdetailsbankactivity" class="btn btn-primary"
                                 (click)="updatebankactivity();clickedesgdetailsbankactivity = true;">
@@ -134,12 +134,12 @@
                             </textarea>
 
                             Last Modified By : <label>{{HeadquartersLastmodifiedBy}}</label>
-                            Last Modifed On : <label>{{HeadquartersLastModifedDate}}</label><br />
+                            Last Modifed On : <label>{{HeadquartersLastModifedDate.slice(0,10)}}</label><br />
                             User status : <label>{{HeadquartersUserStatus}}</label><br />
 
                             Moderator Status : <select name="Headquartersmodaratorstatus"
                                 [(ngModel)]="HeadquartersmodaratorselectedStatus"
-                                (change)="onChangeHeadquartersmodaratorstatus($event.target.value)">
+                                (change)="onChangeHeadquartersmodaratorstatus($event.target.value)" disabled={{Moderatorreadonly}}>
                                 <!-- <option [value]="select" disabled></option> -->
                                 <option *ngFor="let option of Headquartersmodaratorstatus" [value]="option.value">
                                     {{option.label}}
@@ -147,7 +147,7 @@
                             </select>
                             Delegated to : <select name="Headquartersdelegatedto"
                                 [(ngModel)]="Headquartersdelegatedtouser"
-                                (change)="onChangeHeadquartersUser($event.target.value)">
+                                (change)="onChangeHeadquartersUser($event.target.value)" disabled={{Moderatorreadonly}}>
                                 <!-- <option [value]="select" disabled></option> -->
                                 <option *ngFor="let option of Headquartersdelegatedto" [value]="option.value">
                                     {{option.label}}
@@ -171,18 +171,18 @@
                             <textarea class="form-control" rows="5" [(ngModel)]="esgdetailsbankinfo3"   disabled={{operationsreadonly}}>
                             </textarea>
                             Last Modified By : <label>{{OperationsLastmodifiedBy}}</label>
-                            Last Modifed On : <label>{{OperationsLastModifedDate}}</label><br />
+                            Last Modifed On : <label>{{OperationsLastModifedDate.slice(0,10)}}</label><br />
                             User status : <label>{{OperationsUserStatus}}</label><br />
                             Moderator Status : <select name="Operationsmodaratorstatus"
                                 [(ngModel)]="OperationsmodaratorselectedStatus"
-                                (change)="onChangeOperationsmodaratorstatus($event.target.value)">
+                                (change)="onChangeOperationsmodaratorstatus($event.target.value)" disabled={{Moderatorreadonly}}>
                                 <!-- <option [value]="select" disabled></option> -->
                                 <option *ngFor="let option of Operationsmodaratorstatus" [value]="option.value">
                                     {{option.label}}
                                 </option>
                             </select>
                             Delegated to : <select name="Operationsdelegatedto" [(ngModel)]="Operationsdelegatedtouser"
-                                (change)="onChangeOperationsUser($event.target.value)">
+                                (change)="onChangeOperationsUser($event.target.value)" disabled={{Moderatorreadonly}}>
                                 <!-- <option [value]="select" disabled></option> -->
                                 <option *ngFor="let option of Operationsdelegatedto" [value]="option.value">
                                     {{option.label}}
@@ -208,7 +208,7 @@
                             LATER</button>
                         <button type="button" class="btn btn-primary" (click)="onSaveSubmit($event)">SAVE & SUBMIT
                             NOW</button>
-                        <button type="button" class="btn btn-primary" (click)="onDelgate($event)">DELEGATE</button>
+                        <button type="button" class="btn btn-primary" (click)="onDelgate($event)"   [disabled]="Moderatorreadonly">DELEGATE</button>
                         <button type="button" class="btn btn-primary" (click)="onExport($event)">EXPORT</button>
                         <button type="button" class="btn btn-primary" (click)="onPrint($event)">PRINT</button>
                     </div>

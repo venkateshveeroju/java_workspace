@@ -7,6 +7,7 @@ import { GriEconomicComponent } from './gri-economic/gri-economic.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { GriEnvironmentalComponent } from './gri-environmental/gri-environmental.component';
 import { GriSocialComponent } from './gri-social/gri-social.component';
+//import { EsgHeaderComponent } from './esg-header/esg-header.component';
 // uncommented below 1 line
 import { LoginComponent } from './login/login.component';
 const routes: Routes = [

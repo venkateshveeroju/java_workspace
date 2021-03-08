@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
+import { UserInfoComponent } from '../user-info/user-info.component';
 import { Router } from '@angular/router';
-//import { GriGeneraldisclosuresComponent } from './gri-generaldisclosures/gri-generaldisclosures.component';
+import { EsgHeaderComponent } from '../esg-header/esg-header.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -30,12 +31,9 @@ export class LoginComponent implements OnInit {
       data => {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
-        console.log(data.roles + "  data.id");
-       
-        
-        
         this.isLoginFailed = false;
         this.isLoggedIn = true;
+     
         this.roles = this.tokenStorage.getUser().roles;
 
         sessionStorage.setItem("loggedinUser",data.username);
@@ -43,12 +41,16 @@ export class LoginComponent implements OnInit {
         this.tokenStorage.setLoggedinUserRecord(sessionStorage.getItem("loggedinUser"));
        
       //
-      sessionStorage.setItem("loggedinUserID",data.id);
+      sessionStorage.setItem("loggedinUserId",data.id);
       console.log(data.id + "  data.id");
       console.log("User Details loggedinUserID :"+sessionStorage.getItem("loggedinUserId"));
       this.tokenStorage.setLoggedinUserRecordId(Number(sessionStorage.getItem("loggedinUserId") ));
 
-      //
+      sessionStorage.setItem("loggedinUserRole",data.roles);
+      console.log("Role:"+sessionStorage.getItem("loggedinUserRole"));
+      this.tokenStorage.setLoggedinUserRoleRecord(sessionStorage.getItem("loggedinUserRole"));
+
+     // this.esgHeaderComponent.setisloggedinhideValue(true );
         this.router.navigate(['/gri102']);
         //this.reloadPage();
       },

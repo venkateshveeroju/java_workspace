@@ -34,6 +34,7 @@ export class AppComponent {
 
   logout() {
     this.tokenStorageService.signOut();
+    window.sessionStorage.clear();
     window.location.reload();
   }
 

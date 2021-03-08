@@ -1,7 +1,9 @@
 package com.esgreport.controller;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -44,6 +46,8 @@ public class AuthController {
 
 	@Autowired
 	RoleRepository roleRepository;
+	
+	
 
 	@Autowired
 	PasswordEncoder encoder;
@@ -63,9 +67,18 @@ public class AuthController {
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
 				.collect(Collectors.toList());
+		
+		Optional<User> user = userRepository.findById( userDetails.getId());
+		
+		Set<Role> roleSet =  user.get().getRoles();
+		List<String> roleList = new ArrayList<>();
+		
+		for(Role role : roleSet) {
+			roleList.add(role.getName().name());
+		}
 
 		return ResponseEntity.ok(
-				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));
+				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roleList));
 	}
 
 	@PostMapping("/signup")
@@ -112,5 +125,7 @@ public class AuthController {
 		userRepository.save(user);
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+
 	}
+
 }

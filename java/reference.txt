@@ -28,6 +28,8 @@ INSERT INTO roles(name) VALUES('ROLE_USER');
 
 INSERT INTO user_role(user_id,role_id) VALUES(1,1);
 
+
+INSERT INTO esgdetail_moderator_status(status) VALUES('SELECT');
 INSERT INTO esgdetail_moderator_status(status) VALUES('IN_PROGRESS');
 INSERT INTO esgdetail_moderator_status(status) VALUES('APPROVED');
 INSERT INTO esgdetail_moderator_status(status) VALUES('DENIED');
@@ -66,17 +68,23 @@ http://localhost:8080/api/auth/signup
   "username":"admin",
   "email":"admin@example.com",
   "password":"12345678",
-  "role":["admin"]
+  "role":["ROLE_MODERATOR","ROLE_USER"]
 
 }
 
+{
+  "username":"user2",
+  "email":"user2@example.com",
+  "password":"123123",
+  "role":["ROLE_MODERATOR","ROLE_USER"]
+}
 POST - type (json)
 http://localhost:8080/api/auth/signup
 {
   "username":"pmm",
   "email":"pm@example.com",
   "password":"12345678",
-  "role":["pm"]
+    "role":["ROLE_MODERATOR","ROLE_USER"]
 
 }
 
@@ -86,7 +94,7 @@ http://localhost:8080/api/auth/signup
   "username":"user",
   "email":"user@example.com",
   "password":"12345678",
-  "role":["user"]
+  "role":["ROLE_MODERATOR","ROLE_USER"]
 
 }
 
@@ -96,7 +104,7 @@ http://localhost:8080/api/auth/signup
   "username":"mod",
   "email":"mod@example.com",
   "password":"12345678",
-  "role":["mod","user"]
+   "role":["ROLE_MODERATOR","ROLE_USER"]
 
 }
 

@@ -66,9 +66,6 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   };
   // bank_id
   bank_id = 1;
-
-
-
   // submitted = false;
 
   // Details to and from  html  -- Starts here
@@ -76,20 +73,20 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   esgdetailsbankname = '';
 
   //text area - 102-2 
-  clickedesgdetailsbankinfo = false;
-  clickedesgdetailsbankactivity = false;
-  clickedesgdetailsbankservice = false;
+  clickedesgdetailsbankinfo = true;
+  clickedesgdetailsbankactivity = true;
+  clickedesgdetailsbankservice = true;
   esgdetailsbankinfo = '____ is a leading ____ and a major ____ in ___';
   esgdetailsbankactivity = 'Our market activities focus on business with ___';
   esgdetailsbankservice = 'We provide services like .....';
 
   //text area - 102-3
-  clickedbanklocation = false;
+  clickedbanklocation = true;
   esgdetailsbanklocation = 'The main location of ____ is: ____';
 
   //text area - 102-4
-  clickedbankoperation1 = false;
-  clickedbankoperation2 = false;
+  clickedbankoperation1 = true;
+  clickedbankoperation2 = true;
   esgdetailsbankoperation1 = '____ has its main office in ____.';
   esgdetailsbankoperation2 = 'In addition, the bank has ____ in the economic';
 
@@ -109,12 +106,8 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   Operationsmodaratorstatus: any[];
   OperationsmodaratorselectedStatus: number;
 
-  /*Orgdelegatedto: string[] = ["--Select--", "venkat", "veeroju"];
-  Orgdelegatedtouser = "User1";*/
-
   Orgdelegatedto: any[];
   Orgdelegatedtouser: number;
-  //  Orgdelegatedtousername: string;
 
   Activitiesdelegatedto: any[];
   Activitiesdelegatedtouser: number;
@@ -142,6 +135,7 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   OperationsUserStatus = "";
   // Details to and from  html  -- Ends here 
   loggedinUser: string;
+  loggedinUserRole: string;
   loggedinUserId: number;
   users: Observable<User[]>;
   orgreadonly = true;
@@ -149,27 +143,38 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   headquartersreadonly = true;
   operationsreadonly = true;
 
-  constructor(private logger: LogService, private esgdetailsService: EsgdetailsService, private tokenStorage: TokenStorageService, private UserService: UserService) { }
+  orgdelegate: number;
+  activitiesdelegate: number;
+  headquartersdelegate: number;
+  operationsdelegate: number;
 
+  //isloggedinhide :boolean;
+  Moderatorreadonly = true;
+  constructor(private logger: LogService, private esgdetailsService: EsgdetailsService, private tokenStorage: TokenStorageService, private UserService: UserService) { }
+ 
   ngOnInit(): void {
+   
+   
     this.tokenStorage.setLoggedinUserRecordId(Number(sessionStorage.getItem("loggedinUserId")));
     this.tokenStorage.getLoggedinUserRecordId().subscribe(params => {
-      console.log("user id :" + params)
       this.loggedinUserId = params
     });
 
     this.tokenStorage.setLoggedinUserRecord(sessionStorage.getItem("loggedinUser"));
     this.tokenStorage.getLoggedinUserRecord().subscribe(params => {
-      console.log("user name :" + params)
+      //console.log("user name :" + params)
       this.loggedinUser = params
     });
 
-
-
+    this.tokenStorage.setLoggedinUserRoleRecord(sessionStorage.getItem("loggedinUserRole"));
+    this.tokenStorage.getLoggedinUserRoleRecord().subscribe(params => {
+      //console.log("loggedinUserRole :" + params)
+      this.loggedinUserRole = params
+    });
 
     this.UserService.getUsersList().subscribe(
       response => {
-        console.log(response);
+       // console.log(response);
         this.Orgdelegatedto = [];
         this.Activitiesdelegatedto = [];
         this.Headquartersdelegatedto = [];
@@ -179,42 +184,29 @@ export class GriGeneraldisclosuresComponent implements OnInit {
           this.Activitiesdelegatedto.push({ label: response[i]['username'], value: response[i]['id'] });
           this.Headquartersdelegatedto.push({ label: response[i]['username'], value: response[i]['id'] });
           this.Operationsdelegatedto.push({ label: response[i]['username'], value: response[i]['id'] });
-
         }
       });
 
-    // this.Orgdelegatedto = [];
-    // this.Orgdelegatedto.push({ label: 'Venkat', value: '1' });
-    // this.Orgdelegatedto.push({ label: 'Veeroju', value: '2' });
-
-    // this.Activitiesdelegatedto = [];
-    // this.Activitiesdelegatedto.push({ label: 'Venkat', value: '1' });
-    // this.Activitiesdelegatedto.push({ label: 'Veeroju', value: '2' });
-
-    // this.Headquartersdelegatedto = [];
-    // this.Headquartersdelegatedto.push({ label: 'Venkat', value: '1' });
-    // this.Headquartersdelegatedto.push({ label: 'Veeroju', value: '2' });
-
-    // this.Operationsdelegatedto = [];
-    // this.Operationsdelegatedto.push({ label: 'Venkat', value: '1' });
-    // this.Operationsdelegatedto.push({ label: 'Veeroju', value: '2' });
-
     this.Orgmodaratorstatus = [];
+    this.Orgmodaratorstatus.push({ label: 'SELECT', value: '0' });
     this.Orgmodaratorstatus.push({ label: 'IN PROGRESS', value: '1' });
     this.Orgmodaratorstatus.push({ label: 'APPROVED', value: '2' });
     this.Orgmodaratorstatus.push({ label: 'DENIED', value: '3' });
 
     this.Activitiesmodaratorstatus = [];
+    this.Activitiesmodaratorstatus.push({ label: 'SELECT', value: '0' });
     this.Activitiesmodaratorstatus.push({ label: 'IN PROGRESS', value: '1' });
     this.Activitiesmodaratorstatus.push({ label: 'APPROVED', value: '2' });
     this.Activitiesmodaratorstatus.push({ label: 'DENIED', value: '3' });
 
     this.Headquartersmodaratorstatus = [];
+    this.Headquartersmodaratorstatus.push({ label: 'SELECT', value: '0' });
     this.Headquartersmodaratorstatus.push({ label: 'IN PROGRESS', value: '1' });
     this.Headquartersmodaratorstatus.push({ label: 'APPROVED', value: '2' });
     this.Headquartersmodaratorstatus.push({ label: 'DENIED', value: '3' });
 
     this.Operationsmodaratorstatus = [];
+    this.Operationsmodaratorstatus.push({ label: 'SELECT', value: '0' });
     this.Operationsmodaratorstatus.push({ label: 'IN PROGRESS', value: '1' });
     this.Operationsmodaratorstatus.push({ label: 'APPROVED', value: '2' });
     this.Operationsmodaratorstatus.push({ label: 'DENIED', value: '3' });
@@ -223,17 +215,48 @@ export class GriGeneraldisclosuresComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
-          if (this.loggedinUser == response[0]['delegateTo']['username']) {
+          
+          if (this.loggedinUser == response[0]['delegateTo']['username'] ) {
             this.orgreadonly = false;
           }
           if (this.loggedinUser == response[1]['delegateTo']['username']) {
+            this.clickedesgdetailsbankinfo = false;
+            this.clickedesgdetailsbankactivity = false;
+            this.clickedesgdetailsbankservice = false;
             this.activitiesreadonly = false;
           }
           if (this.loggedinUser == response[2]['delegateTo']['username']) {
+            this.clickedbanklocation = false;
             this.headquartersreadonly = false;
           }
-          if (this.loggedinUser == response[3]['delegateTo']['username']) {
+          if (this.loggedinUser == response[3]['delegateTo']['username'] ) {
+            this.clickedbankoperation1 = false;
+            this.clickedbankoperation2 = false;
             this.operationsreadonly = false;
+          }
+          console.log("this.loggedinUserRole "+this.loggedinUserRole.includes("ROLE_USER"));
+          if (this.loggedinUserRole.includes("ROLE_MODERATOR")) {
+            this.Moderatorreadonly = false;
+          }else{
+            this.Moderatorreadonly = true;
+          }
+          if (Number((response[0]['userStatusId']['id'] == 2))){
+            this.orgreadonly = true;
+          }
+          if (Number((response[1]['userStatusId']['id'] == 2))){
+            this.clickedesgdetailsbankinfo = true;
+            this.clickedesgdetailsbankactivity = true;
+            this.clickedesgdetailsbankservice = true;
+            this.activitiesreadonly = true;
+          }
+          if (Number((response[2]['userStatusId']['id'] == 2))){
+            this.clickedbanklocation = true;
+            this.headquartersreadonly = true;
+          }
+          if (Number((response[3]['userStatusId']['id'] == 2))){
+            this.clickedbankoperation1 = true;
+            this.clickedbankoperation2 = true;
+            this.operationsreadonly = true;
           }
 
 
@@ -247,22 +270,30 @@ export class GriGeneraldisclosuresComponent implements OnInit {
           this.esgdetails.txtHeadquarters = this.esgdetailsbankinfo2;
           this.esgdetails.txtOperations = this.esgdetailsbankinfo3;
 
-          //console.log(response[0]['lastModifiedBy']['username']);
           this.OrgLastmodifiedBy = response[0]['lastModifiedBy']['username'];
           this.ActivitiesLastmodifiedBy = response[1]['lastModifiedBy']['username'];
           this.HeadquartersLastmodifiedBy = response[2]['lastModifiedBy']['username'];
           this.OperationsLastmodifiedBy = response[3]['lastModifiedBy']['username'];
 
-          //this.OrgmodaratorselectedStatus = this.Orgmodaratorstatus[response[0]['moderatorStatusId']['id']];
-          // this.ActivitiesmodaratorselectedStatus = this.Activitiesmodaratorstatus[response[1]['moderatorStatusId']['id']];
-          //this.HeadquartersmodaratorselectedStatus = this.Headquartersmodaratorstatus[response[2]['moderatorStatusId']['id']];
-          //this.OperationsmodaratorselectedStatus = this.Operationsmodaratorstatus[response[3]['moderatorStatusId']['id']];
+          this.OrgmodaratorselectedStatus = this.Orgmodaratorstatus[response[0]['moderatorStatusId']['id']];
+          this.ActivitiesmodaratorselectedStatus = this.Activitiesmodaratorstatus[response[1]['moderatorStatusId']['id']];
+          this.HeadquartersmodaratorselectedStatus = this.Headquartersmodaratorstatus[response[2]['moderatorStatusId']['id']];
+          this.OperationsmodaratorselectedStatus = this.Operationsmodaratorstatus[response[3]['moderatorStatusId']['id']];
 
+          this.onChangeOrgmodaratorstatus(response[0]['moderatorStatusId']['id']);
+          this.onChangeActivitiesmodaratorstatus(response[1]['moderatorStatusId']['id']);
+          this.onChangeHeadquartersmodaratorstatus(response[2]['moderatorStatusId']['id']);
+          this.onChangeOperationsmodaratorstatus(response[3]['moderatorStatusId']['id']);
 
           this.onChangeOrgDelegateUser(response[0]['delegateTo']['id']);
           this.onChangeActivitieseUser(response[1]['delegateTo']['id']);
           this.onChangeHeadquartersUser(response[2]['delegateTo']['id']);
           this.onChangeOperationsUser(response[3]['delegateTo']['id']);
+
+          this.orgdelegate = response[0]['delegateTo']['id'];
+          this.activitiesdelegate = response[1]['delegateTo']['id'];
+          this.headquartersdelegate = response[2]['delegateTo']['id'];
+          this.operationsdelegate = response[3]['delegateTo']['id'];
 
           this.OrgLastModifedDate = response[0]['lastModifiedDate'];
           this.ActivitiesLastModifedDate = response[1]['lastModifiedDate'];
@@ -273,7 +304,6 @@ export class GriGeneraldisclosuresComponent implements OnInit {
           this.ActivitiesUserStatus = response[1]['userStatusId']['status'];
           this.HeadquartersUserStatus = response[2]['userStatusId']['status'];
           this.OperationsUserStatus = response[2]['userStatusId']['status'];
-
         },
         error => {
           console.log(error);
@@ -296,7 +326,6 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   }
 
 
-
   onChangeOrgmodaratorstatus(moderatorrStatusId: number) {
     this.OrgmodaratorselectedStatus = moderatorrStatusId;
   }
@@ -313,35 +342,27 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   // events - 102-2 - starts here
   updatebankinfo() {
     this.esgdetailsbankinfo1 += this.esgdetailsbankinfo;
-    //this.esgdetailusermodifiedmodel.txtactivitiesModifiedby = 1;
-
   }
   updatebankactivity() {
     this.esgdetailsbankinfo1 += this.esgdetailsbankactivity;
-    // this.esgdetailusermodifiedmodel.txtactivitiesModifiedby = 1;
-
   }
   updatebankservice() {
     this.esgdetailsbankinfo1 += this.esgdetailsbankservice;
-    // this.esgdetailusermodifiedmodel.txtactivitiesModifiedby = 1;
   }
   // events - 102-2 - ends here
   // events - 102-3 - starts here
   updatebanklocation() {
     this.esgdetailsbankinfo2 += this.esgdetailsbanklocation;
-    //this.esgdetailusermodifiedmodel.txtheadquartersModifiedby = 1;
   }
   // events - 102-3 - ends here
 
   // events - 102-4 - starts here
   updatebankoperation1() {
     this.esgdetailsbankinfo3 += this.esgdetailsbankoperation1;
-    //this.esgdetailusermodifiedmodel.txtoperationsModifiedby = 1;
   }
 
   updatebankoperation2() {
     this.esgdetailsbankinfo3 += this.esgdetailsbankoperation2;
-    //this.esgdetailusermodifiedmodel.txtoperationsModifiedby = 1;
   }
   // events - 102-4 - ends here
 
@@ -350,13 +371,6 @@ export class GriGeneraldisclosuresComponent implements OnInit {
     this.esgdetails.txtActivities = this.esgdetailsbankinfo1;
     this.esgdetails.txtHeadquarters = this.esgdetailsbankinfo2;
     this.esgdetails.txtOperations = this.esgdetailsbankinfo3;
-
-    //this.esgdetailusermodifiedmodel.txtorganizationModifiedby = 1; // this might need a condition
-
-    //this.esgdetailuserstatusmodel.txtorganizationStatus = 1;
-    //this.esgdetailuserstatusmodel.txtactivitiesStatus = 1;
-    //this.esgdetailuserstatusmodel.txtheadquartersStatus = 1;
-    //this.esgdetailuserstatusmodel.txtoperationsStatus = 1;
 
     const data = {
       "esgdetailmodel": {
@@ -378,14 +392,10 @@ export class GriGeneraldisclosuresComponent implements OnInit {
         "txtoperationsStatus": this.OperationsmodaratorselectedStatus
       },
       "esgdetailuserstatusmodel": {
-        "txtorganizationStatus": this.OrgUserStatus,
-        "txtactivitiesStatus": this.ActivitiesUserStatus,
-        "txtheadquartersStatus": this.HeadquartersUserStatus,
-        "txtoperationsStatus": this.OperationsUserStatus
-        // "txtorganizationStatus": 1,
-        // "txtactivitiesStatus": 1,
-        // "txtheadquartersStatus":2,
-        // "txtoperationsStatus": 2
+        "txtorganizationStatus": this.loggedinUserId == this.orgdelegate ? 1 : (this.OrgUserStatus == "SAVE_CONTINUE" ? 1 : 2),
+        "txtactivitiesStatus": this.loggedinUserId == this.activitiesdelegate ? 1 : (this.ActivitiesUserStatus == "SAVE_CONTINUE" ? 1 : 2),
+        "txtheadquartersStatus": this.loggedinUserId == this.headquartersdelegate ? 1 : (this.HeadquartersUserStatus == "SAVE_CONTINUE" ? 1 : 2),
+        "txtoperationsStatus": this.loggedinUserId == this.operationsdelegate ? 1 : (this.OperationsUserStatus == "SAVE_CONTINUE" ? 1 : 2)
       },
 
       "esgdetaillastmodifiedmodel": {
@@ -393,7 +403,6 @@ export class GriGeneraldisclosuresComponent implements OnInit {
         "txtactivitiesmodifieddate": this.ActivitiesLastModifedDate,
         "txtheadquartersmodifieddate": this.HeadquartersLastModifedDate,
         "txtoperationsmodifieddate": this.OperationsLastModifedDate
-
       },
       "esgdetaildelegateusermodel": {
         "txtorganizationdelegateuser": this.Orgdelegatedtouser,
@@ -403,7 +412,7 @@ export class GriGeneraldisclosuresComponent implements OnInit {
       },
       "bank_id": 1
     };
-    console.log(this.OrgUserStatus["id"]);
+  
     console.log(data);
     this.esgdetailsService.save(data)
       .subscribe(
@@ -425,24 +434,46 @@ export class GriGeneraldisclosuresComponent implements OnInit {
     this.esgdetails.txtActivities = this.esgdetailsbankinfo1;
     this.esgdetails.txtHeadquarters = this.esgdetailsbankinfo2;
     this.esgdetails.txtOperations = this.esgdetailsbankinfo3;
-
-    this.esgdetailusermodifiedmodel.txtorganizationModifiedby = 1; // this might need a condition
-
-    this.esgdetailuserstatusmodel.txtorganizationStatus = 2;
-    this.esgdetailuserstatusmodel.txtactivitiesStatus = 2;
-    this.esgdetailuserstatusmodel.txtheadquartersStatus = 2;
-    this.esgdetailuserstatusmodel.txtoperationsStatus = 2;
-
     const data = {
-      txtorganization: this.esgdetails.txtOrganization,
-      txtactivities: this.esgdetails.txtActivities,
-      txtheadquarters: this.esgdetails.txtHeadquarters,
-      txtoperations: this.esgdetails.txtOperations,
+      "esgdetailmodel": {
+        txtorganization: this.esgdetails.txtOrganization,
+        txtactivities: this.esgdetails.txtActivities,
+        txtheadquarters: this.esgdetails.txtHeadquarters,
+        txtoperations: this.esgdetails.txtOperations,
+      },
+      "esgdetailusermodifiedmodel": {
+        "txtorganizationModifiedby": this.Orgdelegatedtouser,
+        "txtactivitiesModifiedby": this.Orgdelegatedtouser,
+        "txtheadquartersModifiedby": this.Orgdelegatedtouser,
+        "txtoperationsModifiedby": this.Orgdelegatedtouser
+      },
+      "esgdetailmoderatorstatusmodel": {
+        "txtorganizationStatus": this.OrgmodaratorselectedStatus,
+        "txtactivitiesStatus": this.ActivitiesmodaratorselectedStatus,
+        "txtheadquartersStatus": this.HeadquartersmodaratorselectedStatus,
+        "txtoperationsStatus": this.OperationsmodaratorselectedStatus
+      },
+      "esgdetailuserstatusmodel": {
+        "txtorganizationStatus": this.loggedinUserId == this.orgdelegate ? 2 : (this.OrgUserStatus == "SAVE_SUBMIT" ? 2 : 1),
+        "txtactivitiesStatus": this.loggedinUserId == this.activitiesdelegate ? 2 : (this.ActivitiesUserStatus == "SAVE_SUBMIT" ? 2 : 1),
+        "txtheadquartersStatus": this.loggedinUserId == this.headquartersdelegate ? 2 : (this.HeadquartersUserStatus == "SAVE_SUBMIT" ? 2 : 1),
+        "txtoperationsStatus": this.loggedinUserId == this.operationsdelegate ? 2 : (this.OperationsUserStatus == "SAVE_SUBMIT" ? 2 : 1)
+      },
 
+      "esgdetaillastmodifiedmodel": {
+        "txtorganizationmodifieddate": this.OrgLastModifedDate,
+        "txtactivitiesmodifieddate": this.ActivitiesLastModifedDate,
+        "txtheadquartersmodifieddate": this.HeadquartersLastModifedDate,
+        "txtoperationsmodifieddate": this.OperationsLastModifedDate
+      },
+      "esgdetaildelegateusermodel": {
+        "txtorganizationdelegateuser": this.Orgdelegatedtouser,
+        "txtactivitiesdelegateuser": this.Activitiesdelegatedtouser,
+        "txtheadquartersdelegateuser": this.Headquartersdelegatedtouser,
+        "txtoperationsdelegateuser": this.Operationsdelegatedtouser
+      },
+      "bank_id": 1
     };
-
-    console.log(data);
-
 
     this.esgdetailsService.save(data)
       .subscribe(
@@ -453,25 +484,18 @@ export class GriGeneraldisclosuresComponent implements OnInit {
         },
         error => {
           console.log(error);
-          alert("Save sucessfully")
+          alert("Submit failed")
         });
     console.log("SaveSubmit button is clicked!", $event);
-
   }
 
   onDelgate($event) {
     console.log("Delegate button is clicked!", $event);
     const delegatedata = {
-      //"esgdetailsdelegateusermodel": {
-        txtorganizationdelegateuser: this.Orgdelegatedtouser,
-        txtactivitiesdelegateuser: this.Activitiesdelegatedtouser,
-        txtheadquartersdelegateuser: this.Headquartersdelegatedtouser,
-        txtoperationsdelegateuser: this.Operationsdelegatedtouser
-     // }
-      // this.esgdetaildelegateusermodel.txtorganizationdelegateuser=this.Orgdelegatedtouser;
-      ///this.esgdetaildelegateusermodel.txtactivitiesdelegateuser= this.Activitiesdelegatedtouser;
-      //this.esgdetaildelegateusermodel.txtheadquartersdelegateuser= this.Headquartersdelegatedtouser;
-      // this.esgdetaildelegateusermodel.txtoperationsdelegateuser= this.Operationsdelegatedtouser;
+      txtorganizationdelegateuser: this.Orgdelegatedtouser,
+      txtactivitiesdelegateuser: this.Activitiesdelegatedtouser,
+      txtheadquartersdelegateuser: this.Headquartersdelegatedtouser,
+      txtoperationsdelegateuser: this.Operationsdelegatedtouser
     };
     console.log(delegatedata);
     this.esgdetailsService.onDelgate(delegatedata)
