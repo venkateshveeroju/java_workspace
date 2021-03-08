@@ -88,11 +88,11 @@ public class EsgDetailService {
 			fields4[i].setAccessible(true);
 			fields5[i].setAccessible(true);
 
-			System.out.println(fields1[i].get(esgdetailsdata.getEsgdetailmodel()).toString());
-			System.out.println(fields2[i].get(esgdetailsdata.getEsgdetailusermodifiedmodel()).toString());
-			System.out.println(fields3[i].get(esgdetailsdata.getEsgdetailuserstatusmodel()).toString());
-			System.out.println(fields4[i].get(esgdetailsdata.getEsgdetailmoderatorstatusmodel()).toString());
-			System.out.println(fields5[i].get(esgdetailsdata.getEsgdetaillastmodifiedmodel()).toString());
+			//System.out.println(fields1[i].get(esgdetailsdata.getEsgdetailmodel()).toString());
+			//System.out.println(fields2[i].get(esgdetailsdata.getEsgdetailusermodifiedmodel()).toString());
+			//System.out.println(fields3[i].get(esgdetailsdata.getEsgdetailuserstatusmodel()).toString());
+			//System.out.println(fields4[i].get(esgdetailsdata.getEsgdetailmoderatorstatusmodel()).toString());
+			//System.out.println(fields5[i].get(esgdetailsdata.getEsgdetaillastmodifiedmodel()).toString());
 
 			esgdetail = new EsgDetail();
 
@@ -107,7 +107,7 @@ public class EsgDetailService {
 			EsgDetailsUserStatus esgdetailsuserstatus = esgdetailsuserstatusrepository.getOne(us);
 			EsgDetailsModeratorStatus esgdetailsmoderatorstatus = esgdetailsmoderatorstatusrepository.getOne(ms);
 
-			esgdetail.setEsgDetailTextValue(fields1[i].get(esgdetailsdata.getEsgdetailmodel()).toString());
+			esgdetail.setEsgDetailTextValue(fields1[i].get(esgdetailsdata.getEsgdetailmodel())!=null? fields1[i].get(esgdetailsdata.getEsgdetailmodel()).toString():"");
 			esgdetail.setBank(bank);
 			esgdetail.setLastModifiedBy(user);
 
@@ -117,12 +117,27 @@ public class EsgDetailService {
 			esgdetail.setModeratorStatusId(esgdetailsmoderatorstatus);
 
 			String s = (fields5[i].get(esgdetailsdata.getEsgdetaillastmodifiedmodel()).toString());
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+			if(s!=null && s.equals("Y")) {
+				esgdetail.setLastModifiedDate(new Date());
+				/*
+				 * if(fields1[i].getName().equals("txtorganization")) {
+				 * fields5[i].get(esgdetailsdata.getEsgdetaillastmodifiedmodel().
+				 * getTxtorganizationmodifieddate()); esgdetail.setLastModifiedDate(new Date());
+				 * } if(fields1[i].getName().equals("txtactivities")) {
+				 * 
+				 * } if(fields1[i].getName().equals("txtheadquarters")) {
+				 * 
+				 * } if(fields1[i].getName().equals("txtoperations")) {
+				 * 
+				 * }
+				 */
+			}
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 			// yyyy-MM-dd'T'HH:mm:ss.SSSXXX
-			Date date = dateFormat.parse(s);
-
-			esgdetail.setLastModifiedDate(date);
+			//Date date = dateFormat.parse(new Date());
+			
+			
 
 			esgDetailRepository.saveAndFlush(esgdetail);
 

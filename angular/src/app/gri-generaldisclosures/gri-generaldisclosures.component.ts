@@ -148,12 +148,13 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   headquartersdelegate: number;
   operationsdelegate: number;
 
-  //isloggedinhide :boolean;
+  btnModeratorreadonly :boolean;
+  
   Moderatorreadonly = true;
   constructor(private logger: LogService, private esgdetailsService: EsgdetailsService, private tokenStorage: TokenStorageService, private UserService: UserService) { }
  
   ngOnInit(): void {
-   
+    this.btnModeratorreadonly=true;
    
     this.tokenStorage.setLoggedinUserRecordId(Number(sessionStorage.getItem("loggedinUserId")));
     this.tokenStorage.getLoggedinUserRecordId().subscribe(params => {
@@ -234,26 +235,28 @@ export class GriGeneraldisclosuresComponent implements OnInit {
             this.clickedbankoperation2 = false;
             this.operationsreadonly = false;
           }
-          console.log("this.loggedinUserRole "+this.loggedinUserRole.includes("ROLE_USER"));
+          console.log("mmmmmmmmmmmmmmmmmmm "+this.loggedinUserRole.includes("ROLE_USER"));
           if (this.loggedinUserRole.includes("ROLE_MODERATOR")) {
             this.Moderatorreadonly = false;
-          }else{
-            this.Moderatorreadonly = true;
+            this.btnModeratorreadonly= false;
           }
-          if (Number((response[0]['userStatusId']['id'] == 2))){
+          else{
+            this.btnModeratorreadonly= true; 
+          }
+          if (Number((response[0]['userStatusId']['id']) == 2)){
             this.orgreadonly = true;
           }
-          if (Number((response[1]['userStatusId']['id'] == 2))){
+          if (Number((response[1]['userStatusId']['id']) == 2)){
             this.clickedesgdetailsbankinfo = true;
             this.clickedesgdetailsbankactivity = true;
             this.clickedesgdetailsbankservice = true;
             this.activitiesreadonly = true;
           }
-          if (Number((response[2]['userStatusId']['id'] == 2))){
+          if (Number((response[2]['userStatusId']['id']) == 2)){
             this.clickedbanklocation = true;
             this.headquartersreadonly = true;
           }
-          if (Number((response[3]['userStatusId']['id'] == 2))){
+          if (Number((response[3]['userStatusId']['id']) == 2)){
             this.clickedbankoperation1 = true;
             this.clickedbankoperation2 = true;
             this.operationsreadonly = true;
@@ -399,10 +402,10 @@ export class GriGeneraldisclosuresComponent implements OnInit {
       },
 
       "esgdetaillastmodifiedmodel": {
-        "txtorganizationmodifieddate": this.OrgLastModifedDate,
-        "txtactivitiesmodifieddate": this.ActivitiesLastModifedDate,
-        "txtheadquartersmodifieddate": this.HeadquartersLastModifedDate,
-        "txtoperationsmodifieddate": this.OperationsLastModifedDate
+        "txtorganizationmodifieddate": this.loggedinUserId == this.orgdelegate ? 'Y': 'N',
+        "txtactivitiesmodifieddate": this.loggedinUserId == this.activitiesdelegate ? 'Y': 'N',
+        "txtheadquartersmodifieddate": this.loggedinUserId == this.headquartersdelegate ? 'Y': 'N',
+        "txtoperationsmodifieddate": this.loggedinUserId == this.operationsdelegate ?'Y': 'N'
       },
       "esgdetaildelegateusermodel": {
         "txtorganizationdelegateuser": this.Orgdelegatedtouser,
