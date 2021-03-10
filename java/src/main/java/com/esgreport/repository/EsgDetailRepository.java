@@ -13,10 +13,7 @@ import com.esgreport.entity.EsgDetail;
 public interface EsgDetailRepository extends JpaRepository<EsgDetail, Long>{
 	Optional<EsgDetail> findById(Long id);
 	EsgDetail findByesgDetailText(String esgdetailtext);
-	// void saveEsg(String esgDetail);
-	 //void saveBankName(String bankName);
-
-	//void save(EsgDetailModel esgDetailModel);
+	
 	@Modifying
 	@Query("update EsgDetail set delegate_to = ?1 where esg_detail_text = ?2")
 	int updateDelegate(int delegate_to, String esg_detail_text);

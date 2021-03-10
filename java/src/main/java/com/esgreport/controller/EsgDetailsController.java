@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.esgreport.GeneratePdf;
+import com.esgreport.SendingEmailApplication;
 import com.esgreport.entity.EsgDetail;
 import com.esgreport.model.EsgDetailsData;
 import com.esgreport.model.EsgDetailsDelegateUserModel;
@@ -21,10 +23,12 @@ import com.esgreport.service.EsgDetailService;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/esgdetails")
 public class EsgDetailsController {
-
+	@Autowired
+	private SendingEmailApplication sendingEmailApplication;
 	@Autowired
 	private EsgDetailService esgDetailService;
-
+	@Autowired
+	private GeneratePdf generatePdf;
 	@GetMapping("/all")
 	public List<EsgDetail> esgDetails() {
 
@@ -42,6 +46,7 @@ public class EsgDetailsController {
 
 		try {
 			esgDetailService.save(esgdetailsdata);
+
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,7 +61,9 @@ public class EsgDetailsController {
 	@PostMapping(value = "/delegate", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String esgDetailsDelegate(@RequestBody EsgDetailsDelegateUserModel esgDetailsDelegateUserModel)
 			throws ParseException {
-
+		if (esgDetailsDelegateUserModel == null) {
+			return null;
+		}
 		try {
 			esgDetailService.delegate(esgDetailsDelegateUserModel);
 		} catch (IllegalArgumentException e) {
@@ -67,15 +74,26 @@ public class EsgDetailsController {
 		return "Delegate successfull";
 	}
 
-	@PostMapping("/update")
+	@GetMapping("/getpdf")
 	public String esgDetailsUpdate() {
+		generatePdf.generatePdfDocument();
 		return "EsgDetailsUpdate";
 	}
 
 	@PostMapping("/updatedelegateto")
-	public boolean esgDetailsUpdateDelegateTo(@RequestBody EsgDetailsDelegateUserModel esgDetailsDelegateUserModel) throws ParseException {
+	public boolean esgDetailsUpdateDelegateTo(@RequestBody EsgDetailsDelegateUserModel esgDetailsDelegateUserModel)
+			throws ParseException {
 		try {
-			esgDetailService.delegate( esgDetailsDelegateUserModel);
+			esgDetailService.delegate(esgDetailsDelegateUserModel);
+			List<EsgDetail> listEsgDetail = esgDetailService.findAll();
+			for (int i = 0; i < listEsgDetail.size(); i++) {
+				if (listEsgDetail.get(i).getModeratorStatusId().getId() != 2) {
+					String email = listEsgDetail.get(i).getDelegateTo().getEmail();
+					sendingEmailApplication.sendEmail(email, "Delegation for ESG Tool",
+							"Hello " + listEsgDetail.get(i).getDelegateTo().getUsername() + ","
+									+ " \n please fill the ESG details in ESG Tool \n http://localhost:4200/login");
+				}
+			}
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

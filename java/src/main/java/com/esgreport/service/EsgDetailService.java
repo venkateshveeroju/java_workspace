@@ -148,13 +148,12 @@ public class EsgDetailService {
 
 	@Transactional
 	public boolean delegate(EsgDetailsDelegateUserModel esgDetailsDelegateUserModel) {
-
-		System.out.println(esgDetailsDelegateUserModel.getTxtactivitiesdelegateuser());
+		if (esgDetailsDelegateUserModel == null) {
+			return false;
+		}
 		List<EsgDetail> esgDetailList = esgDetailRepository.findAll();
-
 		int response = esgDetailRepository.updateDelegate(esgDetailsDelegateUserModel.getTxtorganizationdelegateuser(),
 				"txtorganization");
-
 		int txtactivities = esgDetailRepository
 				.updateDelegate(esgDetailsDelegateUserModel.getTxtactivitiesdelegateuser(), "txtactivities");
 		int txtheadquarters = esgDetailRepository

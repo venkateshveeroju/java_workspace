@@ -148,14 +148,14 @@ export class GriGeneraldisclosuresComponent implements OnInit {
   headquartersdelegate: number;
   operationsdelegate: number;
 
-  btnModeratorreadonly :boolean;
-  
+  btnModeratorreadonly: boolean;
+
   Moderatorreadonly = true;
   constructor(private logger: LogService, private esgdetailsService: EsgdetailsService, private tokenStorage: TokenStorageService, private UserService: UserService) { }
- 
+
   ngOnInit(): void {
-    this.btnModeratorreadonly=true;
-   
+    this.btnModeratorreadonly = true;
+
     this.tokenStorage.setLoggedinUserRecordId(Number(sessionStorage.getItem("loggedinUserId")));
     this.tokenStorage.getLoggedinUserRecordId().subscribe(params => {
       this.loggedinUserId = params
@@ -175,7 +175,7 @@ export class GriGeneraldisclosuresComponent implements OnInit {
 
     this.UserService.getUsersList().subscribe(
       response => {
-       // console.log(response);
+        // console.log(response);
         this.Orgdelegatedto = [];
         this.Activitiesdelegatedto = [];
         this.Headquartersdelegatedto = [];
@@ -216,8 +216,8 @@ export class GriGeneraldisclosuresComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
-          
-          if (this.loggedinUser == response[0]['delegateTo']['username'] ) {
+
+          if (this.loggedinUser == response[0]['delegateTo']['username']) {
             this.orgreadonly = false;
           }
           if (this.loggedinUser == response[1]['delegateTo']['username']) {
@@ -230,33 +230,32 @@ export class GriGeneraldisclosuresComponent implements OnInit {
             this.clickedbanklocation = false;
             this.headquartersreadonly = false;
           }
-          if (this.loggedinUser == response[3]['delegateTo']['username'] ) {
+          if (this.loggedinUser == response[3]['delegateTo']['username']) {
             this.clickedbankoperation1 = false;
             this.clickedbankoperation2 = false;
             this.operationsreadonly = false;
           }
-          console.log("mmmmmmmmmmmmmmmmmmm "+this.loggedinUserRole.includes("ROLE_USER"));
           if (this.loggedinUserRole.includes("ROLE_MODERATOR")) {
             this.Moderatorreadonly = false;
-            this.btnModeratorreadonly= false;
+            this.btnModeratorreadonly = false;
           }
-          else{
-            this.btnModeratorreadonly= true; 
+          else {
+            this.btnModeratorreadonly = true;
           }
-          if (Number((response[0]['userStatusId']['id']) == 2)){
+          if (Number((response[0]['userStatusId']['id']) == 2)) {
             this.orgreadonly = true;
           }
-          if (Number((response[1]['userStatusId']['id']) == 2)){
+          if (Number((response[1]['userStatusId']['id']) == 2)) {
             this.clickedesgdetailsbankinfo = true;
             this.clickedesgdetailsbankactivity = true;
             this.clickedesgdetailsbankservice = true;
             this.activitiesreadonly = true;
           }
-          if (Number((response[2]['userStatusId']['id']) == 2)){
+          if (Number((response[2]['userStatusId']['id']) == 2)) {
             this.clickedbanklocation = true;
             this.headquartersreadonly = true;
           }
-          if (Number((response[3]['userStatusId']['id']) == 2)){
+          if (Number((response[3]['userStatusId']['id']) == 2)) {
             this.clickedbankoperation1 = true;
             this.clickedbankoperation2 = true;
             this.operationsreadonly = true;
@@ -374,7 +373,18 @@ export class GriGeneraldisclosuresComponent implements OnInit {
     this.esgdetails.txtActivities = this.esgdetailsbankinfo1;
     this.esgdetails.txtHeadquarters = this.esgdetailsbankinfo2;
     this.esgdetails.txtOperations = this.esgdetailsbankinfo3;
-
+    if (this.loggedinUserRole.includes("ROLE_MODERATOR") && this.OrgmodaratorselectedStatus == 3) {
+      this.OrgUserStatus = "SAVE_CONTINUE";
+    }
+    if (this.loggedinUserRole.includes("ROLE_MODERATOR") && this.ActivitiesmodaratorselectedStatus == 3) {
+      this.ActivitiesUserStatus = "SAVE_CONTINUE";
+    }
+    if (this.loggedinUserRole.includes("ROLE_MODERATOR") && this.HeadquartersmodaratorselectedStatus == 3) {
+      this.HeadquartersUserStatus = "SAVE_CONTINUE";
+    }
+    if (this.loggedinUserRole.includes("ROLE_MODERATOR") && this.OperationsmodaratorselectedStatus == 3) {
+      this.OperationsUserStatus = "SAVE_CONTINUE";
+    }
     const data = {
       "esgdetailmodel": {
         txtorganization: this.esgdetails.txtOrganization,
@@ -400,12 +410,11 @@ export class GriGeneraldisclosuresComponent implements OnInit {
         "txtheadquartersStatus": this.loggedinUserId == this.headquartersdelegate ? 1 : (this.HeadquartersUserStatus == "SAVE_CONTINUE" ? 1 : 2),
         "txtoperationsStatus": this.loggedinUserId == this.operationsdelegate ? 1 : (this.OperationsUserStatus == "SAVE_CONTINUE" ? 1 : 2)
       },
-
       "esgdetaillastmodifiedmodel": {
-        "txtorganizationmodifieddate": this.loggedinUserId == this.orgdelegate ? 'Y': 'N',
-        "txtactivitiesmodifieddate": this.loggedinUserId == this.activitiesdelegate ? 'Y': 'N',
-        "txtheadquartersmodifieddate": this.loggedinUserId == this.headquartersdelegate ? 'Y': 'N',
-        "txtoperationsmodifieddate": this.loggedinUserId == this.operationsdelegate ?'Y': 'N'
+        "txtorganizationmodifieddate": this.loggedinUserId == this.orgdelegate ? 'Y' : 'N',
+        "txtactivitiesmodifieddate": this.loggedinUserId == this.activitiesdelegate ? 'Y' : 'N',
+        "txtheadquartersmodifieddate": this.loggedinUserId == this.headquartersdelegate ? 'Y' : 'N',
+        "txtoperationsmodifieddate": this.loggedinUserId == this.operationsdelegate ? 'Y' : 'N'
       },
       "esgdetaildelegateusermodel": {
         "txtorganizationdelegateuser": this.Orgdelegatedtouser,
@@ -415,18 +424,17 @@ export class GriGeneraldisclosuresComponent implements OnInit {
       },
       "bank_id": 1
     };
-  
+
     console.log(data);
     this.esgdetailsService.save(data)
       .subscribe(
         response => {
           console.log(response);
-          //this.submitted = true;
-          alert("Save sucessfully...")
+          alert("Saved sucessfully")
         },
         error => {
           console.log(error);
-          alert("Save sucessfully")
+          alert("Saved sucessfully")
         });
 
   }
@@ -464,10 +472,10 @@ export class GriGeneraldisclosuresComponent implements OnInit {
       },
 
       "esgdetaillastmodifiedmodel": {
-        "txtorganizationmodifieddate": this.OrgLastModifedDate,
-        "txtactivitiesmodifieddate": this.ActivitiesLastModifedDate,
-        "txtheadquartersmodifieddate": this.HeadquartersLastModifedDate,
-        "txtoperationsmodifieddate": this.OperationsLastModifedDate
+        "txtorganizationmodifieddate": this.loggedinUserId == this.orgdelegate ? 'Y' : 'N',
+        "txtactivitiesmodifieddate": this.loggedinUserId == this.activitiesdelegate ? 'Y' : 'N',
+        "txtheadquartersmodifieddate": this.loggedinUserId == this.headquartersdelegate ? 'Y' : 'N',
+        "txtoperationsmodifieddate": this.loggedinUserId == this.operationsdelegate ? 'Y' : 'N'
       },
       "esgdetaildelegateusermodel": {
         "txtorganizationdelegateuser": this.Orgdelegatedtouser,
@@ -483,13 +491,13 @@ export class GriGeneraldisclosuresComponent implements OnInit {
         response => {
           console.log(response);
           //this.submitted = true;
-          alert("Save sucessfully...")
+          alert("Save & Submitted sucessfully...")
         },
         error => {
           console.log(error);
-          alert("Submit failed")
+          alert("Save & Submitted sucessfully...")
         });
-    console.log("SaveSubmit button is clicked!", $event);
+    console.log("Save & Submit button is clicked!", $event);
   }
 
   onDelgate($event) {
@@ -517,11 +525,23 @@ export class GriGeneraldisclosuresComponent implements OnInit {
 
   onExport($event) {
     console.log("Export button is clicked!", $event);
-
+    this.esgdetailsService.onExport()
+      .subscribe(
+        response => {
+          console.log(response);
+          //this.submitted = true;
+          alert("Delegate sucessfully...")
+        },
+        error => {
+          console.log(error);
+          alert("Delegate unsucessfully")
+        });
+    alert("Export feature is not yet implemented");
   }
 
   onPrint($event) {
     console.log("Print button is clicked!", $event);
+    alert("Print feature is not yet implemented")
   }
 
 }

@@ -22,7 +22,7 @@ public class SendEmailController {
 
 	@RequestMapping(value = "/sendemail")
 	public String send() throws AddressException, MessagingException, IOException {
-		sendingEmailApplication.sendEmail();
+		//sendingEmailApplication.sendEmail(null, null, null);
 		//sendingEmailApplication.sendEmailWithAttachment();
 	   return "Email sent successfully";   
 	}

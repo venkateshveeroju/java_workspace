@@ -20,6 +20,9 @@ const baseUrl = 'http://localhost:8080/api/esgdetails';
       onDelgate(data) {
         return this.http.post(baseUrl+"/updatedelegateto",data);
       }
+      onExport() {
+        return this.http.get(baseUrl+"/getpdf");
+      }
       
     
   }
