@@ -498,6 +498,17 @@ export class GriGeneraldisclosuresComponent implements OnInit {
           alert("Save & Submitted sucessfully...")
         });
     console.log("Save & Submit button is clicked!", $event);
+
+    this.esgdetailsService.onNotifyModerator()
+      .subscribe(
+        response => {
+          console.log(response);
+          alert("Notification sent to moderator sucessfully...")
+        },
+        error => {
+          console.log(error);
+          alert("Notification sent to moderator Unsucessfull...")
+        });
   }
 
   onDelgate($event) {

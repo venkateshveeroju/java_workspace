@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.esgreport.GeneratePdf;
 import com.esgreport.SendingEmailApplication;
 import com.esgreport.entity.EsgDetail;
+import com.esgreport.entity.User;
 import com.esgreport.model.EsgDetailsData;
 import com.esgreport.model.EsgDetailsDelegateUserModel;
 import com.esgreport.service.EsgDetailService;
@@ -101,5 +102,6 @@ public class EsgDetailsController {
 
 		return true;
 	}
+	
 
 }

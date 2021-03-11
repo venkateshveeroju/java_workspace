@@ -23,6 +23,9 @@ const baseUrl = 'http://localhost:8080/api/esgdetails';
       onExport() {
         return this.http.get(baseUrl+"/getpdf");
       }
+      onNotifyModerator() {
+        return this.http.post("http://localhost:8080/api/users/notifyModerators","ss");
+      }
       
     
   }

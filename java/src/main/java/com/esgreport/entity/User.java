@@ -35,21 +35,7 @@ public class User {
 
 	private boolean enabled;
 	
-	public String getVerificationCode() {
-		return verificationCode;
-	}
-
-	public void setVerificationCode(String verificationCode) {
-		this.verificationCode = verificationCode;
-	}
-
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+	
 /////
 	@NotBlank
 	@Size(min = 3, max = 50)
@@ -88,7 +74,21 @@ public class User {
 //	public void setEsgDetails(List<EsgDetail> esgDetails) {
 //		this.esgDetails = esgDetails;
 //	}
+	public String getVerificationCode() {
+		return verificationCode;
+	}
 
+	public void setVerificationCode(String verificationCode) {
+		this.verificationCode = verificationCode;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 	public User() {
 	}
 
