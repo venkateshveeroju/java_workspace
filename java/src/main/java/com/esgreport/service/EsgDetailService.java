@@ -1,15 +1,20 @@
 package com.esgreport.service;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ResourceUtils;
 
 import com.esgreport.entity.Bank;
 import com.esgreport.entity.EsgDetail;
@@ -24,6 +29,14 @@ import com.esgreport.repository.EsgDetailRepository;
 import com.esgreport.repository.EsgDetailsModeratorStatusRepository;
 import com.esgreport.repository.EsgDetailsUserStatusRepository;
 import com.esgreport.repository.UserRepository;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Service
 public class EsgDetailService {
@@ -188,5 +201,23 @@ public class EsgDetailService {
 			return false;
 		}
 	}
+    public String exportReport(String reportFormat) throws FileNotFoundException, JRException {
+        String path = "D:\\j\\";
+        List<EsgDetail> esgDetail = esgDetailRepository.findAll();
+        //load file and compile it
+        File file = ResourceUtils.getFile("classpath:esgdetails.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(esgDetail);
+        Map<String, Object> parameters = new HashMap<>();
+        
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+        if (reportFormat.equalsIgnoreCase("html")) {
+            JasperExportManager.exportReportToHtmlFile(jasperPrint, path + "\\esg.html");
+        }
+        if (reportFormat.equalsIgnoreCase("pdf")) {
+            JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\esg.pdf");
+        }
 
+        return "report generated in path : " + path;
+    }
 }

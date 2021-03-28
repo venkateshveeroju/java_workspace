@@ -19,64 +19,40 @@ import org.hibernate.annotations.NaturalId;
 @SecondaryTables(@SecondaryTable(name = "roles"))
 public class UserRole {
 
-	
-	
-	
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-
-	
 	
 	@Column(table="roles",name="id", insertable=false,updatable =false)
 	private Long roleid;
 	
-
-
-	public Long getIdd() {
-		return id;
-	}
-
-
-
-	public void setIdd(Long id) {
-		this.id = id;
-	}
-
-
-
-	public Long getRoleid() {
-		return roleid;
-	}
-
-
-
-	public void setRoleid(Long roleid) {
-		this.roleid = roleid;
-	}
-
-
-
-	public String getEmail() {
-		return email;
-	}
-
-
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-
-
 	@NaturalId
 	@NotBlank
 	@Size(max = 50)
 	@Email
 	private String email;
+	
+	public Long getIdd() {
+		return id;
+	}
 
-	
-	
+	public void setIdd(Long id) {
+		this.id = id;
+	}
+
+	public Long getRoleid() {
+		return roleid;
+	}
+
+	public void setRoleid(Long roleid) {
+		this.roleid = roleid;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }

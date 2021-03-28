@@ -1,10 +1,12 @@
 package com.esgreport.controller;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +17,9 @@ import com.esgreport.entity.User;
 import com.esgreport.repository.UserRepository;
 import com.esgreport.repository.UserRoleRepository;
 import com.esgreport.service.EsgDetailService;
+import com.esgreport.service.UserServices;
+
+import net.sf.jasperreports.engine.JRException;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -27,7 +32,10 @@ private UserRepository userRepository;
 	private UserRoleRepository userRoleRepository;
 	@Autowired
 	private SendingEmailApplication sendingEmailApplication;
-
+	
+	@Autowired
+	private UserServices userServices;
+	
 	@GetMapping("/all")
 	public List<User> getAllUsers() {
 
@@ -48,5 +56,9 @@ private UserRepository userRepository;
 		}
 		return true;
 	}
-
+	 @GetMapping("/report/{format}")
+	    public String generateReport(@PathVariable String format) throws FileNotFoundException, JRException {
+	     System.out.println("@GetMapping@GetMapping@GetMapping@GetMapping");  
+		 return userServices.exportReport(format);
+	    }
 }
