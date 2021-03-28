@@ -1,0 +1,53 @@
+ng serve --host 0.0.0.0 --port 4200
+ng serve --o --port 4200
+
+
+
+data from backend 
+
+
+(4) [{…}, {…}, {…}, {…}]
+0:
+delegateTo:
+bank: null
+email: "pm@example.com"
+enabled: false
+id: 1
+password: "$2a$10$LUQR9ZQO3G5EX00fNCBNteYNWmzLS2aAscE2cK8YCiVFn3geOZFKW"
+roles: Array(1)
+0: {id: 1, name: "ROLE_MODERATOR"}
+length: 1
+__proto__: Array(0)
+username: "venkat"
+verificationCode: null
+__proto__: Object
+esgDetailText: "txtorganization"
+esgDetailTextValue: "asdas"
+esgDetailsText: "txtorganization"
+id: 1
+lastModifiedBy:
+bank: null
+email: "pm@example.com"
+enabled: false
+id: 1
+password: "$2a$10$LUQR9ZQO3G5EX00fNCBNteYNWmzLS2aAscE2cK8YCiVFn3geOZFKW"
+roles: [{…}]
+username: "venkat"
+verificationCode: null
+__proto__: Object
+lastModifiedDate: "2019-12-10T23:00:00Z"
+moderatorStatusId:
+id: 1
+status: "IN_PROGRESS"
+__proto__: Object
+userStatusId:
+id: 1
+status: "SAVE_CONTINUE"
+__proto__: Object
+users: Array(0)
+length: 0
+__proto__: Array(0)
+__proto__: Object
+1: {id: 2, esgDetailText: "txtactivities", esgDetailTextValue: "test value here", lastModifiedBy: {…}, delegateTo: {…}, …}
+2: {id: 3, esgDetailText: "txtheadquarters", esgDetailTextValue: "SDa", lastModifiedBy: {…}, delegateTo: {…}, …}
+3: {id: 4, es
