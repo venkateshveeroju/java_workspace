@@ -1,0 +1,61 @@
+﻿<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">The Lab</a>
+     
+        <a class="nav-item nav-link  " routerLink="/research" routerLinkActive="active">Research
+           
+                <li><a  href="#">Epigenetics</a></li>
+                <li><a  href="#">Transcription Factor</a></li>
+                <li><a  href="#">(Epi) Transcriptomics</a></li>
+                <li><a  href="#">Regenrative Studies</a></li>
+                <li><a  href="#">Techniques</a></li>      
+        </a>
+        <a class="nav-item nav-link" routerLink="/career" routerLinkActive="active">Minions
+            <ul>
+                <li><a href="#">Research</a></li>
+                <li><a href="#">Lab Management</a></li>
+
+            </ul>
+        </a>
+        <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Publications</a> 
+        <a class="nav-item nav-link" routerLink="/news" routerLinkActive="active">News
+            <ul>
+                <li><a href="#">Current topics</a></li>
+                <li><a href="#">Career</a></li>
+            </ul>
+        </a>
+        <a class="nav-item nav-link" routerLink="/contact" routerLinkActive="active">Contact
+            
+        </a> 
+        <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Gallery
+            <ul>
+                <li><a href="#">Research</a></li>
+                <li><a href="#">Divertido</a></li>
+            </ul>
+        </a> 
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+         
+       
+
+    </div>
+  
+</nav>
+
+<!-- main app container -->
+<div class="app-container" [ngClass]="{ 'bg-light': user }">
+    <alert></alert>
+    <router-outlet></router-outlet>
+
+</div>
+
+<!-- credits -->
+<div class="text-center mt-4">
+    <p>
+       
+    </p>
+    <p>
+        <a>@VenkateshVeeroju</a>
+    </p>
+</div>
