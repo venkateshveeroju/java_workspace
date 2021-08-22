@@ -1,0 +1,58 @@
+.team-grids {
+    position: relative;
+  }
+  .team h3 {
+    font-size: 3em;
+    text-transform: capitalize;
+    color: #000;
+    font-family: 'Play-Regular';
+    text-align: center;
+  }
+  .team {
+      padding: 4em 0;
+       
+  }
+  .team-info {
+    margin-top: 3em;
+  }
+  .team-grids a {
+      overflow: hidden;
+      position: relative;
+      display: block;
+  }
+  .captn h4 {
+    color: #fee200;
+    font-family: 'Play-Regular';
+    margin: .1em 0 0;
+    font-size: 2em;
+  }
+  .captn p {
+    color: #fff;
+    font-size: 1em;
+    font-weight: 100;
+    margin-top: .3em;
+  }
+  .team-grids a .captn {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    font-weight: 800;
+    color: #ffffff;
+    position: absolute;
+    bottom: -82%;
+    right: 0%;
+    background-color: rgba(51, 51, 51, 0.68);
+    padding: 2% 10%;
+    text-align: center;
+    -o-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+  .team-grids a:hover .captn {
+    width: 100%;
+    bottom: 0%;
+    padding: 40% 10%;
+      right: 0%;
+  }
