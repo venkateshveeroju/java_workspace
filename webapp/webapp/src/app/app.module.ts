@@ -21,10 +21,15 @@ import { environment } from '../environments/environment';
 import { ChartjsComponent } from './charts/chartjs/chartjs.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CareerComponent } from './news/career/career.component';
-
+import { LoginComponent } from './login/login.component';
 //import { CurrentTopicsComponent } from './news/current-topics/current-topics.component';
 import { ResearchComponent } from './employees/research/research.component';
 import { EpigeneticsComponent } from './epigenetics/epigenetics.component';
+
+
+import { UtilitiesSidebarComponent } from './shared/utilities-sidebar/utilities-sidebar.component';
+import { AdminComponent } from './admin/admin.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,9 +44,12 @@ import { EpigeneticsComponent } from './epigenetics/epigenetics.component';
     TechniquesComponent,
     ChartjsComponent,
     CareerComponent,
+    UtilitiesSidebarComponent,
     //CurrentTopicsComponent,
+    LoginComponent,
     ResearchComponent,
     EpigeneticsComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

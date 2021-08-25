@@ -13,11 +13,15 @@ import { ResearchComponent } from './employees/research/research.component';
 import { EpigeneticsComponent } from './epigenetics/epigenetics.component';
 import { DivertidoComponent } from './divertido/divertido.component';
 import { CareerComponent } from './news/career/career.component';
+import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
+
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'admin', component: AdminComponent },
   { path: 'research', component: ResearchComponent },
   { path: 'epigenetics', component: EpigeneticsComponent },
   { path: 'gallery', component: GalleryComponent },
@@ -36,6 +40,9 @@ const routes: Routes = [
   { path: 'charts', loadChildren: () => import('./charts/charts.module').then(m => m.ChartsDemoModule) },
   { path: 'tables', loadChildren: () => import('./tables/tables.module').then(m => m.TablesModule) },
   { path: '**', redirectTo: 'general-pages/page-404' },
+  { path: 'login', component: LoginComponent },
+  //{ path: 'admin', component: LoginComponent },
+ 
 ];
 
 @NgModule({

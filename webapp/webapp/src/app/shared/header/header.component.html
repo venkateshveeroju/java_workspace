@@ -1,7 +1,7 @@
 <div class="az-header">
   <div class="container">
     <div class="az-header-left">
-      <a routerLink="/" class="az-logo"><span>Pullamsetti</span>  </a>
+      <a routerLink="/home" ><span><h1>The Pullamsetti Lab</h1></span>  </a>
       <a href="#" id="azMenuShow" (click)="toggleHeaderMenu($event)" class="az-header-menu-icon d-lg-none"><span></span></a>
     </div><!-- az-header-left -->
     <div class="az-header-menu">
@@ -26,18 +26,18 @@
         <li class="nav-item" ngbDropdown [ngClass]="{'active': lab.isActive}">
           <a class="nav-link with-sub" id="employeesDropdown" ngbDropdownToggle> Employees</a>
           <nav class="az-menu-sub" ngbDropdownMenu aria-labelledby="employeesDropdown">
-            <a routerLink="/employees/research" class="nav-link">Research</a>
+            <a routerLink="/employees/research" class="nav-link" routerLinkActive="active" #lab="routerLinkActive" >Research</a>
             <a routerLink="/employees/lab-management" routerLinkActive="active" #lab="routerLinkActive" class="nav-link">Lab Management</a>
           </nav>
         </li>
-        <li class="nav-item" ngbDropdown>
-          <a routerLink="/publications" class="nav-link"> Publications</a>
+        <li class="nav-item" ngbDropdown [ngClass]="{ 'active': publications.isActive }"> 
+          <a routerLink="/publications" class="nav-link" routerLinkActive="active" #publications="routerLinkActive"> Publications</a>
         </li>
-        <li class="nav-item" ngbDropdown >
-          <a class="nav-link with-sub" id="newsDropdown" ngbDropdownToggle > News</a>
+        <li class="nav-item" ngbDropdown  [ngClass]="{ 'active': news.isActive }">
+          <a class="nav-link with-sub" id="newsDropdown" ngbDropdownToggle  > News</a>
           <nav class="az-menu-sub" ngbDropdownMenu aria-labelledby="newsDropdown">
-            <a routerLink="/news/current-topics" class="nav-link">Current Topics</a>
-            <a routerLink="/news/career" class="nav-link">Career</a>
+            <a routerLink="/news/current-topics" class="nav-link" routerLinkActive="active" #news="routerLinkActive">Current Topics</a>
+            <a routerLink="/news/career" class="nav-link" routerLinkActive="active" #news="routerLinkActive">Career</a>
           </nav>
         </li>
         <li class="nav-item" ngbDropdown [ngClass]="{ 'active': gallery.isActive }">
@@ -45,6 +45,9 @@
         </li>
         <li class="nav-item" ngbDropdown [ngClass]="{ 'active': contact.isActive }">
           <a routerLink="/contact" routerLinkActive="active" #contact="routerLinkActive" class="nav-link"> Contact</a>
+        </li>
+        <li class="nav-item" ngbDropdown [ngClass]="{ 'active': login.isActive }">
+          <a routerLink="/login" routerLinkActive="active" #login="routerLinkActive" class="nav-link"> LogIn</a>
         </li>
       </ul>
     </div><!-- az-header-menu -->
