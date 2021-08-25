@@ -1,0 +1,162 @@
+https://www.callicoder.com/documenting-spring-rest-apis-using-swagger/
+
+
+
+spring.jpa.hibernate.ddl-auto=update
+
+The list of option which is used in the spring boot are
+validate: validate the schema, makes no changes to the database.
+update: update the schema.
+create: creates the schema, destroying previous data.
+create-drop: drop the schema at the end of the session
+none: is all other cases
+
+=============================================================
+Run Spring Boot application with command: mvn spring-boot:run
+=============================================================
+CREATE SCHEMA `esgreporing` ;
+
+describe users;
+describe roles;
+describe user_roles;
+
+INSERT into banks (bank_name,logo_path) values ('ABC Bank','');
+INSERT users (email,password,username,bank_id) VALUES ('abc@abcbank.com','','exampleuser',1);
+
+INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
+INSERT INTO roles(name) VALUES('ROLE_USER');
+
+
+
+
+INSERT INTO esgdetail_moderator_status(status) VALUES('SELECT');
+INSERT INTO esgdetail_moderator_status(status) VALUES('IN_PROGRESS');
+INSERT INTO esgdetail_moderator_status(status) VALUES('APPROVED');
+INSERT INTO esgdetail_moderator_status(status) VALUES('DENIED');
+
+
+INSERT INTO esgdetail_user_status(status) VALUES('SAVE_CONTINUE');
+INSERT INTO esgdetail_user_status(status) VALUES('SAVE_SUBMIT');
+
+
+INSERT INTO esgdetails(esg_detail_text) values ('txtorganization');
+INSERT INTO esgdetails(esg_detail_text) values ('txtactivities');
+INSERT INTO esgdetails(esg_detail_text) values ('txtheadquarters');
+INSERT INTO esgdetails(esg_detail_text) values ('txtoperations');
+INSERT INTO user_role(user_id,role_id) VALUES(1,1);
+
+
+
+
+select * from banks;
+select * from users;
+select * from roles;
+select * from user_roles;
+select * from esgdetail_moderator_status;
+select * from esgdetail_user_status;
+select * from esgdetails;
+
+
+==================================
+
+Register some users with /signup API:
+Ex: 
+admin with ROLE_ADMIN
+PM with ROLE_PM
+mod with ROLE_MODERATOR and ROLE_USER
+zkoder with ROLE_USER
+
+POST - type (json)
+http://localhost:8080/api/auth/signup
+{
+  "username":"admin",
+  "email":"admin@example.com",
+  "password":"12345678",
+  "role":["ROLE_MODERATOR","ROLE_USER"]
+
+}
+
+{
+  "username":"user2",
+  "email":"user2@example.com",
+  "password":"123123",
+  "role":["ROLE_MODERATOR","ROLE_USER"]
+}
+POST - type (json)
+http://localhost:8080/api/auth/signup
+{
+  "username":"pmm",
+  "email":"pm@example.com",
+  "password":"12345678",
+    "role":["ROLE_MODERATOR","ROLE_USER"]
+
+}
+
+POST - type (json)
+http://localhost:8080/api/auth/signup
+{
+  "username":"user",
+  "email":"user@example.com",
+  "password":"12345678",
+  "role":["ROLE_MODERATOR","ROLE_USER"]
+
+}
+
+POST - type (json)
+http://localhost:8080/api/auth/signup
+{
+  "username":"mod",
+  "email":"mod@example.com",
+  "password":"12345678",
+   "role":["ROLE_MODERATOR","ROLE_USER"]
+
+}
+
+
+GET
+http://localhost:8080/api/test/all   public content
+
+GET
+http://localhost:8080/api/test/user  401 -unauthorized
+
+POST  -type(json)
+http://localhost:8080/api/auth/signin
+{
+  "username":"admin",
+  "password":"12345678"
+}
+
+Result
+{
+    "id": 1,
+    "username": "admin",
+    "email": "admin@example.com",
+    "roles": [
+        "ROLE_ADMIN"
+    ],
+    "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTYxMTU2MTM3MywiZXhwIjoxNjExNjQ3NzczfQ.XgttKAEODytLOm8HYclqy2jLo_OZScon2pJkP9T7p40R2oEFpoeGaJzR_qmf4YfWlqCqr7gKvzAwWxtMogjG0g",
+    "tokenType": "Bearer"
+
+
+GET
+http://localhost:8080/api/test/user
+
+Authorization Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTYxMTQwOTgwMiwiZXhwIjoxNjExNDk2MjAyfQ.wF66WVAjxYuluVi4i1fIP5P2oTNwg8aaVYOgD1GFMnNN1npj046M6aJMgZHuHg1TSPCmkwPpbTyWdF5Nwj3aZA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
