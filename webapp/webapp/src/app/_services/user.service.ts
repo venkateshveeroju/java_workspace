@@ -15,7 +15,7 @@ export class UserService {
     return this.http.get(API_URL+"/getAllUsers");
   }
   getPublicContent(): Observable<any> {
-    return this.http.get(API_URL + '/all', { responseType: 'text' });
+    return this.http.get(API_URL + '/all', { responseType: 'json' });
   }
 
   getUserBoard(): Observable<any> {

@@ -5,9 +5,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { LabManagementComponent } from './lab-management/lab-management.component';
+import { ResearchComponent } from './research/research.component';
 
 const routes: Routes = [
-  { path: 'lab-management', component: LabManagementComponent }
+  { path: 'lab-management', component: LabManagementComponent },
+  { path: 'research', component: ResearchComponent }
 ]
 
 @NgModule({

@@ -9,12 +9,20 @@ import { SignupComponent } from './general-pages/signup/signup.component';
 import { PublicationsComponent } from './publications/publications.component';
 import { TranscriptionfactorComponent } from './transcriptionfactor/transcriptionfactor.component';
 import { TechniquesComponent } from './techniques/techniques.component';
+import { ResearchComponent } from './employees/research/research.component';
+import { EpigeneticsComponent } from './epigenetics/epigenetics.component';
+import { DivertidoComponent } from './divertido/divertido.component';
+import { CareerComponent } from './news/career/career.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'research', component: ResearchComponent },
+  { path: 'epigenetics', component: EpigeneticsComponent },
   { path: 'gallery', component: GalleryComponent },
+  { path: 'divertido', component: DivertidoComponent },
+  { path: 'news', loadChildren: () => import('./news/news.module').then(m => m.NewsModule) },
   { path: 'contact', component: ContactComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'signin', component: SigninComponent },

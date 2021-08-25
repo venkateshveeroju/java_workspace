@@ -17,7 +17,14 @@ import { NgxGalleryModule } from 'ngx-gallery-9';
 import { PublicationsComponent } from './publications/publications.component';
 import { TranscriptionfactorComponent } from './transcriptionfactor/transcriptionfactor.component';
 import { TechniquesComponent } from './techniques/techniques.component';
+import { environment } from '../environments/environment';
+import { ChartjsComponent } from './charts/chartjs/chartjs.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CareerComponent } from './news/career/career.component';
 
+//import { CurrentTopicsComponent } from './news/current-topics/current-topics.component';
+import { ResearchComponent } from './employees/research/research.component';
+import { EpigeneticsComponent } from './epigenetics/epigenetics.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +37,11 @@ import { TechniquesComponent } from './techniques/techniques.component';
     PublicationsComponent,
     TranscriptionfactorComponent,
     TechniquesComponent,
+    ChartjsComponent,
+    CareerComponent,
+    //CurrentTopicsComponent,
+    ResearchComponent,
+    EpigeneticsComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +49,8 @@ import { TechniquesComponent } from './techniques/techniques.component';
     AppRoutingModule,
     NgbModule,
     ChartsModule,
-    NgxGalleryModule
+    NgxGalleryModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

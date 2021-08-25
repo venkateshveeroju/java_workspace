@@ -17,13 +17,10 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   login(credentials): Observable<any> {
-  console.log("inside login");
-     return this.http.post(AUTH_API + 'signin', {
-       username: credentials.username,
-       password: credentials.password
-     }, httpOptions);
-   
-   
+    return this.http.post(AUTH_API + 'signin', {
+      username: credentials.username,
+      password: credentials.password
+    }, httpOptions);
   }
   logout() {
     // remove user from local storage to log user out

@@ -1,12 +1,12 @@
 <div class="az-header">
   <div class="container">
     <div class="az-header-left">
-      <a routerLink="/" class="az-logo"><span></span> Lab</a>
+      <a routerLink="/" class="az-logo"><span>Pullamsetti</span>  </a>
       <a href="#" id="azMenuShow" (click)="toggleHeaderMenu($event)" class="az-header-menu-icon d-lg-none"><span></span></a>
     </div><!-- az-header-left -->
     <div class="az-header-menu">
       <div class="az-header-menu-header">
-        <a routerLink="/" class="az-logo"><span></span> Lab</a>
+        <a routerLink="/" class="az-logo"><span></span> Welcome</a>
         <a href="#" (click)="toggleHeaderMenu($event)" class="close">&times;</a>
       </div><!-- az-header-menu-header -->
       <ul class="nav">
@@ -18,24 +18,26 @@
           <nav class="az-menu-sub" ngbDropdownMenu aria-labelledby="researchDropdown">
             <a routerLink="/home" class="nav-link" routerLinkActive="active" #epigenetics="routerLinkActive">Epigenetics</a>
             <a routerLink="/transcriptionfactor" class="nav-link">Transcription Factor</a>
+            <a routerLink="/transcriptionfactor" class="nav-link">(EPI) Transcriptomics</a>
+            <a routerLink="/transcriptionfactor" class="nav-link">Regenerative studies</a>
             <a routerLink="/techniques" class="nav-link">Techniques</a>   
           </nav>
         </li>
         <li class="nav-item" ngbDropdown [ngClass]="{'active': lab.isActive}">
           <a class="nav-link with-sub" id="employeesDropdown" ngbDropdownToggle> Employees</a>
           <nav class="az-menu-sub" ngbDropdownMenu aria-labelledby="employeesDropdown">
-            <a routerLink="/" class="nav-link">Research</a>
+            <a routerLink="/employees/research" class="nav-link">Research</a>
             <a routerLink="/employees/lab-management" routerLinkActive="active" #lab="routerLinkActive" class="nav-link">Lab Management</a>
           </nav>
         </li>
         <li class="nav-item" ngbDropdown>
           <a routerLink="/publications" class="nav-link"> Publications</a>
         </li>
-        <li class="nav-item" ngbDropdown>
-          <a class="nav-link with-sub" id="newsDropdown" ngbDropdownToggle> News</a>
+        <li class="nav-item" ngbDropdown >
+          <a class="nav-link with-sub" id="newsDropdown" ngbDropdownToggle > News</a>
           <nav class="az-menu-sub" ngbDropdownMenu aria-labelledby="newsDropdown">
-            <a routerLink="/" class="nav-link">Current Topics</a>
-            <a routerLink="/" class="nav-link">Career</a>
+            <a routerLink="/news/current-topics" class="nav-link">Current Topics</a>
+            <a routerLink="/news/career" class="nav-link">Career</a>
           </nav>
         </li>
         <li class="nav-item" ngbDropdown [ngClass]="{ 'active': gallery.isActive }">
