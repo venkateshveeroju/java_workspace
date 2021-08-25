@@ -51,7 +51,7 @@
     "raphael": "^2.3.0",
     "rxjs": "~6.5.5",
     "select2": "^4.0.13",
-    "tinymce": "4.9.5",
+    "tinymce": "5.7.1",
     "tslib": "^1.11.1",
     "typicons.font": "^2.0.9",
     "zone.js": "~0.10.3"
