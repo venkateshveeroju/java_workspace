@@ -6,13 +6,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminComponent } from '../admin/admin.component';
 
+import { EmpComponent } from '../employees/emp/emp.component';
+
 const routes: Routes = [
   { path: 'career', component: CareerComponent },
   { path: 'current-topics', component: CurrentTopicsComponent }
 ]
 
 @NgModule({
-  declarations: [AdminComponent],
+  declarations: [AdminComponent, EmpComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

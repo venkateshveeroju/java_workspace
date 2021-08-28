@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
       this.tokenStorage.setLoggedinUserRoleRecord(sessionStorage.getItem("loggedinUserRole"));
 
      // this.esgHeaderComponent.setisloggedinhideValue(true );
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/contact']);
         //this.reloadPage();
       },
       err => {

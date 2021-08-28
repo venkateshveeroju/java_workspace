@@ -46,6 +46,9 @@
         <li class="nav-item" ngbDropdown [ngClass]="{ 'active': contact.isActive }">
           <a routerLink="/contact" routerLinkActive="active" #contact="routerLinkActive" class="nav-link"> Contact</a>
         </li>
+        <li class="nav-item" ngbDropdown [ngClass]="{ 'active': mp.isActive }">
+          <a routerLink="/contact" routerLinkActive="active" #mp="routerLinkActive" class="nav-link"> Media & Press</a>
+        </li>
         <li class="nav-item" ngbDropdown [ngClass]="{ 'active': login.isActive }">
           <a routerLink="/login" routerLinkActive="active" #login="routerLinkActive" class="nav-link"> LogIn</a>
         </li>

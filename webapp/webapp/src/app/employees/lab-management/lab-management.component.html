@@ -17,10 +17,11 @@
                         </div> -->
 
                         <div *ngFor="let brochure of content;index as i">
-                            <a href="javascript:void(0)">
+                            <!-- <a href="javascript:void(0)">
                                 <div class="container">
                                     <img class="img-responsive" src="data:image/jpeg;base64,{{brochure.image}}"
-                                        style="float:left;width:500px;height:500px; " alt="">
+                                        routerLink="/tables/basic-tables">
+                                    style="float:left;width:500px;height:500px; " alt="">
                                     <div class="row">
                                         <div class="col-md">
                                             <h4>{{content[i].name}}</h4>
@@ -33,9 +34,55 @@
                                         </div>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
+                            </a> -->
 
+                            <div id="profile-container" class="profile-container row-fluid">
+                                <div class="attribute-image">
+                                    <div class="attribute-value attribute-no-label"><img 
+                                            src="data:image/jpeg;base64,{{brochure.image}}"
+                                            style="float:left;width:20%;height:20%;padding-right: 20px;" alt="Katja Alt"
+                                            class="thm_groups_profile_container_profile_image img-responsive">
+                                        <div class="clearFix"></div>
+                                    </div>
+                                    <div class="clearFix"></div>
+                                </div>
+                                <div class="page-header">
+                                     <span>
+                                        <h2>{{content[i].name}}</h2>
+                                  
+                                    </span>
+                                </div>
+                            
+                                <div class="attribute-wrap">
+                                 
+                                    <div class="attribute-value attribute-iconed"><span
+                                            id="cloak2d664dc5f7920556b4e6921e9fe259ab"><a type="email"
+                                                href="{{content[i].email}}">{{content[i].email}}</a></span>
+
+                                    </div>
+                                   
+                                </div>
+
+                                <div class="attribute-wrap">
+                                    <div class="attribute-label"><span class="icon-phone" title="Telefon"></span></div>
+                                    <div class="attribute-value attribute-iconed">+49 (0)641 309 2439
+                                        <div class="clearFix">
+                                        </div>
+                                    </div>
+                                    <div class="clearFix"></div>
+                                </div>
+                                <div class="attribute-html">
+                                    <div class="attribute-label"><span class="icon-user" title="Zur Person"></span>
+                                    </div>
+                                    <div class="attribute-value attribute-iconed">
+                                        <p>Lehraufträge, Projektphase {{content[i].description}}</p><br>
+                                        <div class="clearFix"></div>
+                                    </div>
+                                    <div class="clearFix"></div>
+                                </div>
+                                <div class="clearFix"></div>
+                            </div>
+                        </div>
                         <!--  <div class="col-md-3 team-grids">
                         <a href="javascript:void(0)">
                             <img class="img-responsive" src="assets/images/t4.jpg" alt="">
