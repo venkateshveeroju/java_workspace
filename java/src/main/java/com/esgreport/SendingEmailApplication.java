@@ -4,19 +4,16 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.mail.MessagingException;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import com.esgreport.entity.Contact;
 
 @SpringBootApplication
 public class SendingEmailApplication {
@@ -24,6 +21,21 @@ public class SendingEmailApplication {
 	@Autowired
 	private JavaMailSender javaMailSender;
 
+	public void sendEmailContact(Contact contact) {
+
+		SimpleMailMessage msg = new SimpleMailMessage();
+
+		
+		msg.setTo("nandhan.v@gmail.com");
+		msg.setSubject(contact.getSubject());
+		msg.setText(contact.toString());
+		msg.getSentDate();
+		
+
+		javaMailSender.send(msg);
+		System.out.println("Email sent here");
+
+	}
 	public void sendEmail(String email,String subject,String message) {
 
 		SimpleMailMessage msg = new SimpleMailMessage();
@@ -36,9 +48,9 @@ public class SendingEmailApplication {
 		msg.setText(message);
 
 		javaMailSender.send(msg);
+		System.out.println("Email sent here");
 
 	}
-
 	public void sendEmailWithAttachment() throws MessagingException, IOException {
 
 		MimeMessage msg = javaMailSender.createMimeMessage();
